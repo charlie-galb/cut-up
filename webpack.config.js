@@ -1,24 +1,28 @@
-const path = require("path");
+const { join } = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const htmlPlugin = new HtmlWebpackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-})
+const mode = process.env.ENV || 'development';
 
 module.exports = {
+  mode,
   entry: "./src",
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: join(__dirname, "dist"),
     filename: "bundle.js",
   },
+  devServer: { contentBase: join(__dirname, "src") },
   module: {
     rules: [
       {
         test: /\.(js|jsx)/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        loader: "babel-loader",
         options: { presets: ['@babel/preset-react', '@babel/preset-env'] }
+      },
+      {
+        test: /\.(ts|tsx)/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
       },
       {
         test: /\.scss/,
@@ -27,7 +31,10 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
-  plugins: [htmlPlugin]
+  plugins: [new HtmlWebpackPlugin({
+    template: "./src/index.html",
+    filename: "./index.html"
+  })]
 };
