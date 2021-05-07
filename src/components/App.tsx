@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
+import { PasteBoard } from "./PasteBoard/PasteBoard"
 
 export const App = () => {
 
@@ -19,6 +20,7 @@ export const App = () => {
     <div>
       <h1 data-testid="test-header">Cut-up App</h1>
       <CuttingBoard snipText={snipText}/>
+      <PasteBoard wordChunks={["One", "two"]} />
     </div>
     
   )
