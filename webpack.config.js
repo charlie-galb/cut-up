@@ -1,16 +1,24 @@
-const { join } = require("path");
+const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mode = process.env.ENV || 'development';
 
 module.exports = {
   mode,
+  target: 'web',
   entry: "./src",
   output: {
-    path: join(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
-  devServer: { contentBase: join(__dirname, "src") },
+  devServer: { 
+    contentBase: path.join(__dirname, "src"),
+    hot: true,
+    compress: true,
+    watchContentBase: true,
+    inline: true,
+    port: 3000 
+  },
   module: {
     rules: [
       {
@@ -35,6 +43,5 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({
     template: "./src/index.html",
-    filename: "./index.html"
   })]
 };
