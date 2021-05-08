@@ -5,7 +5,7 @@ import { PasteBoard } from "./PasteBoard/PasteBoard"
 
 export const App = () => {
 
-  const [snippedText, setSnippedText] = useState<string[]>()
+  const [snippedText, setSnippedText] = useState<string[]>([""])
 
   const snipText = (text: string) => {
     const temp = text.split(" ")
@@ -20,7 +20,7 @@ export const App = () => {
     <div>
       <h1 data-testid="test-header">Cut-up App</h1>
       <CuttingBoard snipText={snipText}/>
-      <PasteBoard wordChunks={["One", "two"]} />
+      <PasteBoard wordChunks={snippedText} />
     </div>
     
   )
