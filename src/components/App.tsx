@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { DragDropContext } from 'react-beautiful-dnd'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { PasteBoard } from "./PasteBoard/PasteBoard"
@@ -20,7 +21,9 @@ export const App = () => {
     <div>
       <h1 data-testid="test-header">Cut-up App</h1>
       <CuttingBoard snipText={snipText}/>
-      <PasteBoard wordChunks={snippedText} />
+      <DragDropContext onDragEnd={() => {}}>
+        <PasteBoard wordChunks={snippedText} />
+      </DragDropContext>
     </div>
     
   )
