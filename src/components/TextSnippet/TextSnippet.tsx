@@ -5,11 +5,12 @@ import { Draggable } from "react-beautiful-dnd"
 interface Props {
     text: string
     index: number
+    id: number
 }
 
 export const TextSnippet = (props: Props) => {
     return (
-        <Draggable draggableId={`snippet${props.index}`} index={props.index}>
+        <Draggable draggableId={`snippet${props.id}`} index={props.index}>
             {provided => (
                 <div 
                 className="text-snippet"
