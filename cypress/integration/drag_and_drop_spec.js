@@ -1,5 +1,5 @@
 describe("drag and drop", () => {
-    it("user can drag and drop text chunks, changing their order", () => {
+    it("user can drag and drop text chunks from the pasteboard into their current poem", () => {
         cy.visit('http://localhost:3000/')
         cy.get('[data-testid="cutting-text-area"]').type("one and two and")
         cy.get('[data-testid="cut-btn"]').click()
