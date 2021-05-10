@@ -3,8 +3,19 @@ import { render } from "@testing-library/react"
 import { DragDropContext } from 'react-beautiful-dnd'
  
 import { PasteBoard } from "./PasteBoard"
+import { chunk } from "../../types/chunk"
 
-const wordChunks = ["chunk one", "chunk two"]
+const chunkOne: chunk = {
+    id: 1,
+    text: "one"
+}
+
+const chunkTwo: chunk = {
+    id: 2,
+    text: "two"
+}
+
+const wordChunks = [chunkOne, chunkTwo]
 
 describe("PasteBoard", () => {
     test("It renders correctly", () => {
