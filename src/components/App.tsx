@@ -11,7 +11,7 @@ export const App = () => {
     const temp = text.split(" ")
     const result: Array<string> = []
     for(let i = 0; i < temp.length; i = i + 2 ) {
-      result.push(temp.slice(i,i+2).join('.'))
+      result.push(temp.slice(i,i+2).join(' '))
     }
     setSnippedText(result)
   }
