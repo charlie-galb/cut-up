@@ -21,6 +21,6 @@ describe("PasteBoard", () => {
                 <PasteBoard wordChunks={wordChunks}/>
             </DragDropContext>
         )
-        expect(getAllByRole("snippet")).toHaveLength(2)
+        expect(getAllByRole("button")).toHaveLength(2)
     })
 })
