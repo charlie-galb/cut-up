@@ -3,9 +3,10 @@ import React, {useEffect } from "react"
 import { Droppable } from "react-beautiful-dnd"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
+import { chunk } from "../../types/chunk"
 
 interface Props {
-    wordChunks: string[]
+    wordChunks: chunk[]
 }
 
 export const PasteBoard = (props: Props) => {
@@ -18,9 +19,9 @@ export const PasteBoard = (props: Props) => {
                 {provided => (
                 <div data-testid="unused-snippets" {...provided.droppableProps}
                     ref={provided.innerRef}>
-                    {wordChunks.map((chunk, i) => {
+                    {wordChunks?.map((chunk, i) => {
                         return (
-                            <TextSnippet data-testid="snippet" key={i} index={i} text={chunk}/>
+                            <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
                         )
                     })}
                     {provided.placeholder}
