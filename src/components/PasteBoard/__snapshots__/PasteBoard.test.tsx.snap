@@ -17,19 +17,6 @@ Object {
             aria-describedby="rbd-hidden-text-0-hidden-text-0"
             class="text-snippet"
             data-rbd-drag-handle-context-id="0"
-            data-rbd-drag-handle-draggable-id="snippet0"
-            data-rbd-draggable-context-id="0"
-            data-rbd-draggable-id="snippet0"
-            draggable="false"
-            role="button"
-            tabindex="0"
-          >
-            chunk one
-          </div>
-          <div
-            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class="text-snippet"
-            data-rbd-drag-handle-context-id="0"
             data-rbd-drag-handle-draggable-id="snippet1"
             data-rbd-draggable-context-id="0"
             data-rbd-draggable-id="snippet1"
@@ -37,7 +24,20 @@ Object {
             role="button"
             tabindex="0"
           >
-            chunk two
+            one
+          </div>
+          <div
+            aria-describedby="rbd-hidden-text-0-hidden-text-0"
+            class="text-snippet"
+            data-rbd-drag-handle-context-id="0"
+            data-rbd-drag-handle-draggable-id="snippet2"
+            data-rbd-draggable-context-id="0"
+            data-rbd-draggable-id="snippet2"
+            draggable="false"
+            role="button"
+            tabindex="0"
+          >
+            two
           </div>
         </div>
       </div>
@@ -72,19 +72,6 @@ Object {
           aria-describedby="rbd-hidden-text-0-hidden-text-0"
           class="text-snippet"
           data-rbd-drag-handle-context-id="0"
-          data-rbd-drag-handle-draggable-id="snippet0"
-          data-rbd-draggable-context-id="0"
-          data-rbd-draggable-id="snippet0"
-          draggable="false"
-          role="button"
-          tabindex="0"
-        >
-          chunk one
-        </div>
-        <div
-          aria-describedby="rbd-hidden-text-0-hidden-text-0"
-          class="text-snippet"
-          data-rbd-drag-handle-context-id="0"
           data-rbd-drag-handle-draggable-id="snippet1"
           data-rbd-draggable-context-id="0"
           data-rbd-draggable-id="snippet1"
@@ -92,7 +79,20 @@ Object {
           role="button"
           tabindex="0"
         >
-          chunk two
+          one
+        </div>
+        <div
+          aria-describedby="rbd-hidden-text-0-hidden-text-0"
+          class="text-snippet"
+          data-rbd-drag-handle-context-id="0"
+          data-rbd-drag-handle-draggable-id="snippet2"
+          data-rbd-draggable-context-id="0"
+          data-rbd-draggable-id="snippet2"
+          draggable="false"
+          role="button"
+          tabindex="0"
+        >
+          two
         </div>
       </div>
     </div>
