@@ -9,8 +9,9 @@ Object {
         class="pasteboard-container"
       >
         <div
+          class="unused-snippets"
           data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="snippet-bank"
+          data-rbd-droppable-id="chunk-container-1"
           data-testid="unused-snippets"
         >
           <div
@@ -64,8 +65,9 @@ Object {
       class="pasteboard-container"
     >
       <div
+        class="unused-snippets"
         data-rbd-droppable-context-id="0"
-        data-rbd-droppable-id="snippet-bank"
+        data-rbd-droppable-id="chunk-container-1"
         data-testid="unused-snippets"
       >
         <div
