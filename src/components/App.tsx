@@ -65,10 +65,11 @@ export const App = () => {
       <h1 data-testid="test-header">Cut-up App</h1>
       <CuttingBoard snipText={snipText}/>
       <DragDropContext onDragEnd={onDragEnd}>
-        <PasteBoard wordChunks={snippedText} />
-        <WorkInProgress poemChunks={chosenText} />
+        <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
+          <PasteBoard wordChunks={snippedText} />
+          <WorkInProgress poemChunks={chosenText} />
+        </div>
       </DragDropContext>
     </div>
-    
   )
 }
