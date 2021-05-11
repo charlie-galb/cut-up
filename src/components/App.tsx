@@ -49,12 +49,20 @@ export const App = () => {
       newChosen.splice(result.source.index, 1);
       newChosen.splice(result.destination.index, 0, draggedItem);
       setChosenText(newChosen);
-    } else {
+    } else if (result.destination.droppableId === "wip") {
       const newChunks = snippedText;
       const updatedPoem = chosenText
       const draggedItem = newChunks[result.source.index]
       newChunks.splice(result.source.index, 1);
       updatedPoem.splice(result.destination.index, 0, draggedItem);
+      setSnippedText(newChunks);
+      setChosenText(updatedPoem);
+    } else {
+      const newChunks = snippedText;
+      const updatedPoem = chosenText
+      const draggedItem = chosenText[result.source.index]
+      updatedPoem.splice(result.source.index, 1);
+      newChunks.splice(result.destination.index, 0, draggedItem);
       setSnippedText(newChunks);
       setChosenText(updatedPoem);
     }
