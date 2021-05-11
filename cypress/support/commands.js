@@ -1,5 +1,3 @@
-import '@4tw/cypress-drag-drop'
-
 Cypress.Commands.add('dragAndDrop', (subject, target) => {
     Cypress.log({
         name: 'DRAGNDROP',
