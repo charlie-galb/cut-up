@@ -1,3 +1,10 @@
 .pasteboard-container {
     border: solid red 2px;
+    width: 300px;
+    height: 100px;
+}
+
+.unused-snippets {
+    display: flex;
+    flex-direction: row;
 }
