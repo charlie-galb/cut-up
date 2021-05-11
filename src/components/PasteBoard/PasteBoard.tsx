@@ -15,9 +15,9 @@ export const PasteBoard = (props: Props) => {
 
     return (
         <div className="pasteboard-container" >
-            <Droppable droppableId="snippet-bank">
+            <Droppable droppableId="snippet-bank" direction="horizontal">
                 {provided => (
-                <div data-testid="unused-snippets" {...provided.droppableProps}
+                <div className="unused-snippets" data-testid="unused-snippets" {...provided.droppableProps}
                     ref={provided.innerRef}>
                     {wordChunks?.map((chunk, i) => {
                         return (
