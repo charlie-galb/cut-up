@@ -3,23 +3,24 @@ import React, {useEffect } from "react"
 import { Droppable } from "react-beautiful-dnd"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
-import { chunk } from "../../types/chunk"
+import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
-    wordChunks: chunk[]
+    chunkContainer: chunkContainer
 }
 
 export const PasteBoard = (props: Props) => {
 
-    const { wordChunks } = props
+    const { chunkContainer } = props
+    const { id, nestedChunks } = chunkContainer
 
     return (
         <div className="pasteboard-container" >
-            <Droppable droppableId="snippet-bank" direction="horizontal">
+            <Droppable droppableId={id} direction="horizontal">
                 {provided => (
                 <div className="unused-snippets" data-testid="unused-snippets" {...provided.droppableProps}
                     ref={provided.innerRef}>
-                    {wordChunks?.map((chunk, i) => {
+                    {nestedChunks?.map((chunk, i) => {
                         return (
                             <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
                         )
