@@ -1,17 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { PasteBoard } from "./PasteBoard/PasteBoard"
 import { WorkInProgress } from "./WorkInProgress/WorkInProgress"
 import { chunk } from "../types/chunk"
+import { initialState } from "./initialState"
 
-export const App = () => {
+export class App extends React.Component {
+  state = initialState
 
-  const [chosenText, setChosenText] = useState<chunk[]>([])
-  const [snippedText, setSnippedText] = useState<chunk[]>([])
-
-  const snipText = (text: string) => {
+  snipText = (text: string) => {
     const temp = text.split(" ")
     const result: Array<chunk> = []
     let id_acc = 1
@@ -20,64 +19,99 @@ export const App = () => {
       result.push(chunk)
       id_acc++
     }
-    setSnippedText(result)
+
+    const newPasteBoard = this.state.chunkContainers['chunk-container-1']
+    newPasteBoard.nestedChunks = result
+
+    const newState = {
+      ...this.state, 
+      chunkContainers: {
+        ...this.state.chunkContainers,
+        [newPasteBoard.id]: newPasteBoard
+      }
+    } 
+    this.setState(newState)
   }
 
-  const onDragEnd = (result: DropResult) => {
-    if (!result.destination) {
+  onDragEnd = (result: DropResult) => {
+    const { destination, source, draggableId } = result
+    if (!destination) {
       return
-    } else if (
-      result.source.droppableId === result.destination.droppableId &&
-      result.source.index === result.destination.index
+    } 
+    
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
     ) {
       return; 
-    } else if (
-      result.source.droppableId === result.destination.droppableId && 
-      result.destination.droppableId === "snippet-bank"
-    ) {
-      const newChunks = snippedText;
-      const draggedItem = newChunks[result.source.index]
-      newChunks.splice(result.source.index, 1);
-      newChunks.splice(result.destination.index, 0, draggedItem);
-      setSnippedText(newChunks);
-    } else if (
-      result.source.droppableId === result.destination.droppableId && 
-      result.destination.droppableId === "wip"
-    ) {
-      const newChosen = chosenText;
-      const draggedItem = newChosen[result.source.index]
-      newChosen.splice(result.source.index, 1);
-      newChosen.splice(result.destination.index, 0, draggedItem);
-      setChosenText(newChosen);
-    } else if (result.destination.droppableId === "wip") {
-      const newChunks = snippedText;
-      const updatedPoem = chosenText
-      const draggedItem = newChunks[result.source.index]
-      newChunks.splice(result.source.index, 1);
-      updatedPoem.splice(result.destination.index, 0, draggedItem);
-      setSnippedText(newChunks);
-      setChosenText(updatedPoem);
-    } else {
-      const newChunks = snippedText;
-      const updatedPoem = chosenText
-      const draggedItem = chosenText[result.source.index]
-      updatedPoem.splice(result.source.index, 1);
-      newChunks.splice(result.destination.index, 0, draggedItem);
-      setSnippedText(newChunks);
-      setChosenText(updatedPoem);
+    } 
+
+    const dragStart = this.state.chunkContainers[source.droppableId]
+    const dragEnd = this.state.chunkContainers[destination.droppableId]
+    
+    if (dragStart === dragEnd) {
+      const newChunks = Array.from(dragStart.nestedChunks)
+      const draggedItem = dragStart.nestedChunks[source.index]
+      newChunks.splice(source.index, 1);
+      newChunks.splice(destination.index, 0, draggedItem);
+
+      const newContainer = {
+        ...dragStart,
+        nestedChunks: newChunks
+      }
+
+      const newState = {
+        ...this.state,
+        chunkContainers: {
+          ...this.state.chunkContainers,
+          [newContainer.id]: newContainer
+        }
+      }
+
+      this.setState(newState)
+      return  
+    } 
+    
+    const startChunks = Array.from(dragStart.nestedChunks)
+    const draggedItem = dragStart.nestedChunks[source.index]
+    startChunks.splice(source.index, 1)
+    const newStart = {
+      ...dragStart,
+      nestedChunks: startChunks
     }
+
+    const endChunks = Array.from(dragEnd.nestedChunks)
+    endChunks.splice(destination.index, 0, draggedItem)
+    const newEnd = {
+      ...dragEnd,
+      nestedChunks: endChunks
+    }
+
+    const newState = {
+      ...this.state,
+      chunkContainers: {
+        ...this.state.chunkContainers,
+        [newStart.id]: newStart,
+        [newEnd.id]: newEnd
+      }
+    }
+    this.setState(newState)
   }
 
-  return (
-    <div>
-      <h1 data-testid="test-header">Cut-up App</h1>
-      <CuttingBoard snipText={snipText}/>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
-          <PasteBoard wordChunks={snippedText} />
-          <WorkInProgress poemChunks={chosenText} />
-        </div>
-      </DragDropContext>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <h1 data-testid="test-header">Cut-up App</h1>
+        <CuttingBoard snipText={this.snipText}/>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
+            <PasteBoard chunkContainer={this.state.chunkContainers['chunk-container-1']} />
+            <WorkInProgress chunkContainer={this.state.chunkContainers['chunk-container-2']} />
+          </div>
+        </DragDropContext>
+      </div>
+    )
+  }
 }
+
+export default App
