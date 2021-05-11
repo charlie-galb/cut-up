@@ -4,6 +4,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
  
 import { PasteBoard } from "./PasteBoard"
 import { chunk } from "../../types/chunk"
+import { chunkContainer } from "../../types/chunkContainer"
 
 const chunkOne: chunk = {
     id: 1,
@@ -17,11 +18,17 @@ const chunkTwo: chunk = {
 
 const wordChunks = [chunkOne, chunkTwo]
 
+const mockContainer: chunkContainer = {
+    id: 'chunk-container-1',
+    title: 'pasteboard',
+    nestedChunks: wordChunks
+  }
+
 describe("PasteBoard", () => {
     test("It renders correctly", () => {
         const board = render(
             <DragDropContext onDragEnd={() => {}}>
-                <PasteBoard wordChunks={wordChunks}/>
+                <PasteBoard chunkContainer={mockContainer}/>
             </DragDropContext>
         )
         expect(board).toMatchSnapshot()
@@ -29,7 +36,7 @@ describe("PasteBoard", () => {
     test("It displays text chunks as draggable objects", () => {
         const { getAllByRole } = render(
             <DragDropContext onDragEnd={() => {}}>
-                <PasteBoard wordChunks={wordChunks}/>
+                <PasteBoard chunkContainer={mockContainer}/>
             </DragDropContext>
         )
         expect(getAllByRole("button")).toHaveLength(2)
