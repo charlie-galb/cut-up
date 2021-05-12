@@ -10,13 +10,14 @@ interface Props {
       [key: string]: chunkContainer
     }
     lineOrder: string[]
-  }
+    addLine: (arg: void) => void
+}
 
 export const CraftingBoard = (props: Props) => {
     return (
         <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
             <PasteBoard chunkContainer={props.chunkContainers['chunk-container-1']} />
-            <WorkInProgress lineOrder={props.lineOrder} chunkContainers={props.chunkContainers} />
+            <WorkInProgress lineOrder={props.lineOrder} chunkContainers={props.chunkContainers} addLine={props.addLine}/>
         </div>
     )
 }
