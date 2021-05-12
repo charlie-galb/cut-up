@@ -103,7 +103,7 @@ export class App extends React.Component {
         <h1 data-testid="test-header">Cut-up App</h1>
         <CuttingBoard snipText={this.snipText}/>
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <CraftingBoard chunkContainers={this.state.chunkContainers}/>
+          <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder}/>
         </DragDropContext>
       </div>
     )
