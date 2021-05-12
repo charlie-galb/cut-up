@@ -27,5 +27,5 @@ export const initialState: initialState = {
       'chunk-container-1': pasteBoard,
       'chunk-container-2': line1
     },
-    lineOrder: ['line-1']
+    lineOrder: ['chunk-container-2']
 }
