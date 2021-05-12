@@ -2,8 +2,7 @@ import React from "react"
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
-import { PasteBoard } from "./PasteBoard/PasteBoard"
-import { WorkInProgress } from "./WorkInProgress/WorkInProgress"
+import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { chunk } from "../types/chunk"
 import { initialState } from "./initialState"
 
@@ -104,10 +103,7 @@ export class App extends React.Component {
         <h1 data-testid="test-header">Cut-up App</h1>
         <CuttingBoard snipText={this.snipText}/>
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
-            <PasteBoard chunkContainer={this.state.chunkContainers['chunk-container-1']} />
-            <WorkInProgress chunkContainer={this.state.chunkContainers['chunk-container-2']} />
-          </div>
+          <CraftingBoard chunkContainers={this.state.chunkContainers}/>
         </DragDropContext>
       </div>
     )
