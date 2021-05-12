@@ -4,10 +4,33 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { chunk } from "../types/chunk"
+import { chunkContainer } from "../types/chunkContainer"
 import { initialState } from "./initialState"
 
 export class App extends React.Component {
   state = initialState
+
+  addLine = () => {
+    const lineNumber = this.state.lineOrder.length
+    const containerNumber = lineNumber + 2
+    const Id = `chunk-container-${containerNumber}`
+    const title = `line-${lineNumber}`
+    const newLine: chunkContainer = {
+      id: Id,
+      title: title,
+      nestedChunks: []
+    }
+    const newLineOrder = [...this.state.lineOrder, Id]
+    const newState = {
+      ...this.state,
+      chunkContainers: {
+        ...this.state.chunkContainers,
+        [Id]: newLine
+      },
+      lineOrder: newLineOrder
+    }
+    this.setState(newState)
+  }
 
   snipText = (text: string) => {
     const temp = text.split(" ")
@@ -103,7 +126,7 @@ export class App extends React.Component {
         <h1 data-testid="test-header">Cut-up App</h1>
         <CuttingBoard snipText={this.snipText}/>
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder}/>
+          <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
         </DragDropContext>
       </div>
     )
