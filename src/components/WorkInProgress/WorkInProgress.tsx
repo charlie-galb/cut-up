@@ -7,16 +7,23 @@ import { Line } from "../Line/Line"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
-    chunkContainer: chunkContainer
+    chunkContainers: {
+        [key: string]: chunkContainer
+      }
+    lineOrder: string[]
 }
 
 export const WorkInProgress = (props: Props) => {
 
-    const { chunkContainer } = props
+    const { chunkContainers, lineOrder } = props
 
     return (
         <div className="wip-container">
-            <Line chunkContainer={chunkContainer}/>
+            {lineOrder?.map((lineId, i) => {
+                return (
+                    <Line key={i} chunkContainer={chunkContainers[lineId]}/>
+                )
+            })}
         </div>
     )
 }
