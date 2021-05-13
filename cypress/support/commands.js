@@ -1,4 +1,4 @@
-Cypress.Commands.add('dragAndDrop', (subject, target) => {
+Cypress.Commands.add('dragAndDrop', (subject, target, xAdjustment = 0, yAdjustment = 0) => {
     Cypress.log({
         name: 'DRAGNDROP',
         message: `Dragging element ${subject} to ${target}`,
@@ -10,7 +10,6 @@ Cypress.Commands.add('dragAndDrop', (subject, target) => {
         }
     });
     const BUTTON_INDEX = 0;
-    const SLOPPY_CLICK_THRESHOLD = 10;
     cy.get(target)
         .first()
         .then($target => {
@@ -28,8 +27,8 @@ Cypress.Commands.add('dragAndDrop', (subject, target) => {
                         })
                         .trigger('mousemove', {
                             button: BUTTON_INDEX,
-                            clientX: coordsDrag.x + SLOPPY_CLICK_THRESHOLD,
-                            clientY: coordsDrag.y,
+                            clientX: coordsDrag.x + xAdjustment,
+                            clientY: coordsDrag.y + yAdjustment,
                             force: true
                         });
                     cy.get('body')
