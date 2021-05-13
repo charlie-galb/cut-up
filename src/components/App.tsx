@@ -11,7 +11,7 @@ export class App extends React.Component {
   state = initialState
 
   addLine = () => {
-    const lineNumber = this.state.lineOrder.length
+    const lineNumber = this.state.lineOrder.length + 1
     const containerNumber = lineNumber + 2
     const Id = `chunk-container-${containerNumber}`
     const title = `line-${lineNumber}`
@@ -37,7 +37,9 @@ export class App extends React.Component {
     const result: Array<chunk> = []
     let id_acc = 1
     for(let i = 0; i < temp.length; i = i + 2 ) {
-      const chunk: chunk = { id: id_acc, text: temp.slice(i,i+2).join(' ')}
+      const text = temp.slice(i,i+2).join(' ')
+      const unformattedText = this._removePunctuation(text.toLowerCase())
+      const chunk: chunk = { id: id_acc, text: unformattedText}
       result.push(chunk)
       id_acc++
     }
@@ -53,6 +55,11 @@ export class App extends React.Component {
       }
     } 
     this.setState(newState)
+  }
+
+  _removePunctuation = (string: string) => {
+    return string.replace(/[^\w\s]|_/g, "")
+         .replace(/\s+/g, " ");
   }
 
   onDragEnd = (result: DropResult) => {
