@@ -1,0 +1,18 @@
+.cutting-container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+}
+
+.cut-btn {
+    margin: auto;
+    width: 15%;
+}
+
+.cutting-text-area {
+    height: 200px;
+    margin: auto;
+    width: 80%
+}
