@@ -19,9 +19,9 @@ export const CuttingBoard = (props: Props) => {
     }
 
     return (
-        <div>
-            <textarea data-testid="cutting-text-area" className="cuttingBoard" cols={10} rows={4} placeholder="Paste your text sources here" value={sourceText} onChange={handleSourceTextChange}/>
-            <button data-testid="cut-btn" onClick={handleCutting} >Cut up</button>
+        <div className="cutting-container">
+            <textarea data-testid="cutting-text-area" className="cutting-text-area" cols={10} rows={4} placeholder="Paste your text sources here" value={sourceText} onChange={handleSourceTextChange}/>
+            <button data-testid="cut-btn" className="cut-btn" onClick={handleCutting} >Cut up</button>
         </div>
     )
 }
