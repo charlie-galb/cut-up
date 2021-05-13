@@ -5,7 +5,7 @@ import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { chunk } from "../types/chunk"
 import { chunkContainer } from "../types/chunkContainer"
-import { initialState } from "./initialState"
+import { initialState } from "../data/initialState"
 
 export class App extends React.Component {
   state = initialState
