@@ -1,7 +1,8 @@
 .pasteboard-container {
     border: solid red 2px;
-    width: 400px;
+    overflow: scroll;
     height: 400px;
+    width: 400px;
 }
 
 .unused-snippets {
