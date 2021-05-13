@@ -24,11 +24,11 @@ export const WorkInProgress = (props: Props) => {
             <div className="lines-container">
                 {lineOrder?.map((lineId, i) => {
                     return (
-                        <Line data-testid="line" key={i} chunkContainer={chunkContainers[lineId]}/>
+                        <Line key={i} chunkContainer={chunkContainers[lineId]}/>
                     )
                 })}
             </div>
-            <button data-testid="add-line-btn" onClick={handleLineAdding} >Add line</button>
+            <button data-testid="add-line-btn" className="add-line-btn" onClick={handleLineAdding} >Add line</button>
         </div>
     )
 }
