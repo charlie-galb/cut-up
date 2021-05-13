@@ -15,7 +15,7 @@ interface Props {
 
 export const CraftingBoard = (props: Props) => {
     return (
-        <div style={{display: "flex", flexDirection: "row", width: "80%", zIndex: -14 }}>
+        <div className="crafting-container">
             <PasteBoard chunkContainer={props.chunkContainers['chunk-container-1']} />
             <WorkInProgress lineOrder={props.lineOrder} chunkContainers={props.chunkContainers} addLine={props.addLine}/>
         </div>
