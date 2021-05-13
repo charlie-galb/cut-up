@@ -122,12 +122,14 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 data-testid="test-header">Cut-up App</h1>
-        <CuttingBoard snipText={this.snipText}/>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
-        </DragDropContext>
+      <div className="app-container">
+        <div className="content-contasiner">
+          <h1 data-testid="test-header">Cut-up App</h1>
+          <CuttingBoard snipText={this.snipText}/>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
+          </DragDropContext>
+        </div>
       </div>
     )
   }
