@@ -6,6 +6,8 @@ import { WorkInProgress } from "./WorkInProgress"
 import { chunk } from "../../types/chunk"
 import { chunkContainer } from "../../types/chunkContainer"
 
+const mockAddLine = jest.fn()
+
 const chunkOne: chunk = {
     id: 1,
     text: "one"
@@ -41,9 +43,9 @@ describe("WorkInProgress", () => {
     it("iterates over the lines array and renders every element", () => {
         const { getAllByRole } = render(
         <DragDropContext onDragEnd={() => {}}>
-            <WorkInProgress lineOrder={mockLineIds} chunkContainers={mockContainers} />
+            <WorkInProgress lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
         </DragDropContext>
         )
-        expect(getAllByRole("button")).toHaveLength(4)
+        expect(getAllByRole("button")).toHaveLength(5)
     })
 })
