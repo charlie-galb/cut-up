@@ -12,7 +12,7 @@ describe("drag and drop", () => {
         cy.visit('http://localhost:3000/')
         cy.get('[data-testid="cutting-text-area"]').type("one and two and")
         cy.get('[data-testid="cut-btn"]').click()
-        cy.dragAndDrop(".text-snippet", '.wip-container', 0, -40)
+        cy.dragAndDrop(".text-snippet", '.wip-container', -80, -50)
         cy.get('[data-testid="line-1"] .text-snippet').first().should("have.text", "one and")
     })
     it("user can move chunks back and forth between the pasteboard their current work-in-progress", () => {
@@ -21,7 +21,7 @@ describe("drag and drop", () => {
         cy.get('[data-testid="cut-btn"]').click()
         cy.dragAndDrop(".text-snippet", '[data-testid="line-1"]', 0, -40)
         .wait(1000)
-        cy.dragAndDrop('[data-testid="unused-snippets"] .text-snippet', '[data-testid="line-1"]', 0, -20)
+        cy.dragAndDrop('[data-testid="unused-snippets"] .text-snippet', '[data-testid="line-1"]', -20, -10)
         .wait(1000)
         cy.dragAndDrop('[data-testid="line-1"] .text-snippet', ".pasteboard-container", 0, -40)
         .wait(500)
