@@ -50,9 +50,11 @@ export const CuttingBoard = (props: Props) => {
 
     return (
         <div className="cutting-container">
-            <textarea data-testid="cutting-text-area1" className="cutting-text-area1" cols={10} rows={4} placeholder="Paste your text sources here" value={source1Text} onChange={handleSource1TextChange}/>
-            <textarea data-testid="cutting-text-area2" className="cutting-text-area2" cols={10} rows={4} placeholder="Paste your text sources here" value={source2Text} onChange={handleSource2TextChange}/>
-            <textarea data-testid="cutting-text-area3" className="cutting-text-area3" cols={10} rows={4} placeholder="Paste your text sources here" value={source3Text} onChange={handleSource3TextChange}/>
+            <div className='text-area-container'>
+                <textarea data-testid="cutting-text-area1" className="cutting-text-area 1" cols={10} rows={4} placeholder="Paste your text sources here" value={source1Text} onChange={handleSource1TextChange}/>
+                <textarea data-testid="cutting-text-area2" className="cutting-text-area 2" cols={10} rows={4} placeholder="Paste your text sources here" value={source2Text} onChange={handleSource2TextChange}/>
+                <textarea data-testid="cutting-text-area3" className="cutting-text-area 3" cols={10} rows={4} placeholder="Paste your text sources here" value={source3Text} onChange={handleSource3TextChange}/>
+            </div>
             <button data-testid="cut-btn" className="cut-btn" onClick={handleCutting} >Cut up</button>
         </div>
     )
