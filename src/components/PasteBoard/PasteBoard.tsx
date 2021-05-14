@@ -15,20 +15,18 @@ export const PasteBoard = (props: Props) => {
     const { id, nestedChunks } = chunkContainer
 
     return (
-        <div className="pasteboard-container" >
-            <Droppable droppableId={id} direction="horizontal">
-                {provided => (
-                <div className="unused-snippets" data-testid="unused-snippets" {...provided.droppableProps}
-                    ref={provided.innerRef}>
-                    {nestedChunks?.map((chunk, i) => {
-                        return (
-                            <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
-                        )
-                    })}
-                    {provided.placeholder}
-                </div>
-                )}
-            </Droppable>
-        </div>
+        <Droppable droppableId={id} direction="horizontal">
+            {provided => (
+            <div className="unused-snippets" data-testid="unused-snippets" {...provided.droppableProps}
+                ref={provided.innerRef}>
+                {nestedChunks?.map((chunk, i) => {
+                    return (
+                        <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
+                    )
+                })}
+                {provided.placeholder}
+            </div>
+            )}
+        </Droppable>
     )
 }
