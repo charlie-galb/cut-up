@@ -10,10 +10,16 @@ describe("CuttingBoard", () => {
         const board = render(<CuttingBoard snipText ={snipMock}/>)
         expect(board).toMatchSnapshot()
     })
-    test("It converts the text to an array of word chunks", () => {
+    test("there are three text areas", () => {
+        const { getAllByRole } = render(<CuttingBoard snipText ={snipMock}/>)
+        expect(getAllByRole("textbox")).toHaveLength(3)
+    })
+    test("It combines the three texts and calls snipText", () => {
         const { getByTestId } = render(<CuttingBoard snipText ={snipMock} />)
-        fireEvent.change(getByTestId("cutting-text-area"), {target: {value: "This is a moderate chunk of text" } } )
+        fireEvent.change(getByTestId("cutting-text-area1"), {target: {value: "One and" } } )
+        fireEvent.change(getByTestId("cutting-text-area2"), {target: {value: "Two and" } } )
+        fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: "Three and" } } )
         fireEvent.click(getByTestId("cut-btn"))
-        expect(snipMock).toHaveBeenCalledWith("This is a moderate chunk of text")
+        expect(snipMock).toHaveBeenCalledWith("One and Two and Three and")
     })
 })
