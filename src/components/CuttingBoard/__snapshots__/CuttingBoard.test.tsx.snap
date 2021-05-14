@@ -5,15 +5,32 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <div
+        class="cutting-container"
+      >
         <textarea
-          class="cuttingBoard"
+          class="cutting-text-area1"
           cols="10"
-          data-testid="cutting-text-area"
+          data-testid="cutting-text-area1"
+          placeholder="Paste your text sources here"
+          rows="4"
+        />
+        <textarea
+          class="cutting-text-area2"
+          cols="10"
+          data-testid="cutting-text-area2"
+          placeholder="Paste your text sources here"
+          rows="4"
+        />
+        <textarea
+          class="cutting-text-area3"
+          cols="10"
+          data-testid="cutting-text-area3"
           placeholder="Paste your text sources here"
           rows="4"
         />
         <button
+          class="cut-btn"
           data-testid="cut-btn"
         >
           Cut up
@@ -22,15 +39,32 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
+    <div
+      class="cutting-container"
+    >
       <textarea
-        class="cuttingBoard"
+        class="cutting-text-area1"
         cols="10"
-        data-testid="cutting-text-area"
+        data-testid="cutting-text-area1"
+        placeholder="Paste your text sources here"
+        rows="4"
+      />
+      <textarea
+        class="cutting-text-area2"
+        cols="10"
+        data-testid="cutting-text-area2"
+        placeholder="Paste your text sources here"
+        rows="4"
+      />
+      <textarea
+        class="cutting-text-area3"
+        cols="10"
+        data-testid="cutting-text-area3"
         placeholder="Paste your text sources here"
         rows="4"
       />
       <button
+        class="cut-btn"
         data-testid="cut-btn"
       >
         Cut up
