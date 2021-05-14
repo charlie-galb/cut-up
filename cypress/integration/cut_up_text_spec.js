@@ -1,4 +1,4 @@
-describe("Cut-up app", () => {
+describe("Cut-up feature", () => {
     it('Cuts text into chunks and removes punctuation/capitalisation', () => {
         cy.visit('http://localhost:3000/')
         cy.get('[data-testid="cutting-text-area1"]').type("One and?")
