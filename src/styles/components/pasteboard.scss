@@ -1,15 +1,9 @@
-.pasteboard-container {
+.unused-snippets {
     border: solid red 2px;
-    overflow: scroll;
+    display: flex;
     height: 400px;
     width: 50%;
-}
-
-.unused-snippets {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    border: solid yellow 5px;
+    overflow: scroll;
 }
