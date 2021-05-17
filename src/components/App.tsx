@@ -1,13 +1,17 @@
 import React from "react"
-import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+
+import { DndContext, closestCenter } from '@dnd-kit/core'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { OutputBox } from "./OutputBox/OutputBox"
 import { TextifyButton } from "./TextifyButton/TextifyButton"
+
+import { initialState } from "../data/initialState"
+
 import { chunk } from "../types/chunk"
 import { chunkContainer } from "../types/chunkContainer"
-import { initialState } from "../data/initialState"
+
 
 export class App extends React.Component {
   state = initialState
@@ -64,69 +68,73 @@ export class App extends React.Component {
          .replace(/\s+/g, " ");
   }
 
-  onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result
-    if (!destination) {
-      return
-    } 
-    
-    if (
-      source.droppableId === destination.droppableId &&
-      source.index === destination.index
-    ) {
-      return; 
-    } 
-
-    const dragStart = this.state.chunkContainers[source.droppableId]
-    const dragEnd = this.state.chunkContainers[destination.droppableId]
-    
-    if (dragStart === dragEnd) {
-      const newChunks = Array.from(dragStart.nestedChunks)
-      const draggedItem = dragStart.nestedChunks[source.index]
-      newChunks.splice(source.index, 1);
-      newChunks.splice(destination.index, 0, draggedItem);
-
-      const newContainer = {
-        ...dragStart,
-        nestedChunks: newChunks
-      }
-
-      const newState = {
-        ...this.state,
-        chunkContainers: {
-          ...this.state.chunkContainers,
-          [newContainer.id]: newContainer
-        }
-      }
-
-      this.setState(newState)
-      return  
-    } 
-    
-    const startChunks = Array.from(dragStart.nestedChunks)
-    const draggedItem = dragStart.nestedChunks[source.index]
-    startChunks.splice(source.index, 1)
-    const newStart = {
-      ...dragStart,
-      nestedChunks: startChunks
+  onDragEnd = (event: any) => {
+    const { active, over } = event
+    if (active.id !== over.id) {
+      console.log(active)
+      console.log(over)
     }
+    // if (!destination) {
+    //   return
+    // } 
+    
+    // if (
+    //   source.droppableId === destination.droppableId &&
+    //   source.index === destination.index
+    // ) {
+    //   return; 
+    // } 
 
-    const endChunks = Array.from(dragEnd.nestedChunks)
-    endChunks.splice(destination.index, 0, draggedItem)
-    const newEnd = {
-      ...dragEnd,
-      nestedChunks: endChunks
-    }
+    // const dragStart = this.state.chunkContainers[source.droppableId]
+    // const dragEnd = this.state.chunkContainers[destination.droppableId]
+    
+    // if (dragStart === dragEnd) {
+    //   const newChunks = Array.from(dragStart.nestedChunks)
+    //   const draggedItem = dragStart.nestedChunks[source.index]
+    //   newChunks.splice(source.index, 1);
+    //   newChunks.splice(destination.index, 0, draggedItem);
 
-    const newState = {
-      ...this.state,
-      chunkContainers: {
-        ...this.state.chunkContainers,
-        [newStart.id]: newStart,
-        [newEnd.id]: newEnd
-      }
-    }
-    this.setState(newState)
+    //   const newContainer = {
+    //     ...dragStart,
+    //     nestedChunks: newChunks
+    //   }
+
+    //   const newState = {
+    //     ...this.state,
+    //     chunkContainers: {
+    //       ...this.state.chunkContainers,
+    //       [newContainer.id]: newContainer
+    //     }
+    //   }
+
+    //   this.setState(newState)
+    //   return  
+    // } 
+    
+    // const startChunks = Array.from(dragStart.nestedChunks)
+    // const draggedItem = dragStart.nestedChunks[source.index]
+    // startChunks.splice(source.index, 1)
+    // const newStart = {
+    //   ...dragStart,
+    //   nestedChunks: startChunks
+    // }
+
+    // const endChunks = Array.from(dragEnd.nestedChunks)
+    // endChunks.splice(destination.index, 0, draggedItem)
+    // const newEnd = {
+    //   ...dragEnd,
+    //   nestedChunks: endChunks
+    // }
+
+    // const newState = {
+    //   ...this.state,
+    //   chunkContainers: {
+    //     ...this.state.chunkContainers,
+    //     [newStart.id]: newStart,
+    //     [newEnd.id]: newEnd
+    //   }
+    // }
+    // this.setState(newState)
   }
 
   outputToText = () => {
@@ -153,9 +161,9 @@ export class App extends React.Component {
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
-          <DragDropContext onDragEnd={this.onDragEnd}>
+          <DndContext onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
             <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
-          </DragDropContext>
+          </DndContext>
           <TextifyButton outputToText={this.outputToText} />
           <OutputBox poem={this.state.poemAsText} />
         </div>

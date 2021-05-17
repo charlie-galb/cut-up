@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { Draggable } from "react-beautiful-dnd"
+import {CSS} from '@dnd-kit/utilities';
+import { useSortable } from "@dnd-kit/sortable"
 
 interface Props {
     text: string
@@ -9,18 +9,18 @@ interface Props {
 }
 
 export const TextSnippet = (props: Props) => {
+
+    const { id, index, text } = props
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+        id: `snippet${id}`
+    })
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition
+      }
     return (
-        <Draggable draggableId={`snippet${props.id}`} index={props.index}>
-            {provided => (
-                <div 
-                className="text-snippet"
-                ref={provided.innerRef}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                >
-                    {props.text}
-                </div>
-            )}
-        </Draggable>
+            <button className="text-snippet" ref={setNodeRef} style={style} >
+
+            </button>      
     )
 }
