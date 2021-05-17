@@ -14,7 +14,6 @@ export const CuttingBoard = (props: Props) => {
     const handleCutting = () => {
         const textArr = [source1Text, source2Text, source3Text]
         const combinedText = combineText(textArr)
-        console.log(combinedText)
         snipText(combinedText)
     }
 
@@ -35,7 +34,6 @@ export const CuttingBoard = (props: Props) => {
 
     const combineText = (textArr: string[]) => {
         textArr = textArr.filter(item => item)
-        console.log(textArr)
         let combinedText: string = ""
         let endPoint = textArr.length
         for(let i = 0; i < endPoint; i++) {
