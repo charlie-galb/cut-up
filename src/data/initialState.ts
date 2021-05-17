@@ -6,7 +6,8 @@ interface initialState {
     chunkContainers: {
       [key: string]: chunkContainer
     }
-    lineOrder: string[]
+    lineOrder: string[],
+    poemAsText: string
   }
 
   const pasteBoard: chunkContainer = {
@@ -27,5 +28,6 @@ export const initialState: initialState = {
       'chunk-container-1': pasteBoard,
       'chunk-container-2': line1
     },
-    lineOrder: ['chunk-container-2']
+    lineOrder: ['chunk-container-2'],
+    poemAsText: ""
 }
