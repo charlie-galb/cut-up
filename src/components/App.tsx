@@ -3,6 +3,8 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
+import { OutputBox } from "./OutputBox/OutputBox"
+import { TextifyButton } from "./TextifyButton/TextifyButton"
 import { chunk } from "../types/chunk"
 import { chunkContainer } from "../types/chunkContainer"
 import { initialState } from "../data/initialState"
@@ -127,15 +129,35 @@ export class App extends React.Component {
     this.setState(newState)
   }
 
+  outputToText = () => {
+      let combinedText = ""
+      const lines = this.state.lineOrder
+      lines.forEach((lineId) => {
+        let lineText = ""
+        this.state.chunkContainers[lineId].nestedChunks.forEach((chunk) => {
+          lineText += (chunk.text + " ")
+        })
+        combinedText += (lineText + "\n")
+      })
+      console.log(combinedText)
+      const newState = {
+        ...this.state,
+        poemAsText: combinedText
+      }
+      this.setState(newState)
+  }
+
   render() {
     return (
       <div className="app-container">
-        <div className="content-contasiner">
+        <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DragDropContext>
+          <TextifyButton outputToText={this.outputToText} />
+          <OutputBox poem={this.state.poemAsText} />
         </div>
       </div>
     )
