@@ -8,27 +8,31 @@ Object {
       <div
         class="cutting-container"
       >
-        <textarea
-          class="cutting-text-area1"
-          cols="10"
-          data-testid="cutting-text-area1"
-          placeholder="Paste your text sources here"
-          rows="4"
-        />
-        <textarea
-          class="cutting-text-area2"
-          cols="10"
-          data-testid="cutting-text-area2"
-          placeholder="Paste your text sources here"
-          rows="4"
-        />
-        <textarea
-          class="cutting-text-area3"
-          cols="10"
-          data-testid="cutting-text-area3"
-          placeholder="Paste your text sources here"
-          rows="4"
-        />
+        <div
+          class="text-area-container"
+        >
+          <textarea
+            class="cutting-text-area 1"
+            cols="10"
+            data-testid="cutting-text-area1"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+          <textarea
+            class="cutting-text-area 2"
+            cols="10"
+            data-testid="cutting-text-area2"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+          <textarea
+            class="cutting-text-area 3"
+            cols="10"
+            data-testid="cutting-text-area3"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+        </div>
         <button
           class="cut-btn"
           data-testid="cut-btn"
@@ -42,27 +46,31 @@ Object {
     <div
       class="cutting-container"
     >
-      <textarea
-        class="cutting-text-area1"
-        cols="10"
-        data-testid="cutting-text-area1"
-        placeholder="Paste your text sources here"
-        rows="4"
-      />
-      <textarea
-        class="cutting-text-area2"
-        cols="10"
-        data-testid="cutting-text-area2"
-        placeholder="Paste your text sources here"
-        rows="4"
-      />
-      <textarea
-        class="cutting-text-area3"
-        cols="10"
-        data-testid="cutting-text-area3"
-        placeholder="Paste your text sources here"
-        rows="4"
-      />
+      <div
+        class="text-area-container"
+      >
+        <textarea
+          class="cutting-text-area 1"
+          cols="10"
+          data-testid="cutting-text-area1"
+          placeholder="Paste your text sources here"
+          rows="4"
+        />
+        <textarea
+          class="cutting-text-area 2"
+          cols="10"
+          data-testid="cutting-text-area2"
+          placeholder="Paste your text sources here"
+          rows="4"
+        />
+        <textarea
+          class="cutting-text-area 3"
+          cols="10"
+          data-testid="cutting-text-area3"
+          placeholder="Paste your text sources here"
+          rows="4"
+        />
+      </div>
       <button
         class="cut-btn"
         data-testid="cut-btn"
