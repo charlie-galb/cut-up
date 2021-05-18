@@ -22,7 +22,7 @@ describe("PasteBoard", () => {
     test("It renders correctly", () => {
         const board = render(
             <DragDropContext onDragEnd={() => {}}>
-                <PasteBoard wordChunks={mockChunks} chunkContainer={mockContainer}/>
+                <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
             </DragDropContext>
         )
         expect(board).toMatchSnapshot()
@@ -30,7 +30,7 @@ describe("PasteBoard", () => {
     test("It displays text chunks as draggable objects", () => {
         const { getAllByRole } = render(
             <DragDropContext onDragEnd={() => {}}>
-                <PasteBoard wordChunks={mockChunks} chunkContainer={mockContainer}/>
+                <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
             </DragDropContext>
         )
         expect(getAllByRole("button")).toHaveLength(2)
