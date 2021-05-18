@@ -2,7 +2,9 @@ import { chunk } from '../types/chunk'
 import { chunkContainer } from '../types/chunkContainer'
 
 interface initialState {
-    wordChunks: chunk[]
+    wordChunks: {
+      [key: string]: string
+    }
     chunkContainers: {
       [key: string]: chunkContainer
     }
@@ -13,17 +15,17 @@ interface initialState {
   const pasteBoard: chunkContainer = {
     id: 'chunk-container-1',
     title: 'pasteboard',
-    nestedChunks: []
+    nestedChunkIDs: []
   }
 
   const line1: chunkContainer = {
     id: 'chunk-container-2',
     title: 'line-1',
-    nestedChunks: []
+    nestedChunkIDs: []
   }
 
 export const initialState: initialState = {
-    wordChunks: [],
+    wordChunks: {},
     chunkContainers: {
       'chunk-container-1': pasteBoard,
       'chunk-container-2': line1
