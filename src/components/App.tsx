@@ -1,7 +1,6 @@
 import React from "react"
 
 import { DndContext, closestCenter } from '@dnd-kit/core'
-import { arrayMove } from '@dnd-kit/sortable'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
@@ -71,12 +70,37 @@ export class App extends React.Component {
          .replace(/\s+/g, " ");
   }
 
+  onDragStart = (event: any) => {
+    const { active } = event
+    const { id } = active
+    const newState = {
+      ...this.state,
+      activeId: id
+    }
+    this.setState(newState)
+  }
+
+  // onDragOver = (event: any) => {
+  //   const { over } = event
+  //   let newOverId
+  //   if (over) {
+  //     newOverId = over.id
+  //   } else {
+  //     newOverId = null
+  //   }
+  //   const newState = {
+  //     ...this.state,
+  //     overId: newOverId
+  //   }
+  //   this.setState(newState)
+  // }
+
   onDragEnd = (event: any) => {
     const {active, over} = event
   
     if (active.id !== over.id) {
       console.log("active")
-      console.log(active)
+      console.log(active.id)
       console.log("over")
       console.log(over)
       const oldContainer = this.state.chunkContainers["chunk-container-1"]
@@ -166,10 +190,6 @@ export class App extends React.Component {
     // this.setState(newState)
   }
 
-  onDragOver = (event: any) => {
-    
-  }
-
   outputToText = () => {
       let combinedText = ""
       const lines = this.state.lineOrder
@@ -194,8 +214,8 @@ export class App extends React.Component {
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
-          <DndContext onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
-            <CraftingBoard wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
+          <DndContext onDragStart={this.onDragStart} onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
+            <CraftingBoard activeId={this.state.activeId} wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
           {/* <TextifyButton outputToText={this.outputToText} />
           <OutputBox poem={this.state.poemAsText} /> */}
