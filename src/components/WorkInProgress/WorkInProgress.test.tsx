@@ -38,7 +38,7 @@ describe("WorkInProgress", () => {
     it("iterates over the lines array and renders every element", () => {
         const { getAllByRole } = render(
         <DragDropContext onDragEnd={() => {}}>
-            <WorkInProgress wordChunks={mockChunks} lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
+            <WorkInProgress activeId={""} wordChunks={mockChunks} lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
         </DragDropContext>
         )
         expect(getAllByRole("button")).toHaveLength(5)
