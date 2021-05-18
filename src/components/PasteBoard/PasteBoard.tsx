@@ -1,36 +1,28 @@
 import React from "react"
 
-import { useDroppable } from "@dnd-kit/core"
-import { SortableContext, verticalListSortingStrategy} from "@dnd-kit/sortable"
+import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     chunkContainer: chunkContainer
+    wordChunks: {
+        [key: string]: string
+      }
 }
 
 export const PasteBoard = (props: Props) => {
    
-    const { chunkContainer } = props
-    const { id, nestedChunks } = chunkContainer
-    const {isOver, setNodeRef } = useDroppable({
-        id: id
-    })
-    const style = {
-        color: isOver ? 'green' : undefined
-    }
-    const chunkIds = nestedChunks.map((chunk) => {
-        return `${chunk.id}`
-    })
+    const { chunkContainer, wordChunks } = props
+    const { id, nestedChunkIDs } = chunkContainer
 
     return (
-        <SortableContext items={chunkIds} strategy={verticalListSortingStrategy}>
-            <div className="unused-snippets" style={style} data-testid="unused-snippets" 
-                ref={setNodeRef}>
-                {nestedChunks?.map((chunk, i) => {
+        <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
+            <div className="unused-snippets" data-testid="unused-snippets" >
+                {nestedChunkIDs?.map((ID, i) => {
                     return (
-                        <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
+                        <TextSnippet data-testid="snippet" key={ID} id={ID} index={i} text={wordChunks[ID]}/>
                     )
                 })}
             </div>

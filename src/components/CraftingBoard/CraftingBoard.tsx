@@ -11,13 +11,16 @@ interface Props {
     }
     lineOrder: string[]
     addLine: (arg: void) => void
+    wordChunks: {
+        [key: string]: string
+      }
 }
 
 export const CraftingBoard = (props: Props) => {
     return (
         <div className="crafting-container">
-            <PasteBoard chunkContainer={props.chunkContainers['chunk-container-1']} />
-            <WorkInProgress lineOrder={props.lineOrder} chunkContainers={props.chunkContainers} addLine={props.addLine}/>
+            <PasteBoard wordChunks={props.wordChunks} chunkContainer={props.chunkContainers['chunk-container-1']} />
+            <WorkInProgress wordChunks={props.wordChunks} lineOrder={props.lineOrder} chunkContainers={props.chunkContainers} addLine={props.addLine}/>
         </div>
     )
 }

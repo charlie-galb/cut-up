@@ -1,15 +1,15 @@
 import React from "react"
 
 import { DndContext, closestCenter } from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
-import { OutputBox } from "./OutputBox/OutputBox"
-import { TextifyButton } from "./TextifyButton/TextifyButton"
+// import { OutputBox } from "./OutputBox/OutputBox"
+// import { TextifyButton } from "./TextifyButton/TextifyButton"
 
 import { initialState } from "../data/initialState"
 
-import { chunk } from "../types/chunk"
 import { chunkContainer } from "../types/chunkContainer"
 
 
@@ -24,7 +24,7 @@ export class App extends React.Component {
     const newLine: chunkContainer = {
       id: Id,
       title: title,
-      nestedChunks: []
+      nestedChunkIDs: []
     }
     const newLineOrder = [...this.state.lineOrder, Id]
     const newState = {
@@ -40,25 +40,28 @@ export class App extends React.Component {
 
   snipText = (text: string) => {
     const temp = text.split(" ")
-    const result: Array<chunk> = []
+    const newChunks: {[key: string]: string} = {}
+    const newPasteBoardIDs: string[] = []
     let id_acc = 1
     for(let i = 0; i < temp.length; i = i + 2 ) {
+      const id = `snippet${id_acc}`
       const text = temp.slice(i,i+2).join(' ')
       const unformattedText = this._removePunctuation(text.toLowerCase())
-      const chunk: chunk = { id: id_acc, text: unformattedText}
-      result.push(chunk)
+      newChunks[id] = unformattedText
+      newPasteBoardIDs.push(id)
       id_acc++
     }
 
     const newPasteBoard = this.state.chunkContainers['chunk-container-1']
-    newPasteBoard.nestedChunks = result
+    newPasteBoard.nestedChunkIDs = newPasteBoardIDs
 
     const newState = {
       ...this.state, 
       chunkContainers: {
         ...this.state.chunkContainers,
         [newPasteBoard.id]: newPasteBoard
-      }
+      },
+      wordChunks: newChunks
     } 
     this.setState(newState)
   }
@@ -69,11 +72,37 @@ export class App extends React.Component {
   }
 
   onDragEnd = (event: any) => {
-    const { active, over } = event
+    const {active, over} = event
+  
     if (active.id !== over.id) {
+      console.log("active")
       console.log(active)
+      console.log("over")
       console.log(over)
-    }
+      const oldContainer = this.state.chunkContainers["chunk-container-1"]
+      const newChunks = oldContainer.nestedChunkIDs
+      const oldIndex = newChunks.indexOf(active.id);
+      const newIndex = newChunks.indexOf(over.id);
+      const draggedItem = newChunks[oldIndex]
+      console.log(newChunks)
+      newChunks.splice(oldIndex, 1);
+      newChunks.splice(newIndex, 0, draggedItem);
+      console.log(newChunks)
+      const newContainer = {
+            ...oldContainer,
+            nestedChunks: newChunks
+          }
+      const newState = {
+        ...this.state,
+        chunkContainers: {
+          ...this.state.chunkContainers,
+          [newContainer.id]: newContainer
+        }
+      }
+
+      this.setState(newState)
+      return  
+    } 
     // if (!destination) {
     //   return
     // } 
@@ -137,17 +166,21 @@ export class App extends React.Component {
     // this.setState(newState)
   }
 
+  onDragOver = (event: any) => {
+    
+  }
+
   outputToText = () => {
       let combinedText = ""
       const lines = this.state.lineOrder
+      const dictionary = this.state.wordChunks
       lines.forEach((lineId) => {
         let lineText = ""
-        this.state.chunkContainers[lineId].nestedChunks.forEach((chunk) => {
-          lineText += (chunk.text + " ")
+        this.state.chunkContainers[lineId].nestedChunkIDs.forEach((id) => {
+          lineText += (dictionary[id] + " ")
         })
         combinedText += (lineText + "\n")
       })
-      console.log(combinedText)
       const newState = {
         ...this.state,
         poemAsText: combinedText
@@ -162,10 +195,10 @@ export class App extends React.Component {
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
           <DndContext onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
-            <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
+            <CraftingBoard wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
-          <TextifyButton outputToText={this.outputToText} />
-          <OutputBox poem={this.state.poemAsText} />
+          {/* <TextifyButton outputToText={this.outputToText} />
+          <OutputBox poem={this.state.poemAsText} /> */}
         </div>
       </div>
     )
