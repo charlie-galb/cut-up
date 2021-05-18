@@ -8,29 +8,24 @@ import { chunkContainer } from "../../types/chunkContainer"
 
 const mockAddLine = jest.fn()
 
-const chunkOne: chunk = {
-    id: 1,
-    text: "one"
+const mockChunks = {
+    "1": "one",
+    "2": "two"
 }
 
-const chunkTwo: chunk = {
-    id: 2,
-    text: "two"
-}
-
-const wordChunks = [chunkOne, chunkTwo]
+const mockChunkIDs = ["1", "2"]
 
 const mockContainer1: chunkContainer = {
-    id: 'mockLineOne',
-    title: 'mockLineOne',
-    nestedChunks: wordChunks
+    id: 'chunk-container-1',
+    title: 'pasteboard',
+    nestedChunkIDs: mockChunkIDs
   }
 
-const mockContainer2: chunkContainer = {
-    id: 'mockLineTwo',
-    title: 'mockLineTwo',
-    nestedChunks: wordChunks
-}
+  const mockContainer2: chunkContainer = {
+    id: 'chunk-container-2',
+    title: 'Line-1',
+    nestedChunkIDs: mockChunkIDs
+  }
 
 const mockContainers = {
     [mockContainer1.id]: mockContainer1,
@@ -43,7 +38,7 @@ describe("WorkInProgress", () => {
     it("iterates over the lines array and renders every element", () => {
         const { getAllByRole } = render(
         <DragDropContext onDragEnd={() => {}}>
-            <WorkInProgress lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
+            <WorkInProgress wordChunks={mockChunks} lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
         </DragDropContext>
         )
         expect(getAllByRole("button")).toHaveLength(5)
