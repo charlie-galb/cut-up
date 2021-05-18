@@ -1030,7 +1030,7 @@
   dependencies:
     tslib "^2.0.0"
 
-"@dnd-kit/core@^3.0.0":
+"@dnd-kit/core@^3.0.0", "@dnd-kit/core@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@dnd-kit/core/-/core-3.0.3.tgz#9d9917c773a85a79d3613bc5dbb677945b64a4f8"
   integrity sha512-o3zCmlurcSUUHryfPEcMhA+Xc3MFB5ebVF4EGZ2C3IppCv1GzXfbpU3W0AqfW8l64WPn16axWTmqKQS+z48MxA==
