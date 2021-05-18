@@ -2,6 +2,8 @@ import { chunk } from '../types/chunk'
 import { chunkContainer } from '../types/chunkContainer'
 
 interface initialState {
+    activeId: string
+    overId: string
     wordChunks: {
       [key: string]: string
     }
@@ -25,6 +27,8 @@ interface initialState {
   }
 
 export const initialState: initialState = {
+    activeId: "",
+    overId: "",
     wordChunks: {},
     chunkContainers: {
       'chunk-container-1': pasteBoard,
