@@ -25,8 +25,8 @@ export const SortableTextSnippet = (props: Props) => {
         transition: returnTransition()
       }
     return (
-        <div style={style}>
-            <TextSnippet ref={setNodeRef} text={text} {...attributes} {...listeners} />
+        <div >
+            <TextSnippet ref={setNodeRef} text={text} style={style} {...attributes} {...listeners} />
         </div>
     )
 }
