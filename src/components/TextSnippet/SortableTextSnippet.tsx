@@ -13,7 +13,7 @@ interface Props {
 export const SortableTextSnippet = (props: Props) => {
 
     const { id, index, text } = props
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
         id: id
     })
     const returnTransition = () => {
@@ -22,11 +22,11 @@ export const SortableTextSnippet = (props: Props) => {
     }
     const style = {
         transform: CSS.Transform.toString(transform),
-        transition: returnTransition(),
+        transition: returnTransition()
       }
     return (
-            <TextSnippet ref={setNodeRef} {...attributes} {...listeners}>
-                { text }
-            </TextSnippet>      
+        <div style={style}>
+            <TextSnippet ref={setNodeRef} text={text} {...attributes} {...listeners} />
+        </div>
     )
 }
