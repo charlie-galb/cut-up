@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { DragOverlay } from "@dnd-kit/core"
-import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
+import { DragOverlay, useDroppable } from "@dnd-kit/core"
+import { SortableContext, horizontalListSortingStrategy} from "@dnd-kit/sortable"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
@@ -23,6 +23,7 @@ export const WorkInProgress = (props: Props) => {
 
     const { chunkContainers, lineOrder, addLine, wordChunks, activeId } = props
     const { id, title, nestedChunkIDs } = chunkContainers["chunk-container-2"]
+    const { setNodeRef } = useDroppable({ id });
 
     const handleLineAdding = () => {
         addLine()
@@ -31,13 +32,6 @@ export const WorkInProgress = (props: Props) => {
     return (
         // <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
         //     <div className="wip-container">
-        //         <div className="line" data-testid={title} >
-        //             {nestedChunkIDs?.map((id, i) => {
-        //                 return (
-        //                     <TextSnippet data-testid="snippet" key={id} id={id} index={i} text={wordChunks[id]}/>
-        //                 )
-        //             })}
-        //         </div>
         //         <div className="lines-container">
         //             {lineOrder?.map((lineId, i) => {
         //                 return (
@@ -48,9 +42,9 @@ export const WorkInProgress = (props: Props) => {
         //         <button data-testid="add-line-btn" className="add-line-btn" onClick={handleLineAdding} >Add line</button>
         //     </div>
         // </SortableContext>
-        <div> 
-            <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
-                <div className="wip-container" data-testid="unused-snippets" >
+        <div className="wip-container"> 
+            <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
+                <div className="wip-snippets" data-testid="unused-snippets" ref={setNodeRef}>
                     {nestedChunkIDs?.map((ID, i) => {
                         return (
                             <SortableTextSnippet data-testid="snippet" key={ID} id={ID} index={i} text={wordChunks[ID]}/>
@@ -59,7 +53,7 @@ export const WorkInProgress = (props: Props) => {
                 </div>
             </SortableContext>
             <DragOverlay>
-                {activeId ? <TextSnippet>{wordChunks[activeId]}</TextSnippet> : null}
+                {activeId ? <TextSnippet text={wordChunks[activeId]} /> : null}
             </DragOverlay>
         </div>
     )
