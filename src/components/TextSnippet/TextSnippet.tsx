@@ -1,12 +1,18 @@
 import React, { forwardRef } from 'react'
 
-type Props = { children?: React.ReactNode}
+type Props = { 
+    style?: any
+    className?: string
+    text?: string
+}
+
 type Ref = HTMLDivElement
 
-export const TextSnippet = forwardRef<Ref, Props>(({children, ...props}, ref) => {
+export const TextSnippet = forwardRef<Ref, Props>(({...props}, ref) => {
+    const { text } = props
     return (
-            <div {...props} ref={ref} className="text-snippet">
-                {children}
+            <div {...props} ref={ref} className={"text-snippet"} >
+                {text}
             </div>      
     )
 })
