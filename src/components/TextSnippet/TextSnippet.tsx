@@ -9,9 +9,9 @@ type Props = {
 type Ref = HTMLDivElement
 
 export const TextSnippet = forwardRef<Ref, Props>(({...props}, ref) => {
-    const { text } = props
+    const { text, style } = props
     return (
-            <div {...props} ref={ref} className={"text-snippet"} >
+            <div {...props} ref={ref} style={style} className={"text-snippet"} >
                 {text}
             </div>      
     )
