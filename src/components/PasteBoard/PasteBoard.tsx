@@ -33,7 +33,7 @@ export const PasteBoard = (props: Props) => {
                 </div>
             </SortableContext>
             <DragOverlay dropAnimation={null}>
-                {activeId ? <TextSnippet/> : null}
+                {activeId ? <TextSnippet text={wordChunks[activeId]}/> : null}
             </DragOverlay>
         </div>
     )
