@@ -80,53 +80,6 @@ export class App extends React.Component {
     this.setState(newState)
   }
 
-  onDragOver = (event: any) => {
-    const { over, active } = event
-    const newOverId = over?.id 
-    
-    if (!newOverId) { 
-      return 
-    }
-
-    const activeContainer = active.data.current.sortable.containerId;
-    const overContainer = over.data.current?.sortable.containerId || over.id;
-    
-    if (activeContainer !== overContainer) {
-      const activeChunks = this.state.chunkContainers[activeContainer].nestedChunkIDs
-      const overChunks = this.state.chunkContainers[overContainer].nestedChunkIDs
-      const activeIndex = activeChunks.indexOf(active.id);
-      const overIndex = 
-        over.id in this.state.chunkContainers ? overChunks.length + 1 : overChunks.indexOf(over.id);
-      const draggedItem = activeChunks[activeIndex]
-      activeChunks.splice(activeIndex, 1);
-      overChunks.splice(overIndex, 0, draggedItem);
-      const newActiveContainer = {
-        ...activeContainer,
-        nestedChunkIDs: activeChunks
-      }
-      const newOverContainer = {
-        ...overContainer,
-        nestedChunkIDs: overChunks
-      }
-      const newState = {
-        ...this.state,
-        chunkContainers: {
-          ...this.state.chunkContainers,
-          active: newActiveContainer,
-          over: newOverContainer
-        }
-      }
-      this.setState(newState)
-      return  
-    }
-   
-    const newState = {
-      ...this.state,
-      overId: newOverId
-    }
-    this.setState(newState)
-  }
-
   onDragEnd = (event: any) => {
     const {active, over} = event
 
@@ -136,10 +89,11 @@ export class App extends React.Component {
 
     const from = active.data.current?.sortable.containerId
     const fromContainer = this.state.chunkContainers[from]
-    const to = over.data.current?.sortable.containerId
+    const to = over.data.current?.sortable.containerId || over.id
     const toContainer = this.state.chunkContainers[to]
    
     if (active.id !== over.id && from === to) {
+      console.log("Same box")
       const newChunks = fromContainer.nestedChunkIDs
       const oldIndex = newChunks.indexOf(active.id);
       const newIndex = newChunks.indexOf(over.id);
@@ -159,8 +113,45 @@ export class App extends React.Component {
         activeId: ""
       }
       this.setState(newState)
+      this.resetActiveId()
+      this.resetOverId()
       return  
     } 
+
+    if (to !== from) {
+      console.log("Different box")
+      const fromChunks = fromContainer.nestedChunkIDs
+      const toChunks = toContainer.nestedChunkIDs
+      const fromIndex = fromChunks.indexOf(active.id)
+      const toIndex = 
+        over.id in this.state.chunkContainers ? toChunks.length + 1 : toChunks.indexOf(over.id)
+      const draggedItem = fromChunks[fromIndex]
+      fromChunks.splice(fromIndex, 1);
+      toChunks.splice(toIndex, 0, draggedItem);
+
+      const newFromContainer = {
+        ...fromContainer,
+        nestedChunkIDs: fromChunks
+      }
+
+      const newToContainer = {
+        ...toContainer,
+        nestedChunkIDs: toChunks
+      }
+      
+      const newState = {
+        ...this.state,
+        chunkContainers: {
+          ...this.state.chunkContainers,
+          from: newFromContainer,
+          over: newToContainer
+        }
+      }
+      this.setState(newState)
+      this.resetActiveId()
+      this.resetOverId()
+      return 
+    }
     this.resetActiveId()
     this.resetOverId()
   }
@@ -205,7 +196,7 @@ export class App extends React.Component {
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
-          <DndContext onDragStart={this.onDragStart} onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
+          <DndContext onDragStart={this.onDragStart}  onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
             <CraftingBoard activeId={this.state.activeId} wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
           {/* <TextifyButton outputToText={this.outputToText} />
