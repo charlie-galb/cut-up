@@ -24,7 +24,6 @@ export const WorkInProgress = (props: Props) => {
     const { chunkContainers, lineOrder, addLine, wordChunks, activeId } = props
     const { id, title, nestedChunkIDs } = chunkContainers["chunk-container-2"]
     const { setNodeRef } = useDroppable({ id });
-
     const handleLineAdding = () => {
         addLine()
     }
@@ -52,8 +51,8 @@ export const WorkInProgress = (props: Props) => {
                     })}
                 </div>
             </SortableContext>
-            <DragOverlay>
-                {activeId ? <TextSnippet text={wordChunks[activeId]} /> : null}
+            <DragOverlay dropAnimation={null}>
+                {activeId ? <TextSnippet text={wordChunks[activeId]}/> : null}
             </DragOverlay>
         </div>
     )
