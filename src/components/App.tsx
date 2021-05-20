@@ -1,11 +1,11 @@
 import React from "react"
 
-import { DndContext, closestCenter } from '@dnd-kit/core'
+import { DndContext } from '@dnd-kit/core'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
-// import { OutputBox } from "./OutputBox/OutputBox"
-// import { TextifyButton } from "./TextifyButton/TextifyButton"
+import { OutputBox } from "./OutputBox/OutputBox"
+import { TextifyButton } from "./TextifyButton/TextifyButton"
 
 import { initialState } from "../data/initialState"
 import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
@@ -72,9 +72,7 @@ export class App extends React.Component {
   }
 
   onDragStart = (event: any) => {
-    const { active, over } = event
-    console.log(active)
-    console.log(over)
+    const { active } = event
     const { id } = active
     const newState = {
       ...this.state,
@@ -243,8 +241,8 @@ export class App extends React.Component {
           <DndContext onDragStart={this.onDragStart}  onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} >
             <CraftingBoard activeId={this.state.activeId} wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
-          {/* <TextifyButton outputToText={this.outputToText} />
-          <OutputBox poem={this.state.poemAsText} /> */}
+          <TextifyButton outputToText={this.outputToText} />
+          <OutputBox poem={this.state.poemAsText} />
         </div>
       </div>
     )
