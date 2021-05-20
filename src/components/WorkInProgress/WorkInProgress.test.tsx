@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DndContext } from '@dnd-kit/core'
  
 import { WorkInProgress } from "./WorkInProgress"
 import { chunk } from "../../types/chunk"
@@ -37,9 +37,9 @@ const mockLineIds = [mockContainer1.id, mockContainer2.id]
 describe("WorkInProgress", () => {
     it("iterates over the lines array and renders every element", () => {
         const { getAllByRole } = render(
-        <DragDropContext onDragEnd={() => {}}>
+        <DndContext onDragEnd={() => {}}>
             <WorkInProgress activeId={""} wordChunks={mockChunks} lineOrder={mockLineIds} chunkContainers={mockContainers} addLine={mockAddLine}/>
-        </DragDropContext>
+        </DndContext>
         )
         expect(getAllByRole("button")).toHaveLength(5)
     })

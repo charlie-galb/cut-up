@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DndContext } from '@dnd-kit/core'
  
 import { PasteBoard } from "./PasteBoard"
 import { chunkContainer } from "../../types/chunkContainer"
@@ -21,17 +21,17 @@ const mockContainer: chunkContainer = {
 describe("PasteBoard", () => {
     test("It renders correctly", () => {
         const board = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DndContext onDragEnd={() => {}}>
                 <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
-            </DragDropContext>
+            </DndContext>
         )
         expect(board).toMatchSnapshot()
     })
     test("It displays text chunks as draggable objects", () => {
         const { getAllByRole } = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DndContext onDragEnd={() => {}}>
                 <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
-            </DragDropContext>
+            </DndContext>
         )
         expect(getAllByRole("button")).toHaveLength(2)
     })
