@@ -8,6 +8,7 @@ import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 // import { TextifyButton } from "./TextifyButton/TextifyButton"
 
 import { initialState } from "../data/initialState"
+import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
 
 import { chunkContainer } from "../types/chunkContainer"
 
@@ -71,13 +72,23 @@ export class App extends React.Component {
   }
 
   onDragStart = (event: any) => {
-    const { active } = event
+    const { active, over } = event
+    console.log(active)
+    console.log(over)
     const { id } = active
     const newState = {
       ...this.state,
       activeId: id
     }
     this.setState(newState)
+  }
+
+  onDragOver = (event: any) => {
+    const { active, over } = event
+    console.log("active")
+    console.log(active)
+    console.log("over")
+    console.log(over)
   }
 
   onDragEnd = (event: any) => {
@@ -87,67 +98,51 @@ export class App extends React.Component {
       return 
     }
 
-    const from = active.data.current?.sortable.containerId
-    const fromContainer = this.state.chunkContainers[from]
-    const to = over.data.current?.sortable.containerId || over.id
-    const toContainer = this.state.chunkContainers[to]
+    const activeContainerId = active.data.current?.sortable.containerId
+    const activeContainer = this.state.chunkContainers[activeContainerId]
+    const overContainerId = over.data.current?.sortable.containerId || over.id
+    const overContainer = this.state.chunkContainers[overContainerId]
    
-    if (active.id !== over.id && from === to) {
+    if (active.id !== over.id && activeContainerId === overContainerId) {
       console.log("Same box")
-      const newChunks = fromContainer.nestedChunkIDs
-      const oldIndex = newChunks.indexOf(active.id);
-      const newIndex = newChunks.indexOf(over.id);
-      const draggedItem = newChunks[oldIndex]
-      newChunks.splice(oldIndex, 1);
-      newChunks.splice(newIndex, 0, draggedItem);
-      const newContainer = {
-            ...fromContainer,
-            nestedChunks: newChunks
-          }
+      const items = activeContainer.nestedChunkIDs
+      const activeIndex = items.indexOf(active.id);
+      const overIndex = items.indexOf(over.id);
+      const sortedItems = arrayMove(items, activeIndex, overIndex)
       const newState = {
         ...this.state,
         chunkContainers: {
           ...this.state.chunkContainers,
-          [newContainer.id]: newContainer
+          [activeContainerId]: {
+            ...activeContainer,
+            nestedChunkIDs: sortedItems
+          }
         },
-        activeId: ""
+        activeId: "",
+        overId: ""
       }
       this.setState(newState)
-      this.resetActiveId()
-      this.resetOverId()
       return  
     } 
 
-    if (to !== from) {
+    if (activeContainerId !== overContainerId) {
       console.log("Different box")
-      const fromChunks = fromContainer.nestedChunkIDs
-      const toChunks = toContainer.nestedChunkIDs
-      const fromIndex = fromChunks.indexOf(active.id)
-      const toIndex = 
-        over.id in this.state.chunkContainers ? toChunks.length + 1 : toChunks.indexOf(over.id)
-      const draggedItem = fromChunks[fromIndex]
-      fromChunks.splice(fromIndex, 1);
-      toChunks.splice(toIndex, 0, draggedItem);
-
-      const newFromContainer = {
-        ...fromContainer,
-        nestedChunkIDs: fromChunks
-      }
-
-      const newToContainer = {
-        ...toContainer,
-        nestedChunkIDs: toChunks
-      }
+      const activeChunks = activeContainer.nestedChunkIDs
+      const overChunks = overContainer.nestedChunkIDs
+      const activeIndex = activeChunks.indexOf(active.id)
+      const overIndex = 
+        over.id in this.state.chunkContainers ? overChunks.length + 1 : overChunks.indexOf(over.id)
+      const draggedItem = active.id
       
-      const newState = {
-        ...this.state,
-        chunkContainers: {
-          ...this.state.chunkContainers,
-          from: newFromContainer,
-          over: newToContainer
-        }
-      }
-      this.setState(newState)
+      this.setState(this.moveBetweenContainers(
+        activeChunks,
+        activeContainer, 
+        activeIndex, 
+        overChunks, 
+        overContainer, 
+        overIndex,
+        draggedItem
+      ))
       this.resetActiveId()
       this.resetOverId()
       return 
@@ -170,6 +165,31 @@ export class App extends React.Component {
       activeId: ""
     }
     this.setState(newState)
+  }
+
+  moveBetweenContainers = (
+    activeChunks: string[],
+    activeContainer: chunkContainer,
+    activeIndex: number,
+    overChunks: string[],
+    overContainer: chunkContainer,
+    overIndex: number,
+    item: string
+  ) => {
+    return {
+      ...this.state,
+      chunkContainers: {
+        ...this.state.chunkContainers,
+        [activeContainer.id]: {
+          ...activeContainer,
+          nestedChunkIDs: removeAtIndex(activeChunks, activeIndex)
+        },
+        [overContainer.id]: {
+          ...overContainer,
+          nestedChunkIDs: insertAtIndex(overChunks, overIndex, item)
+        }
+      }
+    }
   }
 
   outputToText = () => {
@@ -196,7 +216,7 @@ export class App extends React.Component {
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
-          <DndContext onDragStart={this.onDragStart}  onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
+          <DndContext onDragStart={this.onDragStart}  onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
             <CraftingBoard activeId={this.state.activeId} wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
           {/* <TextifyButton outputToText={this.outputToText} />
