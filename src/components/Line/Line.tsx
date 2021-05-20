@@ -1,9 +1,11 @@
 import React from 'react'
 
-import { useDroppable } from "@dnd-kit/core"
+import { DragOverlay, useDroppable } from "@dnd-kit/core"
 import { SortableContext, horizontalListSortingStrategy} from "@dnd-kit/sortable"
 
+
 import { TextSnippet } from "../TextSnippet/TextSnippet"
+import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
@@ -11,11 +13,12 @@ interface Props {
     wordChunks: {
         [key: string]: string
       }
+      activeId: string
 }
 
 export const Line = (props: Props) => {
 
-    const { chunkContainer, wordChunks } = props
+    const { chunkContainer, wordChunks, activeId } = props
     const { id, title, nestedChunkIDs } = chunkContainer
     const {isOver, setNodeRef } = useDroppable({
         id: id
@@ -25,14 +28,19 @@ export const Line = (props: Props) => {
     }
 
     return (
-        <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
-            <div className="line" style={style} data-testid={title} ref={setNodeRef}>
-                {nestedChunkIDs?.map((id, i) => {
-                    return (
-                        <TextSnippet data-testid="snippet" key={id} id={id} index={i} text={wordChunks[id]}/>
-                    )
-                })}
-            </div>
-        </SortableContext>
+        <div style={style}>
+            <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
+                <div className="line" data-testid={title} ref={setNodeRef}>
+                    {nestedChunkIDs?.map((id, i) => {
+                        return (
+                            <SortableTextSnippet data-testid="snippet" key={id} id={id} index={i} text={wordChunks[id]}/>
+                        )
+                    })}
+                </div>
+            </SortableContext>
+            <DragOverlay dropAnimation={null}>
+            {activeId ? <TextSnippet text={wordChunks[activeId]}/> : null}
+            </DragOverlay>
+        </div>
     )
 }
