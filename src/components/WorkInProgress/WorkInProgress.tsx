@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { DragOverlay, useDroppable } from "@dnd-kit/core"
-import { SortableContext, horizontalListSortingStrategy} from "@dnd-kit/sortable"
+import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
@@ -42,7 +42,7 @@ export const WorkInProgress = (props: Props) => {
         //     </div>
         // </SortableContext>
         <div className="wip-container"> 
-            <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
+            <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
                 <div className="wip-snippets" data-testid="unused-snippets" ref={setNodeRef}>
                     {nestedChunkIDs?.map((ID, i) => {
                         return (
