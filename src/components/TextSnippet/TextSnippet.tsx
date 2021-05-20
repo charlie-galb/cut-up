@@ -11,7 +11,7 @@ type Ref = HTMLButtonElement
 export const TextSnippet = forwardRef<Ref, Props>(({...props}, ref) => {
     const { text, style } = props
     return (
-            <button {...props} ref={ref} style={style} className={"text-snippet"} >
+            <button {...props} ref={ref} style={style} className="text-snippet" >
                 {text}
             </button>      
     )
