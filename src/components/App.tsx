@@ -240,7 +240,7 @@ export class App extends React.Component {
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
           <CuttingBoard snipText={this.snipText}/>
-          <DndContext onDragStart={this.onDragStart}  onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} collisionDetection={closestCenter}>
+          <DndContext onDragStart={this.onDragStart}  onDragOver={this.onDragOver} onDragEnd={this.onDragEnd} >
             <CraftingBoard activeId={this.state.activeId} wordChunks={this.state.wordChunks} chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
           </DndContext>
           {/* <TextifyButton outputToText={this.outputToText} />
