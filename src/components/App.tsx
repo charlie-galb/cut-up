@@ -85,18 +85,42 @@ export class App extends React.Component {
 
   onDragOver = (event: any) => {
     const { active, over } = event
-    console.log("active")
-    console.log(active)
-    console.log("over")
-    console.log(over)
+    const overId = over?.id
+
+    if (!overId) { return }
+
+    const activeContainerId = active.data.current?.sortable.containerId
+    const activeContainer = this.state.chunkContainers[activeContainerId]
+    const overContainerId = over.data.current?.sortable.containerId || over.id
+    const overContainer = this.state.chunkContainers[overContainerId]
+
+    if (!overContainer) { return }
+
+    if (activeContainerId !== overContainerId) {
+
+      const activeChunks = activeContainer.nestedChunkIDs
+      const overChunks = overContainer.nestedChunkIDs
+      const activeIndex = activeChunks.indexOf(active.id)
+      const overIndex = 
+        over.id in this.state.chunkContainers ? overChunks.length + 1 : overChunks.indexOf(over.id)
+      const draggedItem = active.id
+      
+      this.setState(this.moveBetweenContainers(
+        activeChunks,
+        activeContainer, 
+        activeIndex, 
+        overChunks, 
+        overContainer, 
+        overIndex,
+        draggedItem
+      ))
+    }
   }
 
   onDragEnd = (event: any) => {
     const {active, over} = event
 
-    if (!over || !active) { 
-      return 
-    }
+    if (!over || !active) { return }
 
     const activeContainerId = active.data.current?.sortable.containerId
     const activeContainer = this.state.chunkContainers[activeContainerId]
@@ -104,7 +128,7 @@ export class App extends React.Component {
     const overContainer = this.state.chunkContainers[overContainerId]
    
     if (active.id !== over.id && activeContainerId === overContainerId) {
-      console.log("Same box")
+
       const items = activeContainer.nestedChunkIDs
       const activeIndex = items.indexOf(active.id);
       const overIndex = items.indexOf(over.id);
