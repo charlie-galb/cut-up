@@ -6,13 +6,13 @@ type Props = {
     text?: string
 }
 
-type Ref = HTMLDivElement
+type Ref = HTMLButtonElement
 
 export const TextSnippet = forwardRef<Ref, Props>(({...props}, ref) => {
     const { text, style } = props
     return (
-            <div {...props} ref={ref} style={style} className={"text-snippet"} >
+            <button {...props} ref={ref} style={style} className={"text-snippet"} >
                 {text}
-            </div>      
+            </button>      
     )
 })
