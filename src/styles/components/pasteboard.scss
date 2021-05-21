@@ -1,8 +1,13 @@
+.pasteboard-container {
+    height: 400px;
+    width: 45%;
+}
+
 .unused-snippets {
     border: solid red 2px;
     display: flex;
     height: 400px;
-    width: 50%;
+    width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;

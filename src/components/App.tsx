@@ -1,167 +1,222 @@
-import React from "react"
-import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import React, { useState } from "react"
+
+import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSensor, } from '@dnd-kit/core'
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { OutputBox } from "./OutputBox/OutputBox"
 import { TextifyButton } from "./TextifyButton/TextifyButton"
-import { chunk } from "../types/chunk"
+
+import { initialChunkContainers, initialLineOrder } from "../data/initialState"
+import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
+
 import { chunkContainer } from "../types/chunkContainer"
-import { initialState } from "../data/initialState"
 
-export class App extends React.Component {
-  state = initialState
 
-  addLine = () => {
-    const lineNumber = this.state.lineOrder.length + 1
+export const App = () => {
+  const [activeId, setActiveId] = useState<string>("")
+  const [wordChunks, setWordChunks] = useState< { [key: string]: string } >({})
+  const [chunkContainers, setChunkContainers] = useState<{ [key: string]: chunkContainer}>(initialChunkContainers)
+  const [lineOrder, setLineOrder] = useState<string[]>(initialLineOrder)
+  const [poemAsText, setPoemAsText] = useState<string>("")
+
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
+  );
+
+  const addLine = () => {
+    const lineNumber = lineOrder.length + 1
     const containerNumber = lineNumber + 2
     const Id = `chunk-container-${containerNumber}`
     const title = `line-${lineNumber}`
     const newLine: chunkContainer = {
       id: Id,
       title: title,
-      nestedChunks: []
+      nestedChunkIDs: []
     }
-    const newLineOrder = [...this.state.lineOrder, Id]
-    const newState = {
-      ...this.state,
-      chunkContainers: {
-        ...this.state.chunkContainers,
+    const newLineOrder = [...lineOrder, Id]
+    const newChunkContainers = {
+        ...chunkContainers,
         [Id]: newLine
-      },
-      lineOrder: newLineOrder
-    }
-    this.setState(newState)
+      }
+    setChunkContainers(newChunkContainers)
+    setLineOrder(newLineOrder)
   }
 
-  snipText = (text: string) => {
+  const snipText = (text: string) => {
     const temp = text.split(" ")
-    const result: Array<chunk> = []
+    const newWordChunks: {[key: string]: string} = {}
+    const newPasteBoardIDs: string[] = []
     let id_acc = 1
     for(let i = 0; i < temp.length; i = i + 2 ) {
+      const id = `snippet${id_acc}`
       const text = temp.slice(i,i+2).join(' ')
-      const unformattedText = this._removePunctuation(text.toLowerCase())
-      const chunk: chunk = { id: id_acc, text: unformattedText}
-      result.push(chunk)
+      const unformattedText = removePunctuation(text.toLowerCase())
+      newWordChunks[id] = unformattedText
+      newPasteBoardIDs.push(id)
       id_acc++
     }
-
-    const newPasteBoard = this.state.chunkContainers['chunk-container-1']
-    newPasteBoard.nestedChunks = result
-
-    const newState = {
-      ...this.state, 
-      chunkContainers: {
-        ...this.state.chunkContainers,
+    const newPasteBoard = chunkContainers['chunk-container-1']
+    newPasteBoard.nestedChunkIDs = newPasteBoardIDs
+    const newChunkContainers = {
+      ...chunkContainers,
         [newPasteBoard.id]: newPasteBoard
       }
-    } 
-    this.setState(newState)
+    setChunkContainers(newChunkContainers)
+    setWordChunks(newWordChunks)
   }
 
-  _removePunctuation = (string: string) => {
+  const removePunctuation = (string: string) => {
     return string.replace(/[^\w\s]|_/g, "")
          .replace(/\s+/g, " ");
   }
 
-  onDragEnd = (result: DropResult) => {
-    const { destination, source, draggableId } = result
-    if (!destination) {
-      return
-    } 
-    
-    if (
-      source.droppableId === destination.droppableId &&
-      source.index === destination.index
-    ) {
-      return; 
-    } 
-
-    const dragStart = this.state.chunkContainers[source.droppableId]
-    const dragEnd = this.state.chunkContainers[destination.droppableId]
-    
-    if (dragStart === dragEnd) {
-      const newChunks = Array.from(dragStart.nestedChunks)
-      const draggedItem = dragStart.nestedChunks[source.index]
-      newChunks.splice(source.index, 1);
-      newChunks.splice(destination.index, 0, draggedItem);
-
-      const newContainer = {
-        ...dragStart,
-        nestedChunks: newChunks
-      }
-
-      const newState = {
-        ...this.state,
-        chunkContainers: {
-          ...this.state.chunkContainers,
-          [newContainer.id]: newContainer
-        }
-      }
-
-      this.setState(newState)
-      return  
-    } 
-    
-    const startChunks = Array.from(dragStart.nestedChunks)
-    const draggedItem = dragStart.nestedChunks[source.index]
-    startChunks.splice(source.index, 1)
-    const newStart = {
-      ...dragStart,
-      nestedChunks: startChunks
-    }
-
-    const endChunks = Array.from(dragEnd.nestedChunks)
-    endChunks.splice(destination.index, 0, draggedItem)
-    const newEnd = {
-      ...dragEnd,
-      nestedChunks: endChunks
-    }
-
-    const newState = {
-      ...this.state,
-      chunkContainers: {
-        ...this.state.chunkContainers,
-        [newStart.id]: newStart,
-        [newEnd.id]: newEnd
-      }
-    }
-    this.setState(newState)
+  const onDragStart = (event: any) => {
+    const { active } = event
+    const { id } = active
+    setActiveId(id)
   }
 
-  outputToText = () => {
+  const onDragOver = (event: any) => {
+    const { active, over } = event
+    const overId = over?.id
+
+    if (!overId) { return }
+
+    const activeContainerId: string = active.data.current.sortable.containerId
+    const activeContainer: chunkContainer = chunkContainers[activeContainerId]
+    const overContainerId: string = over.data.current?.sortable.containerId || over.id
+    const overContainer: chunkContainer = chunkContainers[overContainerId]
+
+    if (!overContainer) { return }
+
+    if (activeContainerId !== overContainerId) {
+
+      const activeChunks = activeContainer.nestedChunkIDs
+      const overChunks = overContainer.nestedChunkIDs
+      const activeIndex = activeChunks.indexOf(active.id)
+      const overIndex = 
+        over.id in chunkContainers ? overChunks.length + 1 : overChunks.indexOf(over.id)
+      const draggedItem = active.id
+      
+      setChunkContainers(moveBetweenContainers(
+        activeChunks,
+        activeContainer, 
+        activeIndex, 
+        overChunks, 
+        overContainer, 
+        overIndex,
+        draggedItem
+      ))
+    }
+  }
+
+  const onDragEnd = (event: any) => {
+    const {active, over} = event
+
+    if (!over || !active) { return }
+
+    const activeContainerId = active.data.current?.sortable.containerId
+    const activeContainer = chunkContainers[activeContainerId]
+    const overContainerId = over.data.current?.sortable.containerId || over.id
+    const overContainer = chunkContainers[overContainerId]
+   
+    if (active.id !== over.id && activeContainerId === overContainerId) {
+
+      const items = activeContainer.nestedChunkIDs
+      const activeIndex = items.indexOf(active.id);
+      const overIndex = items.indexOf(over.id);
+      const sortedItems = arrayMove(items, activeIndex, overIndex)
+      setChunkContainers({
+        ...chunkContainers,
+          [activeContainerId]: {
+            ...activeContainer,
+            nestedChunkIDs: sortedItems
+          }
+        })
+      setActiveId("")
+      return  
+    } 
+
+    if (activeContainerId !== overContainerId) {
+      console.log("Different box")
+      const activeChunks = activeContainer.nestedChunkIDs
+      const overChunks = overContainer.nestedChunkIDs
+      const activeIndex = activeChunks.indexOf(active.id)
+      const overIndex = 
+        over.id in chunkContainers ? overChunks.length + 1 : overChunks.indexOf(over.id)
+      const draggedItem = active.id
+      
+      setChunkContainers(moveBetweenContainers(
+        activeChunks,
+        activeContainer, 
+        activeIndex, 
+        overChunks, 
+        overContainer, 
+        overIndex,
+        draggedItem
+      ))
+      setActiveId("")
+      return 
+    }
+    setActiveId("")
+  }
+
+  const moveBetweenContainers = (
+    activeChunks: string[],
+    activeContainer: chunkContainer,
+    activeIndex: number,
+    overChunks: string[],
+    overContainer: chunkContainer,
+    overIndex: number,
+    item: string
+  ) => {
+    return {
+      ...chunkContainers,
+        [activeContainer.id]: {
+          ...activeContainer,
+          nestedChunkIDs: removeAtIndex(activeChunks, activeIndex)
+        },
+        [overContainer.id]: {
+          ...overContainer,
+          nestedChunkIDs: insertAtIndex(overChunks, overIndex, item)
+        }
+      }
+    }
+
+    const outputToText = () => {
       let combinedText = ""
-      const lines = this.state.lineOrder
+      const lines = lineOrder
       lines.forEach((lineId) => {
         let lineText = ""
-        this.state.chunkContainers[lineId].nestedChunks.forEach((chunk) => {
-          lineText += (chunk.text + " ")
+        chunkContainers[lineId].nestedChunkIDs.forEach((id) => {
+          lineText += (wordChunks[id] + " ")
         })
         combinedText += (lineText + "\n")
       })
-      console.log(combinedText)
-      const newState = {
-        ...this.state,
-        poemAsText: combinedText
-      }
-      this.setState(newState)
-  }
+      setPoemAsText(combinedText)
+    }
 
-  render() {
     return (
       <div className="app-container">
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
-          <CuttingBoard snipText={this.snipText}/>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <CraftingBoard chunkContainers={this.state.chunkContainers} lineOrder={this.state.lineOrder} addLine={this.addLine} />
-          </DragDropContext>
-          <TextifyButton outputToText={this.outputToText} />
-          <OutputBox poem={this.state.poemAsText} />
+          <CuttingBoard snipText={snipText}/>
+          <DndContext 
+            sensors={sensors}
+            onDragStart={onDragStart}  
+            onDragOver={onDragOver} 
+            onDragEnd={onDragEnd} >
+            <CraftingBoard activeId={activeId} wordChunks={wordChunks} chunkContainers={chunkContainers} lineOrder={lineOrder} addLine={addLine} />
+          </DndContext>
+          <TextifyButton outputToText={outputToText} />
+          <OutputBox poem={poemAsText} />
         </div>
       </div>
     )
+
   }
-}
 
 export default App

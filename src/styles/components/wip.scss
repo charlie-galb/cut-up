@@ -1,5 +1,14 @@
 .wip-container {
-    border: solid blue 2px;
     height: 400px;
-    width: 50%;
+    width: 45%;
+}
+
+.wip-snippets {
+    border: solid blue 2px;
+    display: flex;
+    height: 400px;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
 }

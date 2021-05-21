@@ -1,32 +1,40 @@
 import React from "react"
 
-import { Droppable } from "react-beautiful-dnd"
+import { DragOverlay, useDroppable } from "@dnd-kit/core"
+import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
+import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     chunkContainer: chunkContainer
+    wordChunks: {
+        [key: string]: string
+      }
+    activeId: string
 }
 
 export const PasteBoard = (props: Props) => {
-
-    const { chunkContainer } = props
-    const { id, nestedChunks } = chunkContainer
+   
+    const { chunkContainer, wordChunks, activeId } = props
+    const { id, nestedChunkIDs } = chunkContainer
+    const { setNodeRef } = useDroppable({ id });
 
     return (
-        <Droppable droppableId={id} direction="horizontal">
-            {provided => (
-            <div className="unused-snippets" data-testid="unused-snippets" {...provided.droppableProps}
-                ref={provided.innerRef}>
-                {nestedChunks?.map((chunk, i) => {
-                    return (
-                        <TextSnippet data-testid="snippet" key={chunk.id} id={chunk.id} index={i} text={chunk.text}/>
-                    )
-                })}
-                {provided.placeholder}
-            </div>
-            )}
-        </Droppable>
+        <div className="pasteboard-container"> 
+            <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
+                <div className="unused-snippets" data-testid="unused-snippets" ref={setNodeRef}>
+                    {nestedChunkIDs?.map((ID, i) => {
+                        return (
+                            <SortableTextSnippet data-testid="snippet" key={ID} id={ID} index={i} text={wordChunks[ID]}/>
+                        )
+                    })}
+                </div>
+            </SortableContext>
+            <DragOverlay dropAnimation={null}>
+                {activeId ? <TextSnippet text={wordChunks[activeId]}/> : null}
+            </DragOverlay>
+        </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Line } from "../Line/Line"
+
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
@@ -9,22 +10,26 @@ interface Props {
       }
     lineOrder: string[]
     addLine: (arg: void) => void
+    wordChunks: {
+        [key: string]: string
+      }
+    activeId: string
 }
 
 export const WorkInProgress = (props: Props) => {
 
-    const { chunkContainers, lineOrder, addLine } = props
+    const { chunkContainers, lineOrder, addLine, wordChunks, activeId } = props
 
     const handleLineAdding = () => {
         addLine()
     }
 
     return (
-        <div className="wip-container">
+        <div className="wip-container"> 
             <div className="lines-container">
                 {lineOrder?.map((lineId, i) => {
                     return (
-                        <Line key={i} chunkContainer={chunkContainers[lineId]}/>
+                        <Line key={i} activeId={activeId} wordChunks={wordChunks} chunkContainer={chunkContainers[lineId]}/>
                     )
                 })}
             </div>

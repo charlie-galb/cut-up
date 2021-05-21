@@ -42,3 +42,44 @@ Cypress.Commands.add('dragAndDrop', (subject, target, xAdjustment = 0, yAdjustme
                 });
         });
 });
+
+Cypress.Commands.add('moveTo', (subject, xAdjustment, yAdjustment) => {
+    Cypress.log({
+        name: 'moveTo',
+        message: `Moving element ${subject} to ${xAdjustment}, ${yAdjustment}`,
+        consoleProps: () => {
+            return {
+                subject: subject,
+                x: xAdjustment,
+                y: yAdjustment
+            };
+        }
+    });
+    const BUTTON_INDEX = 0;
+        cy.get(subject)
+            .first()
+            .then(subject => {
+                const coordsDrag = subject[0].getBoundingClientRect();
+                cy.wrap(subject)
+                    .trigger('mousedown', {
+                        button: BUTTON_INDEX,
+                        clientX: coordsDrag.x,
+                        clientY: coordsDrag.y,
+                        force: true
+                    })
+                    .trigger('mousemove', {
+                        button: BUTTON_INDEX,
+                        clientX: coordsDrag.x + xAdjustment,
+                        clientY: coordsDrag.y + yAdjustment,
+                        force: true
+                    });
+                cy.get('body')
+                    .trigger('mousemove', {
+                        button: BUTTON_INDEX,
+                        clientX: coordsDrag.x + xAdjustment,
+                        clientY: coordsDrag.y + yAdjustment,
+                        force: true            
+                    })
+                    .trigger('mouseup');
+            });
+});

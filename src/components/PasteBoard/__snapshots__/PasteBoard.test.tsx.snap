@@ -6,88 +6,89 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="unused-snippets"
-        data-rbd-droppable-context-id="0"
-        data-rbd-droppable-id="chunk-container-1"
-        data-testid="unused-snippets"
+        class="pasteboard-container"
       >
         <div
-          aria-describedby="rbd-hidden-text-0-hidden-text-0"
-          class="text-snippet"
-          data-rbd-drag-handle-context-id="0"
-          data-rbd-drag-handle-draggable-id="snippet1"
-          data-rbd-draggable-context-id="0"
-          data-rbd-draggable-id="snippet1"
-          draggable="false"
-          role="button"
-          tabindex="0"
+          class="unused-snippets"
+          data-testid="unused-snippets"
         >
-          one
-        </div>
-        <div
-          aria-describedby="rbd-hidden-text-0-hidden-text-0"
-          class="text-snippet"
-          data-rbd-drag-handle-context-id="0"
-          data-rbd-drag-handle-draggable-id="snippet2"
-          data-rbd-draggable-context-id="0"
-          data-rbd-draggable-id="snippet2"
-          draggable="false"
-          role="button"
-          tabindex="0"
-        >
-          two
+          <div>
+            <button
+              aria-describedby="DndDescribedBy-0"
+              aria-roledescription="sortable"
+              class="text-snippet"
+              role="button"
+              tabindex="0"
+              text="one"
+            >
+              one
+            </button>
+          </div>
+          <div>
+            <button
+              aria-describedby="DndDescribedBy-0"
+              aria-roledescription="sortable"
+              class="text-snippet"
+              role="button"
+              tabindex="0"
+              text="two"
+            >
+              two
+            </button>
+          </div>
         </div>
       </div>
+    </div>
+    <div
+      id="DndDescribedBy-0"
+      style="display: none;"
+    >
+      
+    To pick up a draggable item, press the space bar.
+    While dragging, use the arrow keys to move the item.
+    Press space again to drop the item in its new position, or press escape to cancel.
+  
     </div>
     <div
       aria-atomic="true"
       aria-live="assertive"
-      id="rbd-announcement-0"
-      style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
+      id="DndLiveRegion-0"
+      role="status"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
     />
-    <div
-      id="rbd-hidden-text-0-hidden-text-0"
-      style="display: none;"
-    >
-      
-  Press space bar to start a drag.
-  When dragging you can use the arrow keys to move the item around and escape to cancel.
-  Some screen readers may require you to be in focus mode or to use your pass through key
-
-    </div>
   </body>,
   "container": <div>
     <div
-      class="unused-snippets"
-      data-rbd-droppable-context-id="0"
-      data-rbd-droppable-id="chunk-container-1"
-      data-testid="unused-snippets"
+      class="pasteboard-container"
     >
       <div
-        aria-describedby="rbd-hidden-text-0-hidden-text-0"
-        class="text-snippet"
-        data-rbd-drag-handle-context-id="0"
-        data-rbd-drag-handle-draggable-id="snippet1"
-        data-rbd-draggable-context-id="0"
-        data-rbd-draggable-id="snippet1"
-        draggable="false"
-        role="button"
-        tabindex="0"
+        class="unused-snippets"
+        data-testid="unused-snippets"
       >
-        one
-      </div>
-      <div
-        aria-describedby="rbd-hidden-text-0-hidden-text-0"
-        class="text-snippet"
-        data-rbd-drag-handle-context-id="0"
-        data-rbd-drag-handle-draggable-id="snippet2"
-        data-rbd-draggable-context-id="0"
-        data-rbd-draggable-id="snippet2"
-        draggable="false"
-        role="button"
-        tabindex="0"
-      >
-        two
+        <div>
+          <button
+            aria-describedby="DndDescribedBy-0"
+            aria-roledescription="sortable"
+            class="text-snippet"
+            role="button"
+            tabindex="0"
+            text="one"
+          >
+            one
+          </button>
+        </div>
+        <div>
+          <button
+            aria-describedby="DndDescribedBy-0"
+            aria-roledescription="sortable"
+            class="text-snippet"
+            role="button"
+            tabindex="0"
+            text="two"
+          >
+            two
+          </button>
+        </div>
       </div>
     </div>
   </div>,
