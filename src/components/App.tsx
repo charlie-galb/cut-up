@@ -141,32 +141,30 @@ export const App = () => {
 
     return (
       <div className="app-container">
-        <div className="content-container">
-          <h1 data-testid="test-header">Cut-up App</h1>
-          <CuttingBoard 
-            chunkContainers={chunkContainers}
-            setWordChunks={setWordChunks}
-            setChunkContainers={setChunkContainers}/>
-          <DndContext 
-            sensors={sensors}
-            onDragStart={onDragStart}  
-            onDragOver={onDragOver} 
-            onDragEnd={onDragEnd} >
-            <CraftingBoard 
-              activeId={activeId} 
-              wordChunks={wordChunks} 
-              chunkContainers={chunkContainers} 
-              lineOrder={lineOrder} 
-              setChunkContainers={setChunkContainers}
-              setLineOrder={setLineOrder}/>
-          </DndContext>
-          <TextifyButton 
-            chunkContainers={chunkContainers}
+        <h1 data-testid="test-header">Cut-up App</h1>
+        <CuttingBoard 
+          chunkContainers={chunkContainers}
+          setWordChunks={setWordChunks}
+          setChunkContainers={setChunkContainers}/>
+        <DndContext 
+          sensors={sensors}
+          onDragStart={onDragStart}  
+          onDragOver={onDragOver} 
+          onDragEnd={onDragEnd} >
+          <CraftingBoard 
+            activeId={activeId} 
             wordChunks={wordChunks} 
+            chunkContainers={chunkContainers} 
             lineOrder={lineOrder} 
-            setPoemAsText={setPoemAsText} />
-          <OutputBox poem={poemAsText} />
-        </div>
+            setChunkContainers={setChunkContainers}
+            setLineOrder={setLineOrder}/>
+        </DndContext>
+        <TextifyButton 
+          chunkContainers={chunkContainers}
+          wordChunks={wordChunks} 
+          lineOrder={lineOrder} 
+          setPoemAsText={setPoemAsText} />
+        <OutputBox poem={poemAsText} />
       </div>
     )
 
