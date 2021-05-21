@@ -26,53 +26,6 @@ export const App = () => {
     useSensor(KeyboardSensor),
   );
 
-  const addLine = () => {
-    const lineNumber = lineOrder.length + 1
-    const containerNumber = lineNumber + 2
-    const Id = `chunk-container-${containerNumber}`
-    const title = `line-${lineNumber}`
-    const newLine: chunkContainer = {
-      id: Id,
-      title: title,
-      nestedChunkIDs: []
-    }
-    const newLineOrder = [...lineOrder, Id]
-    const newChunkContainers = {
-        ...chunkContainers,
-        [Id]: newLine
-      }
-    setChunkContainers(newChunkContainers)
-    setLineOrder(newLineOrder)
-  }
-
-  const snipText = (text: string) => {
-    const temp = text.split(" ")
-    const newWordChunks: {[key: string]: string} = {}
-    const newPasteBoardIDs: string[] = []
-    let id_acc = 1
-    for(let i = 0; i < temp.length; i = i + 2 ) {
-      const id = `snippet${id_acc}`
-      const text = temp.slice(i,i+2).join(' ')
-      const unformattedText = removePunctuation(text.toLowerCase())
-      newWordChunks[id] = unformattedText
-      newPasteBoardIDs.push(id)
-      id_acc++
-    }
-    const newPasteBoard = chunkContainers['chunk-container-1']
-    newPasteBoard.nestedChunkIDs = newPasteBoardIDs
-    const newChunkContainers = {
-      ...chunkContainers,
-        [newPasteBoard.id]: newPasteBoard
-      }
-    setChunkContainers(newChunkContainers)
-    setWordChunks(newWordChunks)
-  }
-
-  const removePunctuation = (string: string) => {
-    return string.replace(/[^\w\s]|_/g, "")
-         .replace(/\s+/g, " ");
-  }
-
   const onDragStart = (event: any) => {
     const { active } = event
     const { id } = active
@@ -186,32 +139,32 @@ export const App = () => {
       }
     }
 
-    const outputToText = () => {
-      let combinedText = ""
-      const lines = lineOrder
-      lines.forEach((lineId) => {
-        let lineText = ""
-        chunkContainers[lineId].nestedChunkIDs.forEach((id) => {
-          lineText += (wordChunks[id] + " ")
-        })
-        combinedText += (lineText + "\n")
-      })
-      setPoemAsText(combinedText)
-    }
-
     return (
       <div className="app-container">
         <div className="content-container">
           <h1 data-testid="test-header">Cut-up App</h1>
-          <CuttingBoard snipText={snipText}/>
+          <CuttingBoard 
+            chunkContainers={chunkContainers}
+            setWordChunks={setWordChunks}
+            setChunkContainers={setChunkContainers}/>
           <DndContext 
             sensors={sensors}
             onDragStart={onDragStart}  
             onDragOver={onDragOver} 
             onDragEnd={onDragEnd} >
-            <CraftingBoard activeId={activeId} wordChunks={wordChunks} chunkContainers={chunkContainers} lineOrder={lineOrder} addLine={addLine} />
+            <CraftingBoard 
+              activeId={activeId} 
+              wordChunks={wordChunks} 
+              chunkContainers={chunkContainers} 
+              lineOrder={lineOrder} 
+              setChunkContainers={setChunkContainers}
+              setLineOrder={setLineOrder}/>
           </DndContext>
-          <TextifyButton outputToText={outputToText} />
+          <TextifyButton 
+            chunkContainers={chunkContainers}
+            wordChunks={wordChunks} 
+            lineOrder={lineOrder} 
+            setPoemAsText={setPoemAsText} />
           <OutputBox poem={poemAsText} />
         </div>
       </div>
