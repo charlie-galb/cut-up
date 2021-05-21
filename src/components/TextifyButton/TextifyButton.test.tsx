@@ -3,11 +3,23 @@ import { render, fireEvent } from "@testing-library/react"
 
 import { TextifyButton } from "./TextifyButton"
 
+import { 
+    mockChunks,  
+    mockContainers, 
+    mockLineOrder 
+} from "../../utils/mockData"
+
+const mockSetPoem = jest.fn()
+
 describe("TextifyButton", () => {
     it("calls outputToText() when clicked", () => {
-        const mockTextify = jest.fn()
-        const { getByTestId } = render(<TextifyButton outputToText={mockTextify} />)
+        const { getByTestId } = render(
+            <TextifyButton 
+            chunkContainers={mockContainers}
+            wordChunks={mockChunks} 
+            lineOrder={mockLineOrder} 
+            setPoemAsText={mockSetPoem} />)
         fireEvent.click(getByTestId("textify-btn"))
-        expect(mockTextify).toHaveBeenCalled()
+        expect(mockSetPoem).toHaveBeenCalled()
     })
 })
