@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { CutButton } from "../CutButton/CutButton"
-
+import { shuffle } from "../../utils/array"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
@@ -45,7 +45,7 @@ export const CuttingBoard = (props: Props) => {
           id_acc++
         }
         const newPasteBoard = chunkContainers['chunk-container-1']
-        newPasteBoard.nestedChunkIDs = newPasteBoardIDs
+        newPasteBoard.nestedChunkIDs = shuffle(newPasteBoardIDs)
         const newChunkContainers = {
           ...chunkContainers,
             [newPasteBoard.id]: newPasteBoard
