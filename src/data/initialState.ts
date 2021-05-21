@@ -1,4 +1,3 @@
-import { chunk } from '../types/chunk'
 import { chunkContainer } from '../types/chunkContainer'
 
 const pasteBoard: chunkContainer = {
