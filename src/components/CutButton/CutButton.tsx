@@ -7,8 +7,8 @@ interface Props {
 export const CutButton = (props: Props) => {
     const { handleCallback } = props
     return (
-        <div>
-            <button data-testid="cut-btn" className="cut-btn" onClick={handleCallback} >Cut up</button>
-        </div>
+        <button data-testid="cut-btn" className="cut-btn" onClick={handleCallback}>
+            Cut up
+        </button>
     )
 }
