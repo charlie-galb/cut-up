@@ -1,28 +1,31 @@
 import React from 'react'
 
 import { Line } from "../Line/Line"
+import { AddLineButton } from "../AddLineButton/AddLineButton"
 
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     chunkContainers: {
-        [key: string]: chunkContainer
-      }
+      [key: string]: chunkContainer
+    }
     lineOrder: string[]
-    addLine: (arg: void) => void
     wordChunks: {
         [key: string]: string
       }
     activeId: string
+    setChunkContainers: (arg: { [key: string]: chunkContainer}) => void
+    setLineOrder: (arg: string[]) => void
 }
 
 export const WorkInProgress = (props: Props) => {
 
-    const { chunkContainers, lineOrder, addLine, wordChunks, activeId } = props
-
-    const handleLineAdding = () => {
-        addLine()
-    }
+    const { chunkContainers, 
+        lineOrder, 
+        wordChunks, 
+        activeId, 
+        setChunkContainers, 
+        setLineOrder } = props
 
     return (
         <div className="wip-container"> 
@@ -33,7 +36,11 @@ export const WorkInProgress = (props: Props) => {
                     )
                 })}
             </div>
-            <button data-testid="add-line-btn" className="add-line-btn" onClick={handleLineAdding} >Add line</button>
+            <AddLineButton 
+                lineOrder={lineOrder} 
+                chunkContainers={chunkContainers} 
+                setChunkContainers={setChunkContainers}
+                setLineOrder={setLineOrder}/>
         </div>
     )
 }
