@@ -1,4 +1,5 @@
 .cutting-container {
+    background-color: grey;
     display: flex;
     flex-direction: column; 
     justify-content: center;
@@ -8,8 +9,9 @@
 
 .cutting-text-area {
     height: 200px;
+    margin: 5px;
     resize: none;
-    width: (100% / 3);
+    width: (90% / 3);
 }
 
 .text-area-container {
