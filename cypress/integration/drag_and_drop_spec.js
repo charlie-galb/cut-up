@@ -25,6 +25,6 @@ describe("drag and drop", () => {
         .wait(1000)
         cy.dragAndDrop('[data-testid="line-1"] .text-snippet', '[data-testid="unused-snippets"]')
         .wait(500)
-        cy.get('[data-testid="unused-snippets"] .text-snippet').first().should("have.text", "two and")
+        cy.get('[data-testid="unused-snippets"] .text-snippet').first().should("have.text", "one and")
     })
 })
