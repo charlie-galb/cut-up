@@ -1,9 +1,10 @@
 .cutting-container {
-    background-color: grey;
+    background-color: var(--paleOrange);
     display: flex;
     flex-direction: column; 
     justify-content: center;
     margin: auto;
+    padding-bottom: 30px;
     width: 100%;
 }
 
