@@ -32,6 +32,7 @@ export const CuttingBoard = (props: Props) => {
     }
 
     const snipText = (text: string) => {
+        resetChunkContainers()
         const temp = text.split(" ")
         const newWordChunks: {[key: string]: string} = {}
         const newPasteBoardIDs: string[] = []
@@ -46,17 +47,24 @@ export const CuttingBoard = (props: Props) => {
         }
         const newPasteBoard = chunkContainers['chunk-container-1']
         newPasteBoard.nestedChunkIDs = shuffle(newPasteBoardIDs)
-        const newChunkContainers = {
-          ...chunkContainers,
-            [newPasteBoard.id]: newPasteBoard
-          }
-        setChunkContainers(newChunkContainers)
+        setChunkContainers({
+            ...chunkContainers,
+              [newPasteBoard.id]: newPasteBoard
+            })
         setWordChunks(newWordChunks)
       }
 
     const removePunctuation = (string: string) => {
     return string.replace(/[^\w\s]|_/g, "")
             .replace(/\s+/g, " ");
+    }
+
+    const resetChunkContainers = () => {
+        const emptyContainers = chunkContainers
+        for (var key in emptyContainers) {
+            emptyContainers[key].nestedChunkIDs = []
+        }
+        setChunkContainers(emptyContainers)
     }
     
     const handleCutting = () => {
