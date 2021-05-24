@@ -30,18 +30,20 @@ export const CraftingBoard = (props: Props) => {
         const pasteboard = chunkContainers['chunk-container-1']
 
     return (
-        <div className="crafting-container">
-            <PasteBoard 
-            activeId={activeId} 
-            wordChunks={wordChunks} 
-            chunkContainer={pasteboard} />
-            <WorkInProgress 
+        <div className="crafting-background">
+            <div className="crafting-container">
+                <PasteBoard 
                 activeId={activeId} 
                 wordChunks={wordChunks} 
-                lineOrder={lineOrder} 
-                chunkContainers={chunkContainers} 
-                setChunkContainers={setChunkContainers}
-                setLineOrder={setLineOrder}/>
+                chunkContainer={pasteboard} />
+                <WorkInProgress 
+                    activeId={activeId} 
+                    wordChunks={wordChunks} 
+                    lineOrder={lineOrder} 
+                    chunkContainers={chunkContainers} 
+                    setChunkContainers={setChunkContainers}
+                    setLineOrder={setLineOrder}/>
+            </div>
         </div>
     )
 }
