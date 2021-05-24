@@ -4,12 +4,11 @@
     margin-left: 10px;
 }
 
-.wip-snippets {
-    border: solid blue 2px;
+.lines-container {
+    border: solid var(--standardGrey) 2px;
     display: flex;
     height: 400px;
     width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     overflow: scroll;
 }
