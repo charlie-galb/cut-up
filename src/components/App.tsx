@@ -6,6 +6,7 @@ import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { Header } from "./Header/Header"
 import { OutputBox } from "./OutputBox/OutputBox"
+import { Intro } from "./Intro/Intro"
 
 import { initialChunkContainers, initialLineOrder } from "../data/initialState"
 import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
@@ -142,6 +143,7 @@ export const App = () => {
     return (
       <div className="app-container">
         <Header />
+        <Intro />
         <CuttingBoard 
           chunkContainers={chunkContainers}
           setWordChunks={setWordChunks}
