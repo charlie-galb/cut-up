@@ -6,7 +6,6 @@ import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
 import { Header } from "./Header/Header"
 import { OutputBox } from "./OutputBox/OutputBox"
-import { TextifyButton } from "./TextifyButton/TextifyButton"
 
 import { initialChunkContainers, initialLineOrder } from "../data/initialState"
 import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
