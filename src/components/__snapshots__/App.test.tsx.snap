@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="app-container"
+      >
+        <div
+          class="header"
+        >
+          <h1
+            data-testid="header"
+          >
+            Cut-up App
+          </h1>
+        </div>
+        <div
+          class="cutting-container"
+        >
+          <div
+            class="text-area-container"
+          >
+            <textarea
+              class="cutting-text-area 1"
+              cols="10"
+              data-testid="cutting-text-area1"
+              placeholder="Paste your text sources here"
+              rows="4"
+            />
+            <textarea
+              class="cutting-text-area 2"
+              cols="10"
+              data-testid="cutting-text-area2"
+              placeholder="Paste your text sources here"
+              rows="4"
+            />
+            <textarea
+              class="cutting-text-area 3"
+              cols="10"
+              data-testid="cutting-text-area3"
+              placeholder="Paste your text sources here"
+              rows="4"
+            />
+          </div>
+          <button
+            class="cut-btn"
+            data-testid="cut-btn"
+          >
+            Cut up
+          </button>
+        </div>
+        <div
+          class="crafting-background"
+        >
+          <div
+            class="crafting-container"
+          >
+            <div
+              class="pasteboard-container"
+            >
+              <div
+                class="unused-snippets"
+                data-testid="unused-snippets"
+              />
+            </div>
+            <div
+              class="wip-container"
+            >
+              <div
+                class="lines-container"
+              >
+                <div>
+                  <div
+                    class="line"
+                    data-testid="line-1"
+                  />
+                </div>
+              </div>
+              <div>
+                <button
+                  class="add-line-btn"
+                  data-testid="add-line-btn"
+                >
+                  Add line
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="textify-container"
+            data-testid="textify-container"
+          >
+            <button
+              class="textify-btn"
+              data-testid="textify-btn"
+            >
+              textify
+            </button>
+          </div>
+        </div>
+        <div
+          class="output-box"
+          data-testid="output-box"
+        >
+          <p />
+        </div>
+      </div>
+    </div>
+    <div
+      id="DndDescribedBy-0"
+      style="display: none;"
+    >
+      
+    To pick up a draggable item, press the space bar.
+    While dragging, use the arrow keys to move the item.
+    Press space again to drop the item in its new position, or press escape to cancel.
+  
+    </div>
+    <div
+      aria-atomic="true"
+      aria-live="assertive"
+      id="DndLiveRegion-0"
+      role="status"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+    />
+  </body>,
+  "container": <div>
+    <div
+      class="app-container"
+    >
+      <div
+        class="header"
+      >
+        <h1
+          data-testid="header"
+        >
+          Cut-up App
+        </h1>
+      </div>
+      <div
+        class="cutting-container"
+      >
+        <div
+          class="text-area-container"
+        >
+          <textarea
+            class="cutting-text-area 1"
+            cols="10"
+            data-testid="cutting-text-area1"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+          <textarea
+            class="cutting-text-area 2"
+            cols="10"
+            data-testid="cutting-text-area2"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+          <textarea
+            class="cutting-text-area 3"
+            cols="10"
+            data-testid="cutting-text-area3"
+            placeholder="Paste your text sources here"
+            rows="4"
+          />
+        </div>
+        <button
+          class="cut-btn"
+          data-testid="cut-btn"
+        >
+          Cut up
+        </button>
+      </div>
+      <div
+        class="crafting-background"
+      >
+        <div
+          class="crafting-container"
+        >
+          <div
+            class="pasteboard-container"
+          >
+            <div
+              class="unused-snippets"
+              data-testid="unused-snippets"
+            />
+          </div>
+          <div
+            class="wip-container"
+          >
+            <div
+              class="lines-container"
+            >
+              <div>
+                <div
+                  class="line"
+                  data-testid="line-1"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                class="add-line-btn"
+                data-testid="add-line-btn"
+              >
+                Add line
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="textify-container"
+          data-testid="textify-container"
+        >
+          <button
+            class="textify-btn"
+            data-testid="textify-btn"
+          >
+            textify
+          </button>
+        </div>
+      </div>
+      <div
+        class="output-box"
+        data-testid="output-box"
+      >
+        <p />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
