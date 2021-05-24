@@ -4,6 +4,7 @@ import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSe
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
+import { Header } from "./Header/Header"
 import { OutputBox } from "./OutputBox/OutputBox"
 import { TextifyButton } from "./TextifyButton/TextifyButton"
 
@@ -141,7 +142,7 @@ export const App = () => {
 
     return (
       <div className="app-container">
-        <h1 data-testid="test-header">Cut-up App</h1>
+        <Header />
         <CuttingBoard 
           chunkContainers={chunkContainers}
           setWordChunks={setWordChunks}
