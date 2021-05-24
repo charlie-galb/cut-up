@@ -158,13 +158,9 @@ export const App = () => {
             chunkContainers={chunkContainers} 
             lineOrder={lineOrder} 
             setChunkContainers={setChunkContainers}
-            setLineOrder={setLineOrder}/>
+            setLineOrder={setLineOrder}
+            setPoemAsText={setPoemAsText}/>
         </DndContext>
-        <TextifyButton 
-          chunkContainers={chunkContainers}
-          wordChunks={wordChunks} 
-          lineOrder={lineOrder} 
-          setPoemAsText={setPoemAsText} />
         <OutputBox poem={poemAsText} />
       </div>
     )
