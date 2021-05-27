@@ -1,19 +1,25 @@
 .cutting-container {
-    background-color: var(--standardGrey);
+    border-radius: 5px;
     display: flex;
     flex-direction: column; 
     justify-content: center;
-    margin: auto;
-    padding-bottom: 30px;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
 }
 
 .cutting-text-area {
+    border: solid 2px var(--richRed);
+    border-radius: 10px;
     height: 200px;
     margin: 5px;
+    padding: 5px;
     resize: none;
     width: (90% / 3);
 }
+
 
 .text-area-container {
     display: flex;
