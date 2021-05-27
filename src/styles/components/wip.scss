@@ -1,11 +1,12 @@
 .wip-container {
+    background-color: var(--beige);
     height: 400px;
     width: 45%;
     margin-left: 10px;
 }
 
 .lines-container {
-    border: solid var(--standardGrey) 2px;
+    border: 2px var(--goldenBrown) solid;
     display: flex;
     height: 400px;
     width: 100%;
