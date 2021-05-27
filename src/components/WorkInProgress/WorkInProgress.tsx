@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Line } from "../Line/Line"
 import { AddLineButton } from "../AddLineButton/AddLineButton"
+import { RemoveLineButton } from "../RemoveLineButton/RemoveLineButton"
 
 import { chunkContainer } from "../../types/chunkContainer"
 
@@ -37,6 +38,11 @@ export const WorkInProgress = (props: Props) => {
                 })}
             </div>
             <AddLineButton 
+                lineOrder={lineOrder} 
+                chunkContainers={chunkContainers} 
+                setChunkContainers={setChunkContainers}
+                setLineOrder={setLineOrder}/>
+            <RemoveLineButton 
                 lineOrder={lineOrder} 
                 chunkContainers={chunkContainers} 
                 setChunkContainers={setChunkContainers}
