@@ -1,0 +1,15 @@
+describe("Remove line", () => {
+    it('User can remove extra lines, returning the text snippets to the pasteboard', () => {
+        cy.visit('http://localhost:3000/')
+        cy.get('[data-testid="cutting-text-area1"]').type("one and")
+        cy.get('[data-testid="cut-btn"]').click()
+        cy.get('[data-testid="add-line-btn"]').click()
+        cy.get(".lines-container").children().should("have.length", 2)
+        cy.dragAndDrop(".text-snippet", '[data-testid="line-2"]')
+        .wait(1000)
+        cy.get('[data-testid="line-2"] .text-snippet').first().should("have.text", "one and")
+        cy.get('[data-testid="remove-line-btn"]').click()
+        cy.get(".lines-container").children().should("have.length", 1)
+        cy.get('[data-testid="unused-snippets"] .text-snippet').first().should("have.text", "one and")
+    })
+})
