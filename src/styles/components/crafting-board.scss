@@ -1,4 +1,9 @@
 .crafting-background {
+    background-color: var(--richRed);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-bottom: 30px;
     padding-top: 30px;
     width: 100%;
@@ -9,5 +14,5 @@
     flex-direction: row; 
     justify-content: center;
     margin: auto;
-    width: 100%;
+    width: 90%;
 }
