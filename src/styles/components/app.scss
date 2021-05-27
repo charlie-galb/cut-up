@@ -4,9 +4,23 @@
 }
 
 body {
-    background-color: var(--lightGrey);
+    background-color: var(--beige);
     box-sizing: border-box;
 }
+
+button {
+    background-color: var(--bronze);
+    border-radius: 5px;
+    color: var(--offBlack);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: var(--goldenBrown);
+    transition: 0.5s;
+  }
 
 .app-container {
     margin: 0;
