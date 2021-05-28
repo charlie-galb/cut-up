@@ -4,7 +4,6 @@ import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSe
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
-import { OutputBox } from "./OutputBox/OutputBox"
 import { Header } from "./Header/Header"
 import { Intro } from "./Intro/Intro"
 import { DragDropInstructions } from './DragDropInstructions/DragDropInstructions'
@@ -171,9 +170,9 @@ export const App = () => {
             lineOrder={lineOrder} 
             setChunkContainers={setChunkContainers}
             setLineOrder={setLineOrder}
-            setPoemAsText={setPoemAsText}/>
+            setPoemAsText={setPoemAsText}
+            poemAsText={poemAsText} />
         </DndContext>
-        <OutputBox poem={poemAsText} />
       </div>
     )
 
