@@ -14,8 +14,20 @@ Object {
           <h1
             data-testid="header"
           >
-            Cut-up App
+            Cut-up Creator
           </h1>
+        </div>
+        <div
+          class="intro-container"
+        >
+          <p>
+            Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+          </p>
+          <br />
+          <p>
+            Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+          </p>
+          <br />
         </div>
         <div
           class="cutting-container"
@@ -46,11 +58,26 @@ Object {
             />
           </div>
           <button
-            class="cut-btn"
+            class="btn cut-btn"
             data-testid="cut-btn"
           >
             Cut up
           </button>
+        </div>
+        <div
+          class="drag-drop-instructions"
+        >
+          <p>
+            Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. 
+          </p>
+          <br />
+          <p>
+            When you're happy with what you've made, hit the textify button. Your poem will appear as text below.
+          </p>
+          <br />
+          <p>
+            And just like that, you're a poet. 
+          </p>
         </div>
         <div
           class="crafting-background"
@@ -81,10 +108,18 @@ Object {
               </div>
               <div>
                 <button
-                  class="add-line-btn"
+                  class="btn add-line-btn"
                   data-testid="add-line-btn"
                 >
                   Add line
+                </button>
+              </div>
+              <div>
+                <button
+                  class="btn add-line-btn"
+                  data-testid="remove-line-btn"
+                >
+                  Remove line
                 </button>
               </div>
             </div>
@@ -94,7 +129,7 @@ Object {
             data-testid="textify-container"
           >
             <button
-              class="textify-btn"
+              class="btn textify-btn"
               data-testid="textify-btn"
             >
               textify
@@ -137,8 +172,20 @@ Object {
         <h1
           data-testid="header"
         >
-          Cut-up App
+          Cut-up Creator
         </h1>
+      </div>
+      <div
+        class="intro-container"
+      >
+        <p>
+          Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+        </p>
+        <br />
+        <p>
+          Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+        </p>
+        <br />
       </div>
       <div
         class="cutting-container"
@@ -169,11 +216,26 @@ Object {
           />
         </div>
         <button
-          class="cut-btn"
+          class="btn cut-btn"
           data-testid="cut-btn"
         >
           Cut up
         </button>
+      </div>
+      <div
+        class="drag-drop-instructions"
+      >
+        <p>
+          Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. 
+        </p>
+        <br />
+        <p>
+          When you're happy with what you've made, hit the textify button. Your poem will appear as text below.
+        </p>
+        <br />
+        <p>
+          And just like that, you're a poet. 
+        </p>
       </div>
       <div
         class="crafting-background"
@@ -204,10 +266,18 @@ Object {
             </div>
             <div>
               <button
-                class="add-line-btn"
+                class="btn add-line-btn"
                 data-testid="add-line-btn"
               >
                 Add line
+              </button>
+            </div>
+            <div>
+              <button
+                class="btn add-line-btn"
+                data-testid="remove-line-btn"
+              >
+                Remove line
               </button>
             </div>
           </div>
@@ -217,7 +287,7 @@ Object {
           data-testid="textify-container"
         >
           <button
-            class="textify-btn"
+            class="btn textify-btn"
             data-testid="textify-btn"
           >
             textify

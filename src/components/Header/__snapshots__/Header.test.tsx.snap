@@ -4,6 +4,6 @@ exports[`renders without crashing 1`] = `
 <h1
   data-testid="header"
 >
-  Cut-up App
+  Cut-up Creator
 </h1>
 `;
