@@ -6,10 +6,11 @@ import { TextifyButton } from "./TextifyButton"
 import { 
     mockChunks,  
     mockContainers, 
-    mockLineOrder 
+    mockLineOrder,
 } from "../../utils/mockData"
 
 const mockSetPoem = jest.fn()
+const mockDisplayPopUp = jest.fn()
 
 describe("TextifyButton", () => {
     it("calls outputToText() when clicked", () => {
@@ -18,8 +19,10 @@ describe("TextifyButton", () => {
             chunkContainers={mockContainers}
             wordChunks={mockChunks} 
             lineOrder={mockLineOrder} 
-            setPoemAsText={mockSetPoem} />)
+            setPoemAsText={mockSetPoem} 
+            displayPopUp={mockDisplayPopUp}/>)
         fireEvent.click(getByTestId("textify-btn"))
         expect(mockSetPoem).toHaveBeenCalled()
+        expect(mockDisplayPopUp).toHaveBeenCalled()
     })
 })
