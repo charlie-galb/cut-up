@@ -136,12 +136,6 @@ Object {
             </button>
           </div>
         </div>
-        <div
-          class="output-box"
-          data-testid="output-box"
-        >
-          <p />
-        </div>
       </div>
     </div>
     <div
@@ -293,12 +287,6 @@ Object {
             textify
           </button>
         </div>
-      </div>
-      <div
-        class="output-box"
-        data-testid="output-box"
-      >
-        <p />
       </div>
     </div>
   </div>,
