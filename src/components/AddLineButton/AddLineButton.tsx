@@ -36,7 +36,7 @@ export const AddLineButton = (props: Props) => {
 
     return (
         <div>
-            <button data-testid="add-line-btn" className="add-line-btn" onClick={addLine} >Add line</button>
+            <button data-testid="add-line-btn" className="btn add-line-btn" onClick={addLine} >Add line</button>
         </div>
     )
 }
