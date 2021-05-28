@@ -35,7 +35,7 @@ export const RemoveLineButton = (props: Props) => {
 
     return (
         <div>
-            <button data-testid="remove-line-btn" className="add-line-btn" onClick={removeLine} >Remove line</button>
+            <button data-testid="remove-line-btn" className="btn add-line-btn" onClick={removeLine} >Remove line</button>
         </div>
     )
 }
