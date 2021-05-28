@@ -1,10 +1,12 @@
 .pasteboard-container {
     height: 400px;
     width: 45%;
+    margin-right: 10px;
 }
 
 .unused-snippets {
-    border: solid red 2px;
+    background-color: var(--offWhite);
+    border: 2px var(--goldenBrown) solid;
     display: flex;
     height: 400px;
     width: 100%;

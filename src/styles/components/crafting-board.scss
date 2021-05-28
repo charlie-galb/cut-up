@@ -1,8 +1,18 @@
+.crafting-background {
+    border-top: solid 2px var(--goldenBrown);
+    background-color: var(--richRed);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    width: 100%;
+}
+
 .crafting-container {
     display: flex;
     flex-direction: row; 
-    justify-content: space-between;
+    justify-content: center;
     margin: auto;
-    padding-top: 10px;
     width: 90%;
 }

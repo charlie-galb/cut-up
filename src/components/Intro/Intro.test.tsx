@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from "@testing-library/react";
 
-import { App } from './App';
+import { Intro } from './Intro';
 
 test('renders without crashing', () => {
-    const app = render(<App />);
-    expect(app).toMatchSnapshot();
+    const intro = render(<Intro />);
+    expect(intro).toMatchSnapshot()
 });

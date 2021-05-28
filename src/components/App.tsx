@@ -4,8 +4,9 @@ import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSe
 
 import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
-import { OutputBox } from "./OutputBox/OutputBox"
-import { TextifyButton } from "./TextifyButton/TextifyButton"
+import { Header } from "./Header/Header"
+import { Intro } from "./Intro/Intro"
+import { DragDropInstructions } from './DragDropInstructions/DragDropInstructions'
 
 import { initialChunkContainers, initialLineOrder } from "../data/initialState"
 import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
@@ -30,6 +31,10 @@ export const App = () => {
     const { active } = event
     const { id } = active
     setActiveId(id)
+  }
+
+  const onDragCancel = (event: any) => {
+    setActiveId("")
   }
 
   const onDragOver = (event: any) => {
@@ -69,7 +74,10 @@ export const App = () => {
   const onDragEnd = (event: any) => {
     const {active, over} = event
 
-    if (!over || !active) { return }
+    if (!over || !active) { 
+      setActiveId("")
+      return 
+    }
 
     const activeContainerId = active.data.current?.sortable.containerId
     const activeContainer = chunkContainers[activeContainerId]
@@ -115,6 +123,7 @@ export const App = () => {
       return 
     }
     setActiveId("")
+    return
   }
 
   const moveBetweenContainers = (
@@ -141,14 +150,17 @@ export const App = () => {
 
     return (
       <div className="app-container">
-        <h1 data-testid="test-header">Cut-up App</h1>
+        <Header />
+        <Intro />
         <CuttingBoard 
           chunkContainers={chunkContainers}
           setWordChunks={setWordChunks}
           setChunkContainers={setChunkContainers}/>
+        <DragDropInstructions />
         <DndContext 
           sensors={sensors}
           onDragStart={onDragStart}  
+          onDragCancel={onDragCancel}
           onDragOver={onDragOver} 
           onDragEnd={onDragEnd} >
           <CraftingBoard 
@@ -157,14 +169,10 @@ export const App = () => {
             chunkContainers={chunkContainers} 
             lineOrder={lineOrder} 
             setChunkContainers={setChunkContainers}
-            setLineOrder={setLineOrder}/>
+            setLineOrder={setLineOrder}
+            setPoemAsText={setPoemAsText}
+            poemAsText={poemAsText} />
         </DndContext>
-        <TextifyButton 
-          chunkContainers={chunkContainers}
-          wordChunks={wordChunks} 
-          lineOrder={lineOrder} 
-          setPoemAsText={setPoemAsText} />
-        <OutputBox poem={poemAsText} />
       </div>
     )
 

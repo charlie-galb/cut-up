@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { chunkContainer } from "../../types/chunkContainer"
 
 import { PasteBoard } from "../PasteBoard/PasteBoard"
+import { TextifyButton } from "../TextifyButton/TextifyButton"
 import { WorkInProgress } from "../WorkInProgress/WorkInProgress"
+import { PopUpBox } from "../PopUpBox/PopUpBox"
 
 interface Props {
     chunkContainers: {
@@ -14,34 +16,56 @@ interface Props {
         [key: string]: string
       }
     activeId: string
+    poemAsText: string
     setChunkContainers: (arg: { [key: string]: chunkContainer}) => void
     setLineOrder: (arg: string[]) => void
+    setPoemAsText: (arg: string) => void
 }
 
 export const CraftingBoard = (props: Props) => {
+  const [isPopUpDisplayed, setIsPopUpDisplayed] = useState<boolean>(false)
 
     const { chunkContainers, 
-        lineOrder, 
-        wordChunks, 
-        activeId, 
-        setChunkContainers, 
-        setLineOrder} = props
+      lineOrder, 
+      wordChunks, 
+      activeId, 
+      setChunkContainers, 
+      setLineOrder,
+      setPoemAsText,
+      poemAsText} = props
 
-        const pasteboard = chunkContainers['chunk-container-1']
+    const pasteboard = chunkContainers['chunk-container-1']
+
+    const togglePopUp = () => {
+      setIsPopUpDisplayed(!isPopUpDisplayed)
+    }
 
     return (
-        <div className="crafting-container">
-            <PasteBoard 
-            activeId={activeId} 
-            wordChunks={wordChunks} 
-            chunkContainer={pasteboard} />
-            <WorkInProgress 
-                activeId={activeId} 
-                wordChunks={wordChunks} 
-                lineOrder={lineOrder} 
-                chunkContainers={chunkContainers} 
-                setChunkContainers={setChunkContainers}
-                setLineOrder={setLineOrder}/>
+        <div className="crafting-background">
+          <div className="crafting-container">
+              <PasteBoard 
+              activeId={activeId} 
+              wordChunks={wordChunks} 
+              chunkContainer={pasteboard} />
+              <WorkInProgress 
+                  activeId={activeId} 
+                  wordChunks={wordChunks} 
+                  lineOrder={lineOrder} 
+                  chunkContainers={chunkContainers} 
+                  setChunkContainers={setChunkContainers}
+                  setLineOrder={setLineOrder}/>
+          </div>
+          <TextifyButton 
+          chunkContainers={chunkContainers}
+          wordChunks={wordChunks} 
+          lineOrder={lineOrder} 
+          setPoemAsText={setPoemAsText} 
+          displayPopUp={togglePopUp}/>
+          {isPopUpDisplayed && <PopUpBox 
+            handleClose={togglePopUp}>
+            {poemAsText}
+            </PopUpBox>
+          }
         </div>
     )
 }

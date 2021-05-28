@@ -46,9 +46,9 @@ describe("CuttingBoard", () => {
         fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: "Three and" } } )
         fireEvent.click(getByTestId("cut-btn"))
         expect(mockSetWordChunks).toHaveBeenCalledWith({"snippet1": "one and", "snippet2": "two and", "snippet3": "three and"})
-        expect(mockSetChunkContainers).toHaveBeenCalledTimes(1)
+        expect(mockSetChunkContainers).toHaveBeenCalledTimes(2)
     })
-    test("It combines the three texts and saves state", () => {
+    test("It shuffles the chunks before saving state", () => {
         const shuffledIDs = ['snippet1', 'snippet3', 'snipppet2']
         jest.spyOn(global.Math, 'random').mockReturnValue(0.6)
         const { getByTestId } = render(
@@ -62,7 +62,6 @@ describe("CuttingBoard", () => {
         fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: "Three and" } } )
         fireEvent.click(getByTestId("cut-btn"))
         expect(mockSetWordChunks).toHaveBeenCalledWith({"snippet1": "one and", "snippet2": "two and", "snippet3": "three and"})
-        expect(mockSetChunkContainers).toHaveBeenCalledTimes(1)
         expect(mockSetChunkContainers).toHaveBeenCalledWith({
             ['chunk-container-1']: {
                 id: mockContainer1.id,

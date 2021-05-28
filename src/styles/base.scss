@@ -1,10 +1,17 @@
+@import 'components/add-line-button';
 @import 'components/app';
 @import 'components/crafting-board.scss';
 @import 'components/cut-button';
 @import 'components/cutting-board.scss';
+@import 'components/drag-drop-instructions';
+@import 'components/header';
+@import 'components/intro';
 @import 'components/line';
-@import 'components/output-box';
 @import 'components/pasteboard';
+@import 'components/pop-up-box';
 @import 'components/text_snippet';
 @import 'components/textify-button';
 @import 'components/wip';
+
+@import 'settings/typography';
+@import 'settings/_variables';
