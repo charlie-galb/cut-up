@@ -34,6 +34,10 @@ export const App = () => {
     setActiveId(id)
   }
 
+  const onDragCancel = (event: any) => {
+    setActiveId("")
+  }
+
   const onDragOver = (event: any) => {
     const { active, over } = event
     const overId = over?.id
@@ -71,7 +75,10 @@ export const App = () => {
   const onDragEnd = (event: any) => {
     const {active, over} = event
 
-    if (!over || !active) { return }
+    if (!over || !active) { 
+      setActiveId("")
+      return 
+    }
 
     const activeContainerId = active.data.current?.sortable.containerId
     const activeContainer = chunkContainers[activeContainerId]
@@ -117,6 +124,7 @@ export const App = () => {
       return 
     }
     setActiveId("")
+    return
   }
 
   const moveBetweenContainers = (
@@ -153,6 +161,7 @@ export const App = () => {
         <DndContext 
           sensors={sensors}
           onDragStart={onDragStart}  
+          onDragCancel={onDragCancel}
           onDragOver={onDragOver} 
           onDragEnd={onDragEnd} >
           <CraftingBoard 
