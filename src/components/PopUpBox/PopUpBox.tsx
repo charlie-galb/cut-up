@@ -9,12 +9,12 @@ export const PopUpBox = (props: Props) => {
     const { handleClose, children } = props
     return (
         <div className="pop-up-container"> 
-            <div className="pop-up-box">
+            <div data-testid="pop-up-box" className="pop-up-box">
                 <div className="icon-bar">
                     <span className="close-icon" onClick={handleClose}>X</span>
                 </div>
                 <div className="text-container">
-                    <p>{children}</p>
+                    <p data-testid="pop-up-text">{children}</p>
                 </div>
             </div>
         </div>
