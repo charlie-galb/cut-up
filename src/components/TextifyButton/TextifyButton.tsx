@@ -4,16 +4,18 @@ import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     setPoemAsText: (string: string) => void
+    displayPopUp: () => void
     lineOrder: string[]
     wordChunks: { [key: string]: string }
     chunkContainers: { [key: string]: chunkContainer}
 }
 
 export const TextifyButton = (props: Props) => {
-    const { setPoemAsText, lineOrder, wordChunks, chunkContainers } = props
+    const { setPoemAsText, displayPopUp, lineOrder, wordChunks, chunkContainers } = props
 
     const outputToText = () => {
         setPoemAsText(formatText())
+        displayPopUp()
       }
 
     const formatText = () => {
