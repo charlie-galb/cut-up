@@ -23,6 +23,6 @@ describe("WorkInProgress", () => {
                 setChunkContainers={mockSetChunkContainers}/>
         </DndContext>
         )
-        expect(getAllByRole("button")).toHaveLength(5)
+        expect(getAllByRole("button")).toHaveLength(6)
     })
 })
