@@ -1,8 +1,13 @@
 :root {
+    --font-secondary: Montserrat, sans-serif;
     --font-primary: Courier Prime;
 }
 
 p {
     color: var(--offBlack);
     font-family: var(--font-primary);
+}
+
+.text-snippet {
+    font-family: var(--font-secondary);
 }
