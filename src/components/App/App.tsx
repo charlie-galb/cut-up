@@ -2,16 +2,16 @@ import React, { useState } from "react"
 
 import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSensor, } from '@dnd-kit/core'
 
-import { CuttingBoard } from "./CuttingBoard/CuttingBoard"
-import { CraftingBoard } from "./CraftingBoard/CraftingBoard"
-import { Header } from "./Header/Header"
-import { Intro } from "./Intro/Intro"
-import { DragDropInstructions } from './DragDropInstructions/DragDropInstructions'
+import { CuttingBoard } from "../CuttingBoard/CuttingBoard"
+import { CraftingBoard } from "../CraftingBoard/CraftingBoard"
+import { Header } from "../Header/Header"
+import { Intro } from "../Intro/Intro"
+import { DragDropInstructions } from '../DragDropInstructions/DragDropInstructions'
 
-import { initialChunkContainers, initialLineOrder } from "../data/initialState"
-import { removeAtIndex, insertAtIndex, arrayMove } from "../utils/array"
+import { initialChunkContainers, initialLineOrder } from "../../data/initialState"
+import { removeAtIndex, insertAtIndex, arrayMove } from "../../utils/array"
 
-import { chunkContainer } from "../types/chunkContainer"
+import { chunkContainer } from "../../types/chunkContainer"
 
 
 export const App = () => {

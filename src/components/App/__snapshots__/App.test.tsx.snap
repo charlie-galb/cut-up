@@ -88,10 +88,12 @@ Object {
             <div
               class="pasteboard-container"
             >
-              <div
-                class="unused-snippets"
-                data-testid="unused-snippets"
-              />
+              <div>
+                <div
+                  class="unused-snippets"
+                  data-testid="pasteboard"
+                />
+              </div>
             </div>
             <div
               class="wip-container"
@@ -117,7 +119,7 @@ Object {
               <div>
                 <button
                   class="btn add-line-btn"
-                  data-testid="remove-line-btn"
+                  data-testid="add-line-btn"
                 >
                   Remove line
                 </button>
@@ -125,14 +127,14 @@ Object {
             </div>
           </div>
           <div
-            class="textify-container"
-            data-testid="textify-container"
+            class="textify-button-container"
+            data-testid="textify-button-container"
           >
             <button
               class="btn textify-btn"
               data-testid="textify-btn"
             >
-              textify
+              Textify
             </button>
           </div>
         </div>
@@ -240,10 +242,12 @@ Object {
           <div
             class="pasteboard-container"
           >
-            <div
-              class="unused-snippets"
-              data-testid="unused-snippets"
-            />
+            <div>
+              <div
+                class="unused-snippets"
+                data-testid="pasteboard"
+              />
+            </div>
           </div>
           <div
             class="wip-container"
@@ -269,7 +273,7 @@ Object {
             <div>
               <button
                 class="btn add-line-btn"
-                data-testid="remove-line-btn"
+                data-testid="add-line-btn"
               >
                 Remove line
               </button>
@@ -277,14 +281,14 @@ Object {
           </div>
         </div>
         <div
-          class="textify-container"
-          data-testid="textify-container"
+          class="textify-button-container"
+          data-testid="textify-button-container"
         >
           <button
             class="btn textify-btn"
             data-testid="textify-btn"
           >
-            textify
+            Textify
           </button>
         </div>
       </div>
