@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { chunkContainer } from "../../types/chunkContainer"
 
 import { PasteBoard } from "../PasteBoard/PasteBoard"
-import { TextifyButton } from "../TextifyButton/TextifyButton"
+import { TextifyButtonContainer } from "../TextifyButtonContainer/TextifyButtonContainer"
 import { WorkInProgress } from "../WorkInProgress/WorkInProgress"
 import { PopUpBox } from "../PopUpBox/PopUpBox"
 
@@ -55,7 +55,7 @@ export const CraftingBoard = (props: Props) => {
                   setChunkContainers={setChunkContainers}
                   setLineOrder={setLineOrder}/>
           </div>
-          <TextifyButton 
+          <TextifyButtonContainer 
           chunkContainers={chunkContainers}
           wordChunks={wordChunks} 
           lineOrder={lineOrder} 

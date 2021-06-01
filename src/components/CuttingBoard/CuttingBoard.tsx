@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { CutButton } from "../CutButton/CutButton"
+import { Button } from "../Button/Button"
 import { shuffle } from "../../utils/array"
 import { chunkContainer } from "../../types/chunkContainer"
 
@@ -95,7 +95,7 @@ export const CuttingBoard = (props: Props) => {
                 <textarea data-testid="cutting-text-area2" className="cutting-text-area 2" cols={10} rows={4} placeholder="Paste your text sources here" value={source2Text} onChange={handleSource2TextChange}/>
                 <textarea data-testid="cutting-text-area3" className="cutting-text-area 3" cols={10} rows={4} placeholder="Paste your text sources here" value={source3Text} onChange={handleSource3TextChange}/>
             </div>
-            <CutButton handleCallback={handleCutting} />
+            <Button testId="cut-btn" className="btn cut-btn" handleCallback={handleCutting} >Cut up</ Button>
         </div>
     )
 }
