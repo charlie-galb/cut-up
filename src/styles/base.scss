@@ -1,17 +1,30 @@
-@import 'components/add-line-button-container';
-@import 'components/app';
-@import 'components/crafting-board.scss';
-@import 'components/cut-button';
-@import 'components/cutting-board.scss';
-@import 'components/drag-drop-instructions';
-@import 'components/header';
-@import 'components/intro';
-@import 'components/line';
-@import 'components/pasteboard';
-@import 'components/pop-up-box';
-@import 'components/text_snippet';
-@import 'components/textify-button-container';
-@import 'components/wip';
+* {
+    margin: 0;
+    padding: 0;
+}
 
-@import 'settings/typography';
-@import 'settings/_variables';
+body {
+    background-color: var(--beige);
+    box-sizing: border-box;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+ol {
+    list-style-type: upper-roman;
+    list-style-position: inside;
+  }
+
+.btn {
+    background-color: var(--bronze);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.btn:hover {
+    background-color: var(--goldenBrown);
+    transition: 0.5s;
+  }
