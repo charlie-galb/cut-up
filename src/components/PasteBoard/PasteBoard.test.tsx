@@ -19,14 +19,6 @@ const mockContainer: chunkContainer = {
   }
 
 describe("PasteBoard", () => {
-    test("It renders correctly", () => {
-        const board = render(
-            <DndContext onDragEnd={() => {}}>
-                <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
-            </DndContext>
-        )
-        expect(board).toMatchSnapshot()
-    })
     test("It displays text chunks as draggable objects", () => {
         const { getAllByRole } = render(
             <DndContext onDragEnd={() => {}}>
