@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Line } from "../Line/Line"
+import { DroppableArea } from "../DroppableArea/DroppableArea"
 import { AddLineButtonContainer } from "../AddLineButtonContainer/AddLineButtonContainer"
 import { RemoveLineButtonContainer } from "../RemoveLineButtonContainer/RemoveLineButtonContainer"
 
@@ -33,7 +33,12 @@ export const WorkInProgress = (props: Props) => {
             <div className="lines-container">
                 {lineOrder?.map((lineId, i) => {
                     return (
-                        <Line key={i} activeId={activeId} wordChunks={wordChunks} chunkContainer={chunkContainers[lineId]}/>
+                        <DroppableArea 
+                            key={i} 
+                            activeId={activeId} 
+                            wordChunks={wordChunks} 
+                            chunkContainer={chunkContainers[lineId]}
+                            droppableClass='line'/>
                     )
                 })}
             </div>

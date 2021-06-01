@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react"
 
 import { DragOverlay, useDroppable } from "@dnd-kit/core"
-import { SortableContext, horizontalListSortingStrategy} from "@dnd-kit/sortable"
-
+import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
 
 import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
@@ -13,24 +12,19 @@ interface Props {
     wordChunks: {
         [key: string]: string
       }
-      activeId: string
+    activeId: string
+    droppableClass: string
 }
 
-export const Line = (props: Props) => {
-
-    const { chunkContainer, wordChunks, activeId } = props
+export const DroppableArea = (props: Props) => {
+    const { chunkContainer, wordChunks, activeId, droppableClass } = props
     const { id, title, nestedChunkIDs } = chunkContainer
-    const {isOver, setNodeRef } = useDroppable({
-        id: id
-    })
-    const style = {
-        color: isOver ? 'green' : undefined
-    }
-
+    const { setNodeRef } = useDroppable({ id });
+    
     return (
-        <div style={style}>
-            <SortableContext id={id} items={nestedChunkIDs} strategy={horizontalListSortingStrategy}>
-                <div className="line" data-testid={title} ref={setNodeRef}>
+        <div>
+            <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
+                <div className={droppableClass} data-testid={title} ref={setNodeRef}>
                     {nestedChunkIDs?.map((id, i) => {
                         return (
                             <SortableTextSnippet data-testid="snippet" key={id} id={id} index={i} text={wordChunks[id]}/>
