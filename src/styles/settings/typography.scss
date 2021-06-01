@@ -1,11 +1,50 @@
 :root {
-    --font-secondary: Montserrat, sans-serif;
-    --font-primary: Courier Prime;
+    --font-header: 'Lexend Zetta';
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: Courier Prime;
+
+    --text-base-size: 1em;
+    --text-scale-ratio: 1.2;
+
+    --text-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+    --text-sm: calc(1em / var(--text-scale-ratio));
+    --text-md: calc(1em * var(--text-scale-ratio));
+    --text-lg: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+
+    --heading-line-height: 1.2;
+    --body-line-height: 1.5;
+}
+
+body {
+    color: var(--offBlack);
+    font-family: var(--font-primary);
+    font-size: var(--text-md)
+}
+
+h1, h2, h3, h4 {
+    --heading-line-height: 1.2;
+}
+
+h1 {
+    color: var(--goldenBrown);
+    font-family: var(--font-header);
 }
 
 p {
-    color: var(--offBlack);
-    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: var(--body-line-height);
+}
+
+ul li, ol li {
+    font-weight: 100;
+    line-height: var(--body-line-height);
+}
+
+.btn {
+    font-size: var(--text-sm);
 }
 
 .text-snippet {
