@@ -3,7 +3,7 @@
     background-color: var(--offWhite);
     display: flex;
     flex-direction: row;
-    height: 25px;
+    height: var(--space-xl);
     overflow: scroll;
     width: 100%;
 }
