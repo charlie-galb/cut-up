@@ -26,6 +26,8 @@ h1 {
 p {
   font-weight: 100;
   line-height: var(--body-line-height);
+  margin: var(--space-md) auto;
+  width: 90%;
 }
 
 .btn {
