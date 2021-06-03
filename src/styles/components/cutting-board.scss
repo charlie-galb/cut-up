@@ -17,15 +17,15 @@
     height: 200px;
     padding: var(--space-xs);
     resize: none;
-    width: (95% / 3);
+    width: (98% / 3);
     @include for-phone-only {   
         height: 100px;
         margin: var(--space-xxxs) auto;
-        width: 95%; 
+        width: 98%; 
      };
      @include for-tablet-portrait-up {   
         margin: var(--space-xxxs) auto;
-        width: (95% / 2);
+        width: (98% / 2);
      };
 }
 
