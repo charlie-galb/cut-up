@@ -1,0 +1,25 @@
+:root {
+    --space-base-size: 1em;
+    --space-scale-ratio: 1.2;
+
+    --space-xs: calc(1em / (var(--space-scale-ratio) * var(--space-scale-ratio)));
+    --space-sm: calc(1em / var(--space-scale-ratio));
+    --space-md: calc(1em * var(--space-scale-ratio));
+    --space-lg: calc(1em * var(--space-scale-ratio) * var(--space-scale-ratio));
+    --space-xl: calc(1em * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio));
+    --space-xxl: calc(1em * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio));
+    --space-xxxl: calc(1em * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio));
+}
+
+@include for-phone-only {
+    :root {
+        --space-base-size: 0.5em;
+        --space-scale-ratio: 1;
+    }
+};
+@include for-tablet-portrait-up {  
+    :root {
+        --space-base-size: 0.7em;
+        --space-scale-ratio: 1.1;
+    }
+};
