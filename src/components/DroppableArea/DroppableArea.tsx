@@ -27,7 +27,7 @@ export const DroppableArea = (props: Props) => {
                 <div className={droppableClass} data-testid={title} ref={setNodeRef}>
                     {nestedChunkIDs?.map((id, i) => {
                         return (
-                            <SortableTextSnippet data-testid="snippet" key={id} id={id} index={i} text={wordChunks[id]}/>
+                            <SortableTextSnippet data-testid="snippet" key={id} id={id} text={wordChunks[id]}/>
                         )
                     })}
                 </div>
