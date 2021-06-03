@@ -5,5 +5,6 @@ import { Header } from './Header';
 
 test('renders without crashing', () => {
     const { getByTestId } = render(<Header />);
+    expect(getByTestId("header")).toHaveTextContent("Cut-up Creator");
     expect(getByTestId("header")).toMatchSnapshot();
 });
