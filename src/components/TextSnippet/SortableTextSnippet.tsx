@@ -6,14 +6,13 @@ import { TextSnippet } from "./TextSnippet"
 
 interface Props {
     text: string
-    index: number
     id: string
 }
 
 export const SortableTextSnippet = (props: Props) => {
 
-    const { id, index, text } = props
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { id, text } = props
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
         id: id
     })
     const returnTransition = () => {
