@@ -49,7 +49,6 @@ describe("CuttingBoard", () => {
         expect(mockSetChunkContainers).toHaveBeenCalledTimes(2)
     })
     test("It shuffles the chunks before saving state", () => {
-        const shuffledIDs = ['snippet1', 'snippet3', 'snipppet2']
         jest.spyOn(global.Math, 'random').mockReturnValue(0.6)
         const { getByTestId } = render(
             <CuttingBoard 
