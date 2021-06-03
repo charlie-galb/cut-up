@@ -5,10 +5,10 @@ import { DndContext, useSensor, useSensors, KeyboardSensor, MouseSensor, TouchSe
 import { CuttingBoard } from "../CuttingBoard/CuttingBoard"
 import { CraftingBoard } from "../CraftingBoard/CraftingBoard"
 import { Header } from "../Header/Header"
-import { Intro } from "../Intro/Intro"
-import { DragDropInstructions } from '../DragDropInstructions/DragDropInstructions'
 
 import { initialChunkContainers, initialLineOrder } from "../../data/initialState"
+import { text } from "../../data/text"
+
 import { removeAtIndex, insertAtIndex, arrayMove } from "../../utils/array"
 
 import { chunkContainer } from "../../types/chunkContainer"
@@ -26,6 +26,8 @@ export const App = () => {
     useSensor(TouchSensor),
     useSensor(KeyboardSensor),
   );
+
+  const { para1, para2, para3 } = text
 
   const onDragStart = (event: any) => {
     const { active } = event
@@ -148,12 +150,13 @@ export const App = () => {
     return (
       <div className="app-container">
         <Header />
-        <Intro />
+        <p data-testid='para-1'><b>{para1}</b></p>
+        <p data-testid='para-2'>{para2}</p>
         <CuttingBoard 
           chunkContainers={chunkContainers}
           setWordChunks={setWordChunks}
           setChunkContainers={setChunkContainers}/>
-        <DragDropInstructions />
+        <p data-testid='para-3'>{para3}</p>
         <DndContext 
           sensors={sensors}
           onDragStart={onDragStart}  
