@@ -2,6 +2,8 @@
     --space-base-size: 1em;
     --space-scale-ratio: 1.2;
 
+    --space-xxxs: calc(1em / (var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio)));
+    --space-xxs: calc(1em / (var(--space-scale-ratio) * var(--space-scale-ratio) * var(--space-scale-ratio)));
     --space-xs: calc(1em / (var(--space-scale-ratio) * var(--space-scale-ratio)));
     --space-sm: calc(1em / var(--space-scale-ratio));
     --space-md: calc(1em * var(--space-scale-ratio));
