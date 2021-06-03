@@ -36,7 +36,7 @@ export const RemoveLineButtonContainer = (props: Props) => {
 
     return (
         <div>
-            <Button testId="add-line-btn" className="btn add-line-btn" handleCallback={removeLine} >Remove line</Button>
+            <Button testId="add-line-btn" className="btn add-line-btn" handleCallback={removeLine} >-</Button>
         </div>
     )
 }
