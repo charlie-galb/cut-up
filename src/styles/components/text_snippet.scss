@@ -1,8 +1,10 @@
 .text-snippet {
     background-color: rgb(253, 226, 150);
-    height: var(--space-lg);
-    margin: var(--space-xs);
-    padding-left: var(--space-xs);
-    padding-right: var(--space-xs);
+    font-family: var(--font-secondary);
+    font-size: var(--text-sm);
+    height: 20px;
+    margin: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
     white-space: nowrap;
 }
