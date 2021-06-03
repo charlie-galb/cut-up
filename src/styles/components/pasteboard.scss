@@ -2,11 +2,11 @@
     width: 50%;
     margin-right: var(--space-sm);
     @include for-phone-only {
-        margin: auto;    
+        margin: 20px auto;    
         width: 95%;
     };
     @include for-tablet-portrait-up {  
-        margin: auto; 
+        margin: 20px auto; 
         width: 90%;
     }
 }
