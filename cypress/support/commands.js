@@ -38,7 +38,7 @@ Cypress.Commands.add('dragAndDrop', (subject, target, xAdjustment = 0, yAdjustme
                             clientY: coordsDrop.y,
                             force: true            
                         })
-                        .trigger('mouseup');
+                        .trigger('mouseup', {force: true});
                 });
         });
 });
@@ -80,6 +80,6 @@ Cypress.Commands.add('moveTo', (subject, xAdjustment, yAdjustment) => {
                         clientY: coordsDrag.y + yAdjustment,
                         force: true            
                     })
-                    .trigger('mouseup');
+                    .trigger('mouseup', {force: true});
             });
 });
