@@ -2,29 +2,21 @@ import React from "react"
 import { render } from "@testing-library/react"
 import { DndContext } from '@dnd-kit/core'
  
+
 import { PasteBoard } from "./PasteBoard"
-import { chunkContainer } from "../../types/chunkContainer"
 
-const mockChunks = {
-    "1": "one",
-    "2": "two"
-}
-
-const mockChunkIDs = ["1", "2"]
-
-const mockContainer: chunkContainer = {
-    id: 'chunk-container-1',
-    title: 'pasteboard',
-    nestedChunkIDs: mockChunkIDs
-  }
+import { mockChunks, mockContainer1 } from "../../utils/mockData"
 
 describe("PasteBoard", () => {
-    test("It displays text chunks as draggable objects", () => {
-        const { getAllByRole } = render(
+    test("It displays the correct number of text snippets", () => {
+        const board = render(
             <DndContext onDragEnd={() => {}}>
-                <PasteBoard activeId={""} wordChunks={mockChunks} chunkContainer={mockContainer}/>
+                <PasteBoard 
+                    activeId={""} 
+                    wordChunks={mockChunks} 
+                    chunkContainer={mockContainer1}/>
             </DndContext>
         )
-        expect(getAllByRole("button")).toHaveLength(2)
+        expect(board).toMatchSnapshot()
     })
 })
