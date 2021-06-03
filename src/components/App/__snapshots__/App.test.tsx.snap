@@ -21,13 +21,14 @@ Object {
           class="intro-container"
         >
           <p>
-            Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+            <b>
+              Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs. 
+            </b>
           </p>
           <br />
           <p>
-            Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+            To begin, just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
           </p>
-          <br />
         </div>
         <div
           class="cutting-container"
@@ -68,15 +69,7 @@ Object {
           class="drag-drop-instructions"
         >
           <p>
-            Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. 
-          </p>
-          <br />
-          <p>
-            When you're happy with what you've made, hit the textify button. Your poem will appear as text below.
-          </p>
-          <br />
-          <p>
-            And just like that, you're a poet. 
+            Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. When you're happy with what you've made, just hit the textify button and your work will appear as formatted text.
           </p>
         </div>
         <div
@@ -113,7 +106,7 @@ Object {
                   class="btn add-line-btn"
                   data-testid="add-line-btn"
                 >
-                  Add line
+                  +
                 </button>
               </div>
               <div>
@@ -121,7 +114,7 @@ Object {
                   class="btn add-line-btn"
                   data-testid="add-line-btn"
                 >
-                  Remove line
+                  -
                 </button>
               </div>
             </div>
@@ -175,13 +168,14 @@ Object {
         class="intro-container"
       >
         <p>
-          Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+          <b>
+            Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs. 
+          </b>
         </p>
         <br />
         <p>
-          Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+          To begin, just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
         </p>
-        <br />
       </div>
       <div
         class="cutting-container"
@@ -222,15 +216,7 @@ Object {
         class="drag-drop-instructions"
       >
         <p>
-          Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. 
-        </p>
-        <br />
-        <p>
-          When you're happy with what you've made, hit the textify button. Your poem will appear as text below.
-        </p>
-        <br />
-        <p>
-          And just like that, you're a poet. 
+          Drag and drop the snippets into the blank lines provided, creating whatever weird combinations you like. When you're happy with what you've made, just hit the textify button and your work will appear as formatted text.
         </p>
       </div>
       <div
@@ -267,7 +253,7 @@ Object {
                 class="btn add-line-btn"
                 data-testid="add-line-btn"
               >
-                Add line
+                +
               </button>
             </div>
             <div>
@@ -275,7 +261,7 @@ Object {
                 class="btn add-line-btn"
                 data-testid="add-line-btn"
               >
-                Remove line
+                -
               </button>
             </div>
           </div>

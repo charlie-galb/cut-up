@@ -9,13 +9,14 @@ Object {
         class="intro-container"
       >
         <p>
-          Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+          <b>
+            Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs. 
+          </b>
         </p>
         <br />
         <p>
-          Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+          To begin, just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
         </p>
-        <br />
       </div>
     </div>
   </body>,
@@ -24,13 +25,14 @@ Object {
       class="intro-container"
     >
       <p>
-        Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs.
+        <b>
+          Cut Up Creator is a tool for making collage poems in the style of William S. Burroughs. 
+        </b>
       </p>
       <br />
       <p>
-        Just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
+        To begin, just copy text from three different sources (the more different the better) and paste them in the boxes below. Then hit the cut-up button to shred the text.
       </p>
-      <br />
     </div>
   </div>,
   "debug": [Function],
