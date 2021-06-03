@@ -13,7 +13,11 @@ interface Props {
 }
 
 export const TextifyButtonContainer = (props: Props) => {
-    const { setPoemAsText, displayPopUp, lineOrder, wordChunks, chunkContainers } = props
+    const { setPoemAsText, 
+            displayPopUp, 
+            lineOrder, 
+            wordChunks, 
+            chunkContainers } = props
 
     const outputToText = () => {
         setPoemAsText(formatText())
