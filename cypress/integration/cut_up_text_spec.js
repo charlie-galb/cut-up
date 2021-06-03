@@ -15,6 +15,6 @@ describe("Cut-up feature", () => {
         cy.get('[data-testid="cutting-text-area2"]').type("Two and!")
         cy.get('[data-testid="cutting-text-area3"]').type("Three and.")
         cy.get('[data-testid="cut-btn"]').click()
-        cy.get('[data-testid="unused-snippets"]').children().should('have.length', 3)
+        cy.get('[data-testid="pasteboard"]').children().should('have.length', 3)
     })
 })
