@@ -1,7 +1,14 @@
 .wip-container {
-    height: 400px;
-    width: 45%;
-    margin-left: 10px;
+    width: 50%;
+    margin-left: var(--space-sm);
+    @include for-phone-only {
+        margin: var(--space-sm) auto;    
+        width: 95%;
+    };
+    @include for-tablet-portrait-up {  
+        margin: var(--space-sm) auto; 
+        width: 90%;
+    }
 }
 
 .lines-container {
@@ -12,4 +19,10 @@
     width: 100%;
     flex-direction: column;
     overflow: scroll;
+    @include for-phone-only {
+        height: 250px;
+    };
+    @include for-tablet-portrait-up {  
+        height: 300px;
+    };
 }

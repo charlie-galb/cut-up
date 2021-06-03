@@ -1,7 +1,14 @@
 .pasteboard-container {
-    height: 400px;
-    width: 45%;
-    margin-right: 10px;
+    width: 50%;
+    margin-right: var(--space-sm);
+    @include for-phone-only {
+        margin: auto;    
+        width: 95%;
+    };
+    @include for-tablet-portrait-up {  
+        margin: auto; 
+        width: 90%;
+    }
 }
 
 .unused-snippets {
@@ -13,4 +20,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
+    @include for-phone-only {
+        height: 250px;
+    };
+    @include for-tablet-portrait-up {  
+        height: 300px;
+    };
 }
