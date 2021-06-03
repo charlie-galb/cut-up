@@ -73,7 +73,7 @@ export const App = () => {
 
   const onDragEnd = (event: any) => {
     const {active, over} = event
-
+    
     if (!over || !active) { 
       setActiveId("")
       return 
@@ -102,7 +102,6 @@ export const App = () => {
     } 
 
     if (activeContainerId !== overContainerId) {
-      console.log("Different box")
       const activeChunks = activeContainer.nestedChunkIDs
       const overChunks = overContainer.nestedChunkIDs
       const activeIndex = activeChunks.indexOf(active.id)
@@ -120,10 +119,8 @@ export const App = () => {
         draggedItem
       ))
       setActiveId("")
-      return 
     }
     setActiveId("")
-    return
   }
 
   const moveBetweenContainers = (
