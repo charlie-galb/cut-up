@@ -10,6 +10,6 @@ describe("Remove line", () => {
         cy.get('[data-testid="line-2"] .text-snippet').first().should("have.text", "one and")
         cy.get('[data-testid="remove-line-btn"]').click()
         cy.get(".lines-container").children().should("have.length", 1)
-        cy.get('[data-testid="unused-snippets"] .text-snippet').first().should("have.text", "one and")
+        cy.get('[data-testid="pasteboard"] .text-snippet').first().should("have.text", "one and")
     })
 })
