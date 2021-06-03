@@ -1,9 +1,13 @@
+@import 'settings/_colours';
+@import 'settings/_mixins';
+@import 'settings/spacing';
+@import 'settings/_typography';
+
 @import 'base';
 
 @import 'components/add-line-button-container';
 @import 'components/app';
 @import 'components/crafting-board.scss';
-@import 'components/cut-button';
 @import 'components/cutting-board.scss';
 @import 'components/drag-drop-instructions';
 @import 'components/header';
@@ -14,6 +18,3 @@
 @import 'components/text_snippet';
 @import 'components/textify-button-container';
 @import 'components/wip';
-
-@import 'settings/typography';
-@import 'settings/colours';
