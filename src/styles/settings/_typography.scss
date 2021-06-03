@@ -18,6 +18,19 @@
     --body-line-height: 1.5;
 }
 
+@include for-phone-only {
+    :root {
+        --text-base-size: 0.5em;
+        --text-scale-ratio: 1;
+    }
+};
+@include for-tablet-portrait-up {  
+    :root {
+        --text-base-size: 0.7em;
+        --text-scale-ratio: 1.1;
+    }
+};
+
 body {
     color: var(--offBlack);
     font-family: var(--font-primary);
@@ -45,8 +58,10 @@ ul li, ol li {
 
 .btn {
     font-size: var(--text-sm);
+    font-weight: 400;
 }
 
 .text-snippet {
     font-family: var(--font-secondary);
+    font-size: var(--text-sm);
 }
