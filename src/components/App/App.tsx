@@ -81,9 +81,10 @@ export const App = () => {
       return 
     }
 
-    const activeContainerId = active.data.current?.sortable.containerId
+    const activeContainerId = active.data.current.sortable.containerId
     const activeContainer = chunkContainers[activeContainerId]
     const overContainerId = over.data.current?.sortable.containerId || over.id
+    const overContainer = chunkContainers[overContainerId]
    
     if (active.id !== over.id && activeContainerId === overContainerId) {
 
@@ -91,6 +92,7 @@ export const App = () => {
       const activeIndex = items.indexOf(active.id);
       const overIndex = items.indexOf(over.id);
       const sortedItems = arrayMove(items, activeIndex, overIndex)
+
       setChunkContainers({
         ...chunkContainers,
           [activeContainerId]: {
@@ -99,6 +101,25 @@ export const App = () => {
           }
         })
     } 
+
+    if (activeContainerId !== overContainerId) {
+
+      const activeChunks = activeContainer.nestedChunkIDs
+      const overChunks = overContainer.nestedChunkIDs
+      const activeIndex = activeChunks.indexOf(active.id)
+      const overIndex = overChunks.indexOf(over.id)
+      const draggedItem = active.id
+      
+      setChunkContainers(moveBetweenContainers(
+        activeChunks,
+        activeContainer, 
+        activeIndex, 
+        overChunks, 
+        overContainer, 
+        overIndex,
+        draggedItem
+      ))
+    }
     setActiveId("")
   }
 
