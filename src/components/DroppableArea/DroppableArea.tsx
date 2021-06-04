@@ -20,12 +20,14 @@ export const DroppableArea = (props: Props) => {
     const { chunkContainer, wordChunks, activeId, droppableClass } = props
     const { id, title, nestedChunkIDs } = chunkContainer
     const { setNodeRef } = useDroppable({ id });
+
+    const uniqueIDs = Array.from(new Set(nestedChunkIDs)) ;
     
     return (
         <div>
-            <SortableContext id={id} items={nestedChunkIDs} strategy={rectSortingStrategy}>
+            <SortableContext id={id} items={uniqueIDs} strategy={rectSortingStrategy}>
                 <div className={droppableClass} data-testid={title} ref={setNodeRef}>
-                    {nestedChunkIDs?.map((id, i) => {
+                    {uniqueIDs?.map((id, i) => {
                         return (
                             <SortableTextSnippet data-testid={id} key={id} id={id} text={wordChunks[id]}/>
                         )
