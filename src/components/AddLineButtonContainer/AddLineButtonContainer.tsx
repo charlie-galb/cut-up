@@ -24,7 +24,7 @@ export const AddLineButtonContainer = (props: Props) => {
         const newLine: chunkContainer = {
           id: Id,
           title: title,
-          nestedChunkIDs: []
+          chunks: []
         }
         const newLineOrder = [...lineOrder, Id]
         const newChunkContainers = {

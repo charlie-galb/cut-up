@@ -12,8 +12,6 @@ describe("CraftingBoard", () => {
             <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
-                wordChunks={mockChunks}
-                activeId={""}
                 poemAsText={mockPoem}
                 setChunkContainers={jest.fn()}
                 setLineOrder={jest.fn()}
@@ -32,8 +30,6 @@ describe("CraftingBoard", () => {
             <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
-                wordChunks={mockChunks}
-                activeId={""}
                 poemAsText={""}
                 setChunkContainers={jest.fn()}
                 setLineOrder={jest.fn()}

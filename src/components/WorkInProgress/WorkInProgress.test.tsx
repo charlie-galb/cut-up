@@ -1,26 +1,23 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { DndContext } from '@dnd-kit/core'
+import { DragDropContext } from 'react-beautiful-dnd'
  
 
 import { WorkInProgress } from "./WorkInProgress"
 
-import { mockChunks, 
-        mockContainers,
+import {  mockContainers,
         mockLineOrder } from "../../utils/mockData"
 
 describe("WorkInProgress", () => {
     test("It displays the correct number of text snippets", () => {
         const wip = render(
-            <DndContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={() => {}}>
                 <WorkInProgress 
-                    activeId={""} 
                     lineOrder={mockLineOrder}
-                    wordChunks={mockChunks} 
                     chunkContainers={mockContainers}
                     setChunkContainers={jest.fn()}
                     setLineOrder={jest.fn()}/>
-            </DndContext>
+            </DragDropContext>
         )
         expect(wip).toMatchSnapshot()
     })

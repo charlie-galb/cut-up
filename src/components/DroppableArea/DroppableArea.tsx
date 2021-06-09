@@ -1,42 +1,39 @@
 import React from "react"
 
-import { DragOverlay, useDroppable } from "@dnd-kit/core"
-import { SortableContext, rectSortingStrategy} from "@dnd-kit/sortable"
+import { Droppable } from "react-beautiful-dnd"
 
-import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     chunkContainer: chunkContainer
-    wordChunks: {
-        [key: string]: string
-      }
-    activeId: string
     droppableClass: string
 }
 
 export const DroppableArea = (props: Props) => {
-    const { chunkContainer, wordChunks, activeId, droppableClass } = props
-    const { id, title, nestedChunkIDs } = chunkContainer
-    const { setNodeRef } = useDroppable({ id });
-
-    const uniqueIDs = Array.from(new Set(nestedChunkIDs)) ;
+    const { chunkContainer, droppableClass } = props
+    const { id, title, chunks } = chunkContainer
     
     return (
         <div>
-            <SortableContext id={id} items={uniqueIDs} strategy={rectSortingStrategy}>
-                <div className={droppableClass} data-testid={title} ref={setNodeRef}>
-                    {uniqueIDs?.map((id, i) => {
-                        return (
-                            <SortableTextSnippet data-testid={id} key={id} id={id} text={wordChunks[id]}/>
-                        )
-                    })}
-                </div>
-            </SortableContext>
-            <DragOverlay dropAnimation={null}>
-            {activeId ? <TextSnippet text={wordChunks[activeId]}/> : null}
-            </DragOverlay>
+            <Droppable droppableId={id} direction="horizontal">
+            {(provided) => (
+                <div 
+                className={droppableClass} 
+                data-testid={title}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                >
+                {chunks?.map((chunk, i) => {
+                    const { text, id} = chunk
+                    return (
+                        <SortableTextSnippet data-testid={id} key={id} id={id} index={i} text={text}/>
+                    )
+                })}
+                {provided.placeholder}
+            </div>
+            )}
+            </Droppable>
         </div>
     )
 }
