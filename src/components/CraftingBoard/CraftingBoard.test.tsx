@@ -1,4 +1,5 @@
 import React from 'react'
+import { DragDropContext } from "react-beautiful-dnd"
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 
 import { mockContainers, mockLineOrder } from "../../utils/mockData"
@@ -8,7 +9,8 @@ describe("CraftingBoard", () => {
     it('renders PopUpBox when the textify button is clicked', async () => {
         const mockPoem = "Eeny, meeny, miney, mo"
         const { getByText, getByTestId } = render(
-            <CraftingBoard
+            <DragDropContext onDragEnd={() => {}}>
+                 <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
                 poemAsText={mockPoem}
@@ -16,6 +18,7 @@ describe("CraftingBoard", () => {
                 setLineOrder={jest.fn()}
                 setPoemAsText={jest.fn()}
                 />
+            </DragDropContext>
         )
         const poem = screen.queryByText(mockPoem)
         expect(poem).not.toBeInTheDocument()
@@ -26,6 +29,7 @@ describe("CraftingBoard", () => {
     })
     it('renders correctly', () => {
         const board = render(
+            <DragDropContext onDragEnd={() => {}}>
             <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
@@ -34,6 +38,7 @@ describe("CraftingBoard", () => {
                 setLineOrder={jest.fn()}
                 setPoemAsText={jest.fn()}
                 />
+            </DragDropContext>
         )
         expect(board).toMatchSnapshot()
     })

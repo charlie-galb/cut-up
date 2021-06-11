@@ -2,13 +2,18 @@ import { chunkContainer } from "../types/chunkContainer"
 import { chunk } from "../types/chunk"
 
 export const mockChunk1: chunk = {
-    id: "mockChunk1",
-    text: "one"
+    id: "snippet1",
+    text: "one and"
 }
 
 export const mockChunk2: chunk = {
-    id: "mockChunk2",
-    text: "two"
+    id: "snippet2",
+    text: "two and"
+}
+
+export const mockChunk3: chunk = {
+    id: "snippet3",
+    text: "three and"
 }
 
 export const mockChunks = [mockChunk1, mockChunk2]

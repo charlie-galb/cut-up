@@ -2,6 +2,9 @@ import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
 import { 
+    mockChunk1,
+    mockChunk2,
+    mockChunk3,
     mockContainers,
     mockContainer1, 
     mockContainer2
@@ -41,7 +44,6 @@ describe("CuttingBoard", () => {
         fireEvent.change(getByTestId("cutting-text-area2"), {target: {value: "Two and" } } )
         fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: "Three and" } } )
         fireEvent.click(getByTestId("cut-btn"))
-        expect(mockSetWordChunks).toHaveBeenCalledWith({"snippet1": "one and", "snippet2": "two and", "snippet3": "three and"})
         expect(mockSetChunkContainers).toHaveBeenCalledTimes(2)
     })
     test("It shuffles the chunks before saving state", () => {
@@ -51,16 +53,15 @@ describe("CuttingBoard", () => {
                 chunkContainers={mockContainers}
                 setChunkContainers={mockSetChunkContainers}/>
             )
-        fireEvent.change(getByTestId("cutting-text-area1"), {target: {value: "One and" } } )
-        fireEvent.change(getByTestId("cutting-text-area2"), {target: {value: "Two and" } } )
-        fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: "Three and" } } )
+        fireEvent.change(getByTestId("cutting-text-area1"), {target: {value: mockChunk1.text } } )
+        fireEvent.change(getByTestId("cutting-text-area2"), {target: {value: mockChunk2.text } } )
+        fireEvent.change(getByTestId("cutting-text-area3"), {target: {value: mockChunk3.text } } )
         fireEvent.click(getByTestId("cut-btn"))
-        expect(mockSetWordChunks).toHaveBeenCalledWith({"snippet1": "one and", "snippet2": "two and", "snippet3": "three and"})
         expect(mockSetChunkContainers).toHaveBeenCalledWith({
             ['chunk-container-1']: {
                 id: mockContainer1.id,
                 title: mockContainer1.title,
-                nestedChunkIDs: ['snippet1', 'snippet3', 'snippet2']
+                chunks: [mockChunk1, mockChunk3, mockChunk2]
             },
             ['chunk-container-2']: mockContainer2
             })

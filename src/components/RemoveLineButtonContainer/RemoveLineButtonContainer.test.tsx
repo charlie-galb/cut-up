@@ -26,7 +26,7 @@ describe("RemoveLineButtonContainer", () => {
             setChunkContainers={mockUpdateChunkContainers} 
             setLineOrder={mockUpdateLineOrder}/>
         )
-        fireEvent.click(getByTestId("add-line-btn"))
+        fireEvent.click(getByTestId("remove-line-btn"))
         expect(mockUpdateChunkContainers).toHaveBeenCalled()
         expect(mockUpdateLineOrder).toHaveBeenCalled()
     })
