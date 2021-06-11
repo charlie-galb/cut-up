@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 
 import { chunkContainer } from "../../types/chunkContainer"
 
-import { PasteBoard } from "../PasteBoard/PasteBoard"
-import { TextifyButtonContainer } from "../TextifyButtonContainer/TextifyButtonContainer"
-import { WorkInProgress } from "../WorkInProgress/WorkInProgress"
-import { PopUpBox } from "../PopUpBox/PopUpBox"
+import { PasteBoard, TextifyButtonContainer, WorkInProgress, PopUpBox } from "../index"
 
 interface Props {
     chunkContainers: {

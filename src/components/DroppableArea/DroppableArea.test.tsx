@@ -1,9 +1,8 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
+import { mockContainer1 } from "../../utils/mockData"
 import { DroppableArea } from "./DroppableArea"
-
-import { mockContainer1, mockLineOrder, mockChunks } from "../../utils/mockData"
 
 describe("DroppableArea", () => {
     it('renders the correct number of text snippets', () => {

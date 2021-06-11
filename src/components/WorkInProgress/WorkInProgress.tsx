@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { DroppableArea } from "../DroppableArea/DroppableArea"
-import { AddLineButtonContainer } from "../AddLineButtonContainer/AddLineButtonContainer"
-import { RemoveLineButtonContainer } from "../RemoveLineButtonContainer/RemoveLineButtonContainer"
-
 import { chunkContainer } from "../../types/chunkContainer"
+import { DroppableArea, 
+    AddLineButtonContainer, 
+    RemoveLineButtonContainer } from "../index"
 
 interface Props {
     chunkContainers: {

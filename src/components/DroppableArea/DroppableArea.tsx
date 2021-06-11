@@ -1,8 +1,7 @@
 import React from "react"
-
 import { Droppable } from "react-beautiful-dnd"
 
-import { SortableTextSnippet } from "../TextSnippet/SortableTextSnippet"
+import { TextSnippet } from "../TextSnippet/TextSnippet"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
@@ -27,7 +26,7 @@ export const DroppableArea = (props: Props) => {
                 {chunks?.map((chunk, i) => {
                     const { text, id} = chunk
                     return (
-                        <SortableTextSnippet data-testid={id} key={id} id={id} index={i} text={text}/>
+                        <TextSnippet data-testid={id} key={id} id={id} index={i} text={text}/>
                     )
                 })}
                 {provided.placeholder}

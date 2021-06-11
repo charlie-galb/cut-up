@@ -1,17 +1,11 @@
 import React, { useState } from "react"
-
 import { DragDropContext } from 'react-beautiful-dnd'
-
-import { CuttingBoard } from "../CuttingBoard/CuttingBoard"
-import { CraftingBoard } from "../CraftingBoard/CraftingBoard"
-import { Header } from "../Header/Header"
 
 import { initialChunkContainers, initialLineOrder } from "../../data/initialState"
 import { text } from "../../data/text"
-
 import { removeAtIndex, insertAtIndex } from "../../utils/array"
-
 import { chunkContainer } from "../../types/chunkContainer"
+import { CuttingBoard, CraftingBoard, Header } from "../index"
 
 
 export const App = () => {

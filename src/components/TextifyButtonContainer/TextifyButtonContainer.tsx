@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { Button } from "../Button/Button"
-
 import { chunkContainer } from "../../types/chunkContainer"
+import { Button } from "../index"
 
 interface Props {
     setPoemAsText: (string: string) => void
@@ -35,7 +34,7 @@ export const TextifyButtonContainer = (props: Props) => {
     }
     return (
         <div data-testid="textify-button-container" className="textify-button-container">
-            <Button testId="textify-btn" className="btn textify-btn" handleCallback={outputToText}>Textify</Button>
+            <Button testId="textify-btn" className="btn primary-btn textify-btn" handleCallback={outputToText}>Textify</Button>
         </div>
     )
 }

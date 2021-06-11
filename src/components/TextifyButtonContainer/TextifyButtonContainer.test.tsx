@@ -1,8 +1,8 @@
 import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
-import { mockContainers, mockLineOrder, mockChunks} from "../../utils/mockData"
-import { TextifyButtonContainer } from "./TextifyButtonContainer"
+import { mockContainers, mockLineOrder } from "../../utils/mockData"
+import { TextifyButtonContainer } from "../index"
 
 const mockSetPoemAsText = jest.fn()
 const mockDisplayPopUp = jest.fn()

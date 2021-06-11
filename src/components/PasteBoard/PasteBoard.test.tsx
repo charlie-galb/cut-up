@@ -2,10 +2,8 @@ import React from "react"
 import { render } from "@testing-library/react"
 import { DragDropContext } from 'react-beautiful-dnd'
  
-
-import { PasteBoard } from "./PasteBoard"
-
-import { mockChunks, mockContainer1 } from "../../utils/mockData"
+import { mockContainer1 } from "../../utils/mockData"
+import { PasteBoard } from "../index"
 
 describe("PasteBoard", () => {
     test("It displays the correct number of text snippets", () => {

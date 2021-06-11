@@ -4,7 +4,7 @@ interface Props {
     handleCallback: (event: any) => void
     testId: string
     className: string
-    children: string
+    children: any
 }
 
 export const Button = (props: Props) => {

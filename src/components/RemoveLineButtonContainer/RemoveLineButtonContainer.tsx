@@ -1,7 +1,8 @@
 import React from 'react'
+import { FaMinus } from 'react-icons/Fa'
 
-import { Button } from "../Button/Button"
 import { chunkContainer } from "../../types/chunkContainer"
+import { Button } from "../index"
 
 interface Props {
     chunkContainers: {
@@ -36,7 +37,7 @@ export const RemoveLineButtonContainer = (props: Props) => {
 
     return (
         <div>
-            <Button testId="remove-line-btn" className="btn add-line-btn" handleCallback={removeLine} >-</Button>
+            <Button testId="remove-line-btn" className="btn secondary-btn remove-line-btn" handleCallback={removeLine} ><FaMinus /></Button>
         </div>
     )
 }

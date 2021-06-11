@@ -1,8 +1,7 @@
 import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
-import { mockContainers, mockLineOrder} from "../../utils/mockData"
-import { PopUpBox } from "./PopUpBox"
+import { PopUpBox } from "../index"
 
 const mockHandleClose = jest.fn()
 

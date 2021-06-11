@@ -1,6 +1,7 @@
 import React from 'react'
+import { FaPlus } from 'react-icons/Fa'
 
-import { Button } from "../Button/Button"
+import { Button } from "../index"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
@@ -37,7 +38,7 @@ export const AddLineButtonContainer = (props: Props) => {
 
     return (
         <div>
-            <Button testId="add-line-btn" className="btn add-line-btn" handleCallback={addLine} >+</Button>
+            <Button testId="add-line-btn" className="btn secondary-btn add-line-btn" handleCallback={addLine} ><FaPlus /></Button>
         </div>
     )
 }

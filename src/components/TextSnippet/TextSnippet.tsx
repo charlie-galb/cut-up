@@ -1,18 +1,30 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
+import { Draggable } from "react-beautiful-dnd"
 
-type Props = { 
-    style?: any
-    className?: string
-    text?: string
+interface Props {
+    text: string
+    id: string
+    index: number
 }
 
-type Ref = HTMLButtonElement
+export const TextSnippet = (props: Props) => {
 
-export const TextSnippet = forwardRef<Ref, Props>(({...props}, ref) => {
-    const { text, style } = props
+    const { id, text, index } = props
+
     return (
-            <button {...props} ref={ref} style={style} className="text-snippet" >
-                {text}
-            </button>      
+        <Draggable key={id} draggableId={id} index={index}>
+            {(provided) => {
+                return (
+                <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    className="text-snippet"
+                >
+                    {text}
+                </div>
+                );
+            }}
+        </Draggable>
     )
-})
+}

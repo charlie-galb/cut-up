@@ -1,8 +1,7 @@
 import React from "react"
 
-import { DroppableArea } from "../DroppableArea/DroppableArea"
-
 import { chunkContainer } from "../../types/chunkContainer"
+import { DroppableArea } from "../index"
 
 interface Props {
     chunkContainer: chunkContainer

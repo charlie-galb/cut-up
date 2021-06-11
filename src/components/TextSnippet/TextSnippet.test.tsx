@@ -1,16 +1,15 @@
 import React from "react"
-import { render, fireEvent } from "@testing-library/react"
+import { render } from "@testing-library/react"
 
-import { mockContainers, mockLineOrder, mockChunks} from "../../utils/mockData"
-import { SortableTextSnippet } from "./SortableTextSnippet"
+import { TextSnippet } from "../index"
 
 const mockSetPoemAsText = jest.fn()
 const mockDisplayPopUp = jest.fn()
 
-describe("SortableTextSnippet", () => {
+describe("TextSnippet", () => {
     test("Renders a button", () => {
         const { getByRole } = render(
-            <SortableTextSnippet 
+            <TextSnippet 
                 text={"test string"}
                 id={"one"} 
                 index={0}/>

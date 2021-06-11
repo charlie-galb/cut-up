@@ -2,7 +2,7 @@ import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
 import { mockContainers, mockLineOrder} from "../../utils/mockData"
-import { RemoveLineButtonContainer } from "./RemoveLineButtonContainer"
+import { RemoveLineButtonContainer } from "../index"
 
 const mockUpdateChunkContainers = jest.fn()
 const mockUpdateLineOrder = jest.fn()

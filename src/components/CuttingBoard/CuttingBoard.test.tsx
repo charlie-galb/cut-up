@@ -1,13 +1,12 @@
 import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
-import { CuttingBoard } from "./CuttingBoard"
-
 import { 
     mockContainers,
     mockContainer1, 
     mockContainer2
 } from "../../utils/mockData"
+import { CuttingBoard } from "./CuttingBoard"
 
 const mockSetWordChunks = jest.fn()
 const mockSetChunkContainers = jest.fn()

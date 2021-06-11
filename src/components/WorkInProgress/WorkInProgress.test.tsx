@@ -1,12 +1,9 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import { DragDropContext } from 'react-beautiful-dnd'
- 
 
-import { WorkInProgress } from "./WorkInProgress"
-
-import {  mockContainers,
-        mockLineOrder } from "../../utils/mockData"
+import {  mockContainers, mockLineOrder } from "../../utils/mockData"
+import { WorkInProgress } from "../index"
 
 describe("WorkInProgress", () => {
     test("It displays the correct number of text snippets", () => {

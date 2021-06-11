@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, getByTestId } from "@testing-library/react";
-
-import { App } from './App';
+import { render } from "@testing-library/react";
 
 import { text } from '../../data/text'
+import { App } from './App';
 
 const { para1, para2, para3 } = text
 

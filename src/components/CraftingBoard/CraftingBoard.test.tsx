@@ -1,9 +1,8 @@
 import React from 'react'
-import { render, fireEvent, waitFor, screen, queryByText } from '@testing-library/react'
+import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 
-import { CraftingBoard } from "./CraftingBoard"
-
-import { mockContainers, mockLineOrder, mockChunks } from "../../utils/mockData"
+import { mockContainers, mockLineOrder } from "../../utils/mockData"
+import { CraftingBoard } from "../index"
 
 describe("CraftingBoard", () => {
     it('renders PopUpBox when the textify button is clicked', async () => {
