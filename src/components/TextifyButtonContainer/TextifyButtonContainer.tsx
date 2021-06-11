@@ -8,7 +8,6 @@ interface Props {
     setPoemAsText: (string: string) => void
     displayPopUp: () => void
     lineOrder: string[]
-    wordChunks: { [key: string]: string }
     chunkContainers: { [key: string]: chunkContainer}
 }
 
@@ -16,7 +15,6 @@ export const TextifyButtonContainer = (props: Props) => {
     const { setPoemAsText, 
             displayPopUp, 
             lineOrder, 
-            wordChunks, 
             chunkContainers } = props
 
     const outputToText = () => {
@@ -28,8 +26,8 @@ export const TextifyButtonContainer = (props: Props) => {
         let combinedText = ""
         lineOrder.forEach((lineId) => {
           let lineText = ""
-          chunkContainers[lineId].nestedChunkIDs.forEach((id) => {
-            lineText += (wordChunks[id] + " ")
+          chunkContainers[lineId].chunks.forEach((chunk) => {
+            lineText += (chunk.text + " ")
           })
           combinedText += (lineText + "\n")
         })

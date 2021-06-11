@@ -3,13 +3,13 @@ import { chunkContainer } from '../types/chunkContainer'
 const pasteBoard: chunkContainer = {
   id: 'chunk-container-1',
   title: 'pasteboard',
-  nestedChunkIDs: []
+  chunks: []
 }
 
 const line1: chunkContainer = {
   id: 'chunk-container-2',
   title: 'line-1',
-  nestedChunkIDs: []
+  chunks: []
 }
 
 export const initialChunkContainers = {

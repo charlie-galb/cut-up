@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { DndContext } from '@dnd-kit/core'
+import { DragDropContext } from 'react-beautiful-dnd'
  
 
 import { PasteBoard } from "./PasteBoard"
@@ -10,12 +10,10 @@ import { mockChunks, mockContainer1 } from "../../utils/mockData"
 describe("PasteBoard", () => {
     test("It displays the correct number of text snippets", () => {
         const board = render(
-            <DndContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={() => {}}>
                 <PasteBoard 
-                    activeId={""} 
-                    wordChunks={mockChunks} 
                     chunkContainer={mockContainer1}/>
-            </DndContext>
+            </DragDropContext>
         )
         expect(board).toMatchSnapshot()
     })

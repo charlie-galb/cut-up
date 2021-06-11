@@ -12,10 +12,6 @@ interface Props {
       [key: string]: chunkContainer
     }
     lineOrder: string[]
-    wordChunks: {
-        [key: string]: string
-      }
-    activeId: string
     poemAsText: string
     setChunkContainers: (arg: { [key: string]: chunkContainer}) => void
     setLineOrder: (arg: string[]) => void
@@ -27,8 +23,6 @@ export const CraftingBoard = (props: Props) => {
 
     const { chunkContainers, 
       lineOrder, 
-      wordChunks, 
-      activeId, 
       setChunkContainers, 
       setLineOrder,
       setPoemAsText,
@@ -43,13 +37,9 @@ export const CraftingBoard = (props: Props) => {
     return (
         <div className="crafting-background">
           <div className="crafting-container">
-              <PasteBoard 
-              activeId={activeId} 
-              wordChunks={wordChunks} 
+              <PasteBoard  
               chunkContainer={pasteboard} />
               <WorkInProgress 
-                  activeId={activeId} 
-                  wordChunks={wordChunks} 
                   lineOrder={lineOrder} 
                   chunkContainers={chunkContainers} 
                   setChunkContainers={setChunkContainers}
@@ -57,7 +47,6 @@ export const CraftingBoard = (props: Props) => {
           </div>
           <TextifyButtonContainer 
           chunkContainers={chunkContainers}
-          wordChunks={wordChunks} 
           lineOrder={lineOrder} 
           setPoemAsText={setPoemAsText} 
           displayPopUp={togglePopUp}/>

@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 
 import { Button } from "../Button/Button"
 import { shuffle } from "../../utils/array"
+
+import { chunk } from "../../types/chunk"
 import { chunkContainer } from "../../types/chunkContainer"
 
 interface Props {
     chunkContainers: {[key: string]: chunkContainer}
     setChunkContainers: (arg: {[key: string]: chunkContainer}) => void
-    setWordChunks: (arg: { [key: string]: string }) => void
 }
 
 export const CuttingBoard = (props: Props) => {
     
-    const { setChunkContainers, setWordChunks, chunkContainers } = props
+    const { setChunkContainers, chunkContainers } = props
     const [source1Text, setSource1Text] = useState("")
     const [source2Text, setSource2Text] = useState("")
     const [source3Text, setSource3Text] = useState("")
@@ -34,24 +35,25 @@ export const CuttingBoard = (props: Props) => {
     const snipText = (text: string) => {
         resetChunkContainers()
         const temp = text.split(" ")
-        const newWordChunks: {[key: string]: string} = {}
-        const newPasteBoardIDs: string[] = []
+        const newChunks: chunk[] = []
         let id_acc = 1
         for(let i = 0; i < temp.length; i = i + 2 ) {
           const id = `snippet${id_acc}`
           const text = temp.slice(i,i+2).join(' ')
           const unformattedText = removePunctuation(text.toLowerCase())
-          newWordChunks[id] = unformattedText
-          newPasteBoardIDs.push(id)
+          const chunk = {
+              id: id, 
+              text: unformattedText
+          }
+          newChunks.push(chunk)
           id_acc++
         }
         const newPasteBoard = chunkContainers['chunk-container-1']
-        newPasteBoard.nestedChunkIDs = shuffle(newPasteBoardIDs)
+        newPasteBoard.chunks = shuffle(newChunks)
         setChunkContainers({
             ...chunkContainers,
               [newPasteBoard.id]: newPasteBoard
             })
-        setWordChunks(newWordChunks)
       }
 
     const removePunctuation = (string: string) => {
@@ -62,7 +64,7 @@ export const CuttingBoard = (props: Props) => {
     const resetChunkContainers = () => {
         const emptyContainers = chunkContainers
         for (var key in emptyContainers) {
-            emptyContainers[key].nestedChunkIDs = []
+            emptyContainers[key].chunks = []
         }
         setChunkContainers(emptyContainers)
     }

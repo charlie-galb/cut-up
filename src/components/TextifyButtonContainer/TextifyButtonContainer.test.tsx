@@ -11,7 +11,6 @@ describe("TextifyButtonContainer", () => {
     test("Renders a button", () => {
         const { getAllByRole } = render(
             <TextifyButtonContainer 
-                wordChunks={mockChunks}
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
                 setPoemAsText={mockSetPoemAsText} 
@@ -22,7 +21,6 @@ describe("TextifyButtonContainer", () => {
     test("Executes updates chunkContainers and lineOrder when clicked", () => {
         const { getByTestId } = render(
             <TextifyButtonContainer 
-                wordChunks={mockChunks}
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
                 setPoemAsText={mockSetPoemAsText} 

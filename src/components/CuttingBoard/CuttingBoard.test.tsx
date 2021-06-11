@@ -21,7 +21,6 @@ describe("CuttingBoard", () => {
         const board = render(
             <CuttingBoard 
                 chunkContainers={mockContainers}
-                setWordChunks={mockSetWordChunks}
                 setChunkContainers={mockSetChunkContainers}/>
             )
     })
@@ -29,7 +28,6 @@ describe("CuttingBoard", () => {
         const { getAllByRole } = render(
             <CuttingBoard 
                 chunkContainers={mockContainers}
-                setWordChunks={mockSetWordChunks}
                 setChunkContainers={mockSetChunkContainers}/>
             )
         expect(getAllByRole("textbox")).toHaveLength(3)
@@ -38,7 +36,6 @@ describe("CuttingBoard", () => {
         const { getByTestId } = render(
             <CuttingBoard 
                 chunkContainers={mockContainers}
-                setWordChunks={mockSetWordChunks}
                 setChunkContainers={mockSetChunkContainers}/>
             )
         fireEvent.change(getByTestId("cutting-text-area1"), {target: {value: "One and" } } )
@@ -53,7 +50,6 @@ describe("CuttingBoard", () => {
         const { getByTestId } = render(
             <CuttingBoard 
                 chunkContainers={mockContainers}
-                setWordChunks={mockSetWordChunks}
                 setChunkContainers={mockSetChunkContainers}/>
             )
         fireEvent.change(getByTestId("cutting-text-area1"), {target: {value: "One and" } } )

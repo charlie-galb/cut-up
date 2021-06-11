@@ -12,7 +12,8 @@ describe("SortableTextSnippet", () => {
         const { getByRole } = render(
             <SortableTextSnippet 
                 text={"test string"}
-                id={"one"} />
+                id={"one"} 
+                index={0}/>
         )
         expect(getByRole("button")).toHaveTextContent("test string")
     })

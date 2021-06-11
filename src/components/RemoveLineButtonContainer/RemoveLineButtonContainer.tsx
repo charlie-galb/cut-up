@@ -18,7 +18,7 @@ export const RemoveLineButtonContainer = (props: Props) => {
 
     const removeLine = () => {
         const lineId = lineOrder[lineOrder.length - 1]
-        const chunkIDs = chunkContainers[lineId].nestedChunkIDs
+        const chunks = chunkContainers[lineId].chunks
         const newLineOrder = lineOrder
         newLineOrder.pop()
         const pasteboard = chunkContainers['chunk-container-1']
@@ -28,7 +28,7 @@ export const RemoveLineButtonContainer = (props: Props) => {
             ...newChunkContainers,
         [pasteboard.id]: {
                 ...pasteboard,
-                nestedChunkIDs: [...pasteboard.nestedChunkIDs, ...chunkIDs]
+                chunks: [...pasteboard.chunks, ...chunks]
             }
         })
         setLineOrder(newLineOrder)

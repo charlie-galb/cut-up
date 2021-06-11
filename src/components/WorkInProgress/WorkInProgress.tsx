@@ -11,10 +11,6 @@ interface Props {
       [key: string]: chunkContainer
     }
     lineOrder: string[]
-    wordChunks: {
-        [key: string]: string
-      }
-    activeId: string
     setChunkContainers: (arg: { [key: string]: chunkContainer}) => void
     setLineOrder: (arg: string[]) => void
 }
@@ -23,8 +19,6 @@ export const WorkInProgress = (props: Props) => {
 
     const { chunkContainers, 
         lineOrder, 
-        wordChunks, 
-        activeId, 
         setChunkContainers, 
         setLineOrder } = props
 
@@ -35,8 +29,6 @@ export const WorkInProgress = (props: Props) => {
                     return (
                         <DroppableArea 
                             key={i} 
-                            activeId={activeId} 
-                            wordChunks={wordChunks} 
                             chunkContainer={chunkContainers[lineId]}
                             droppableClass='line'/>
                     )

@@ -10,8 +10,6 @@ describe("DroppableArea", () => {
         const { getAllByRole } = render(
             <DroppableArea
                 chunkContainer={mockContainer1}
-                wordChunks={mockChunks}
-                activeId={""}
                 droppableClass={"test"}
                 />
         )
@@ -21,8 +19,6 @@ describe("DroppableArea", () => {
         const { getByTestId } = render(
             <DroppableArea
                 chunkContainer={mockContainer1}
-                wordChunks={mockChunks}
-                activeId={""}
                 droppableClass={"test"}
                 />
         )
