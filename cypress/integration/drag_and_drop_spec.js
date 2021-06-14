@@ -9,7 +9,7 @@ describe("drag and drop", () => {
             .invoke('text')
             .then((text1) => {
                 cy.get(".text-snippet").first().next().as('second')
-                cy.dragDropAdjust('@first','@second', 0, 200)
+                cy.dragAndDrop('@first','@second')
                     .wait(500)
                 cy.get(".text-snippet")
                     .first()
