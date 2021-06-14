@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaMinus } from 'react-icons/Fa'
+import { FaMinus } from 'react-icons/fa'
 
 import { chunkContainer } from "../../types/chunkContainer"
 import { Button } from "../index"
