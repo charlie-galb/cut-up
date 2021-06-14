@@ -9,17 +9,13 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
-      - run:
-          name: install-dependencies
-          command: yarn install
+      - run: yarn install
   test: 
     docker:
       - image: circleci/node:14
     steps:
       - checkout
-      - run:
-          name: jest-test
-          command: yarn test
+      - run: yarn test
 
 workflows:
   build_and_test:
