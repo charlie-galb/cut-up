@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiPlus } from 'react-icons/Fi'
+import { FaPlus } from 'react-icons/fa'
 
 import { Button } from "../index"
 import { chunkContainer } from "../../types/chunkContainer"
@@ -38,7 +38,7 @@ export const AddLineButtonContainer = (props: Props) => {
 
     return (
         <div>
-            <Button testId="add-line-btn" className="btn secondary-btn add-line-btn" handleCallback={addLine} ><FiPlus /></Button>
+            <Button testId="add-line-btn" className="btn secondary-btn add-line-btn" handleCallback={addLine} ><FaPlus /></Button>
         </div>
     )
 }
