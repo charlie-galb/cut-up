@@ -9,18 +9,21 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
-      - run: yarn install
-  test: 
-    docker:
-      - image: circleci/node:14
-    steps:
-      - checkout
-      - run: yarn test
+      - run:
+          name: install dependencies
+          command: yarn install
+      - run:
+          name: run jest tests
+          command: yarn test
 
 workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - cypress/run:
+          start: yarn start
           requires:
             - build
+          filters:
+             branches:
+               only: main
