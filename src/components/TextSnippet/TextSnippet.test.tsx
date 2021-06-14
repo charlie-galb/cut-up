@@ -3,15 +3,11 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { render } from "@testing-library/react"
 
 import { TextSnippet } from "../index"
-import { DroppableArea } from "../DroppableArea/DroppableArea"
-
-const mockSetPoemAsText = jest.fn()
-const mockDisplayPopUp = jest.fn()
 
 describe("TextSnippet", () => {
     test("Renders a button", () => {
         const { getByRole } = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                 <Droppable droppableId="test droppable" direction="horizontal">
                     {(provided) => (
                         <div ref={provided.innerRef}

@@ -9,7 +9,7 @@ describe("CraftingBoard", () => {
     it('renders PopUpBox when the textify button is clicked', async () => {
         const mockPoem = "Eeny, meeny, miney, mo"
         const { getByText, getByTestId } = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                  <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}
@@ -29,7 +29,7 @@ describe("CraftingBoard", () => {
     })
     it('renders correctly', () => {
         const board = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
             <CraftingBoard
                 chunkContainers={mockContainers}
                 lineOrder={mockLineOrder}

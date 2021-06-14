@@ -13,7 +13,7 @@ interface Props {
     setLineOrder: (arg: string[]) => void
 }
 
-export const RemoveLineButtonContainer = (props: Props) => {
+export const RemoveLineButtonContainer: React.FC<Props> = (props: Props) => {
 
     const { lineOrder, chunkContainers, setLineOrder, setChunkContainers } = props
 

@@ -15,7 +15,7 @@ interface Props {
     setPoemAsText: (arg: string) => void
 }
 
-export const CraftingBoard = (props: Props) => {
+export const CraftingBoard: React.FC<Props> = (props: Props) => {
   const [isPopUpDisplayed, setIsPopUpDisplayed] = useState<boolean>(false)
 
     const { chunkContainers, 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 
 import { initialChunkContainers, initialLineOrder } from "../../data/initialState"
 import { text } from "../../data/text"
@@ -8,14 +8,14 @@ import { chunkContainer } from "../../types/chunkContainer"
 import { CuttingBoard, CraftingBoard, Header } from "../index"
 
 
-export const App = () => {
+export const App: React.FC = () => {
   const [chunkContainers, setChunkContainers] = useState<{ [key: string]: chunkContainer}>(initialChunkContainers)
   const [lineOrder, setLineOrder] = useState<string[]>(initialLineOrder)
   const [poemAsText, setPoemAsText] = useState<string>("")
 
   const { para1, para2, para3 } = text
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     
     if (!result.destination) { 
       return 

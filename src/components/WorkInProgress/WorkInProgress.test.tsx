@@ -8,7 +8,7 @@ import { WorkInProgress } from "../index"
 describe("WorkInProgress", () => {
     test("It displays the correct number of text snippets", () => {
         const wip = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                 <WorkInProgress 
                     lineOrder={mockLineOrder}
                     chunkContainers={mockContainers}

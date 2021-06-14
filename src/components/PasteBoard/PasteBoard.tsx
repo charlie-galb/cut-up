@@ -7,7 +7,7 @@ interface Props {
     chunkContainer: chunkContainer
 }
 
-export const PasteBoard = (props: Props) => {
+export const PasteBoard: React.FC<Props> = (props: Props) => {
    
     const { chunkContainer } = props
 

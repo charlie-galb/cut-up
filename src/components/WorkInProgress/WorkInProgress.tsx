@@ -14,7 +14,7 @@ interface Props {
     setLineOrder: (arg: string[]) => void
 }
 
-export const WorkInProgress = (props: Props) => {
+export const WorkInProgress: React.FC<Props> = (props: Props) => {
 
     const { chunkContainers, 
         lineOrder, 

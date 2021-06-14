@@ -9,7 +9,7 @@ interface Props {
     droppableClass: string
 }
 
-export const DroppableArea = (props: Props) => {
+export const DroppableArea: React.FC<Props> = (props: Props) => {
     const { chunkContainer, droppableClass } = props
     const { id, title, chunks } = chunkContainer
     

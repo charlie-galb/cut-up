@@ -10,7 +10,7 @@ interface Props {
     chunkContainers: { [key: string]: chunkContainer}
 }
 
-export const TextifyButtonContainer = (props: Props) => {
+export const TextifyButtonContainer: React.FC<Props> = (props: Props) => {
     const { setPoemAsText, 
             displayPopUp, 
             lineOrder, 

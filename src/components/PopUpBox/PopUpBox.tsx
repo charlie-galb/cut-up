@@ -5,7 +5,7 @@ interface Props {
     children: string
 }
 
-export const PopUpBox = (props: Props) => {
+export const PopUpBox: React.FC<Props> = (props: Props) => {
     const { handleClose, children } = props
     return (
         <div className="pop-up-container"> 

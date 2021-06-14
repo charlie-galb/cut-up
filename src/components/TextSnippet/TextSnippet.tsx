@@ -7,7 +7,7 @@ interface Props {
     index: number
 }
 
-export const TextSnippet = (props: Props) => {
+export const TextSnippet: React.FC<Props> = (props: Props) => {
 
     const { id, text, index } = props
 

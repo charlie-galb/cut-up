@@ -8,7 +8,7 @@ import { PasteBoard } from "../index"
 describe("PasteBoard", () => {
     test("It displays the correct number of text snippets", () => {
         const board = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                 <PasteBoard 
                     chunkContainer={mockContainer1}/>
             </DragDropContext>

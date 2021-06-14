@@ -11,7 +11,6 @@ import {
 } from "../../utils/mockData"
 import { CuttingBoard } from "./CuttingBoard"
 
-const mockSetWordChunks = jest.fn()
 const mockSetChunkContainers = jest.fn()
 
 afterEach(() => {
@@ -25,6 +24,7 @@ describe("CuttingBoard", () => {
                 chunkContainers={mockContainers}
                 setChunkContainers={mockSetChunkContainers}/>
             )
+        expect(board).toMatchSnapshot()
     })
     test("there are three text areas", () => {
         const { getAllByRole } = render(

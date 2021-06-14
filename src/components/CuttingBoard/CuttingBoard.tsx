@@ -10,7 +10,7 @@ interface Props {
     setChunkContainers: (arg: {[key: string]: chunkContainer}) => void
 }
 
-export const CuttingBoard = (props: Props) => {
+export const CuttingBoard: React.FC<Props> = (props: Props) => {
     
     const { setChunkContainers, chunkContainers } = props
     const [source1Text, setSource1Text] = useState("")
@@ -19,10 +19,9 @@ export const CuttingBoard = (props: Props) => {
 
     const combineText = (textArr: string[]) => {
         textArr = textArr.filter(item => item)
-        let combinedText: string = ""
-        let endPoint = textArr.length
-        for(let i = 0; i < endPoint; i++) {
-            if (textArr[i] && i != endPoint -1) {
+        let combinedText = ""
+        for(let i = 0; i < textArr.length; i++) {
+            if (textArr[i] && i != textArr.length -1) {
                 combinedText += (textArr[i] + " ")
             } else if (textArr[i]) {
                 combinedText += textArr[i]
@@ -62,7 +61,7 @@ export const CuttingBoard = (props: Props) => {
 
     const resetChunkContainers = () => {
         const emptyContainers = chunkContainers
-        for (var key in emptyContainers) {
+        for (const key in emptyContainers) {
             emptyContainers[key].chunks = []
         }
         setChunkContainers(emptyContainers)

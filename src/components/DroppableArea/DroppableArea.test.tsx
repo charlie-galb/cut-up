@@ -8,7 +8,7 @@ import { DroppableArea } from "./DroppableArea"
 describe("DroppableArea", () => {
     it('renders the correct number of text snippets', () => {
         const { getAllByRole } = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                 <DroppableArea chunkContainer={mockContainer1} droppableClass={"test"}/>
             </DragDropContext>
         )
@@ -16,7 +16,7 @@ describe("DroppableArea", () => {
     })
     it('applies the CSS class to the droppable container', () => {
         const { getByTestId } = render(
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={jest.fn()}>
                 <DroppableArea chunkContainer={mockContainer1} droppableClass={"test"}/>
             </DragDropContext>
         )
