@@ -4,7 +4,7 @@ interface Props {
     handleCallback: (event: React.MouseEvent<HTMLButtonElement>) => void
     testId: string
     className: string
-    children: string | SVGAElement
+    children: string | React.ReactNode
 }
 
 export const Button: React.FC<Props> = (props: Props) => {
