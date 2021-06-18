@@ -32,7 +32,8 @@ workflows:
     jobs:
       - build_and_unit_test
       - cypress/run:
-          executor: browsers-chrome77
+          docker:
+            - image: 'cypress/browsers:node12.6.0-chrome77'
           browser: chrome
           yarn: true
           start: yarn start
