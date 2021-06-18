@@ -2,10 +2,6 @@ version: 2.1
 
 orbs:
   cypress: cypress-io/cypress@1
-  executors: 
-    with-chrome: 
-      docker:
-        - image: 'cypress/browsers:node12.6.0-chrome77'
 
 jobs:
   build_and_unit_test:
@@ -36,8 +32,6 @@ workflows:
     jobs:
       - build_and_unit_test
       - cypress/run:
-          executor: with-chrome
-          browser: chrome
           yarn: true
           start: yarn start
           requires:
