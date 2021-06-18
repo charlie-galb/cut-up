@@ -51,7 +51,7 @@ workflows:
       - deploy:
           requires:
             - build_and_unit_test
-            - cypress/run
+            # - cypress/run
           filters:
              branches:
                only: main
