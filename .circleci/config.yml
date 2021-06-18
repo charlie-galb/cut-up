@@ -19,6 +19,8 @@ jobs:
           name: bundle files
           command: yarn build
   deploy: 
+    docker:
+      - image: circleci/node:14
     steps: 
       - checkout
       - node/with-cache:
