@@ -35,10 +35,10 @@ workflows:
           yarn: true
           start: yarn start
           requires:
-            - build
+            - build_and_unit_test
       - deploy:
           requires:
-            - build
+            - build_and_unit_test
             - cypress/run
           filters:
              branches:
