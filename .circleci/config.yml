@@ -18,11 +18,16 @@ jobs:
       - run:
           name: bundle files
           command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/*
   deploy: 
     docker:
       - image: circleci/node:14
     steps: 
-      - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: install dependencies
           command: yarn install
