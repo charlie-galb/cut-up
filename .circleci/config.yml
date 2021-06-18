@@ -23,6 +23,12 @@ jobs:
       - image: circleci/node:14
     steps: 
       - checkout
+      - run:
+          name: install dependencies
+          command: yarn install
+      - run:
+          name: bundle files
+          command: yarn build
       - run: 
           name: deploy to netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=dist --prod
