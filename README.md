@@ -50,4 +50,7 @@ Run `yarn test` from anywhere inside the project repo.
 
 ## Mobile Support  
 
-<img src="https://user-images.githubusercontent.com/50401779/122591792-60d36480-d05b-11eb-9c60-4c7c7db900e6.png" width="45%"><img src="https://user-images.githubusercontent.com/50401779/122591811-64ff8200-d05b-11eb-84a9-20573a5e3b16.png" width="45%">
+<p align="middle">
+    <img src="https://user-images.githubusercontent.com/50401779/122591792-60d36480-d05b-11eb-9c60-4c7c7db900e6.png" width="45%">
+    <img src="https://user-images.githubusercontent.com/50401779/122591811-64ff8200-d05b-11eb-84a9-20573a5e3b16.png" width="45%">
+</p>
