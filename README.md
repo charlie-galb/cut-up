@@ -1,4 +1,4 @@
-# Cut-up Creator  
+# Cut-up Creator [![charlie-galb](https://app.circleci.com/gh/charlie-galb/cut-up.svg?style=shield)](https://app.circleci.com/pipelines/github/charlie-galb/cut-up)
 
 This is a static web app designed to help the user create [cut-up poems](https://en.wikipedia.org/wiki/Cut-up_technique) in the style of [Willam S. Burroughs](https://en.wikipedia.org/wiki/William_S._Burroughs).  
 
