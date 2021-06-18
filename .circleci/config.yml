@@ -34,8 +34,6 @@ workflows:
       - cypress/run:
           executor: cypress/browsers-chrome69
           browser: chrome
-          attach-workspace: true
-          persist-workspace: true
           yarn: true
           start: yarn start
           requires:
