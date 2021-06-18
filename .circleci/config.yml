@@ -22,6 +22,7 @@ jobs:
           root: .
           paths:
             - .
+            - cypress/*
   deploy: 
     docker:
       - image: circleci/node:14
