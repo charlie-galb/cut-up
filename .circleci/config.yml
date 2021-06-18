@@ -4,7 +4,7 @@ orbs:
   cypress: cypress-io/cypress@1
 
 jobs:
-  build:
+  build_and_unit_test:
     docker:
       - image: circleci/node:14
     steps:
@@ -15,17 +15,28 @@ jobs:
       - run:
           name: run jest tests
           command: yarn test
-
+      - run:
+          name: bundle files
+          command: yarn build
+  deploy: 
+    steps: 
+      - checkout
+      - node/with-cache:
+          - run: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=dist --prod
 workflows:
-  build_and_test:
+  build_test_deploy:
     jobs:
-      - build
+      - build_and_unit_test
       - cypress/run:
           store_artifacts: true
           yarn: true
           start: yarn start
           requires:
             - build
+      - deploy:
+          requires:
+            - build
+            - cypress/run
           filters:
              branches:
                only: main
