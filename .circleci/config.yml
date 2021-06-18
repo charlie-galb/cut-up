@@ -32,7 +32,7 @@ workflows:
     jobs:
       - build_and_unit_test
       - cypress/run:
-          executor: with-chrome
+          executor: browsers-chrome77
           browser: chrome
           yarn: true
           start: yarn start
