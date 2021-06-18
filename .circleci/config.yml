@@ -35,17 +35,18 @@ workflows:
   build_test_deploy:
     jobs:
       - build_and_unit_test
-      # - cypress/run:
-      #     executor: cypress/browsers-chrome69
-      #     browser: chrome
-      #     yarn: true
-      #     start: yarn start
-      #     requires:
-      #       - build_and_unit_test
+      - cypress/run:
+          executor: cypress/browsers-chrome69
+          browser: chrome
+          attach-workspace: true
+          yarn: true
+          start: yarn start
+          requires:
+            - build_and_unit_test
       - deploy:
           requires:
             - build_and_unit_test
-            # - cypress/run
+            - cypress/run
           filters:
              branches:
                only: main
