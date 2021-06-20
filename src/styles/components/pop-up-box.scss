@@ -18,6 +18,12 @@
     border-radius: 4px;
     border: solid 2px var(--goldenBrown);
     overflow: auto;
+    @include for-phone-only {   
+        width: 90%;
+    };
+    @include for-tablet-portrait-up {  
+        width: 80%;
+    }
   }
 
 .icon-bar {
