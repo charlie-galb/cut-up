@@ -39,21 +39,21 @@ Object {
               class="cutting-text-area 1"
               cols="10"
               data-testid="cutting-text-area1"
-              placeholder="Paste your text sources here"
+              placeholder="Paste some text here, e.g. a bible verse"
               rows="4"
             />
             <textarea
               class="cutting-text-area 2"
               cols="10"
               data-testid="cutting-text-area2"
-              placeholder="Paste your text sources here"
+              placeholder="Paste some wildly different text here, e.g. something from an intruction manual"
               rows="4"
             />
             <textarea
               class="cutting-text-area 3"
               cols="10"
               data-testid="cutting-text-area3"
-              placeholder="Paste your text sources here"
+              placeholder="Paste some other text here, e.g. a paragraph from a news article"
               rows="4"
             />
           </div>
@@ -210,21 +210,21 @@ Object {
             class="cutting-text-area 1"
             cols="10"
             data-testid="cutting-text-area1"
-            placeholder="Paste your text sources here"
+            placeholder="Paste some text here, e.g. a bible verse"
             rows="4"
           />
           <textarea
             class="cutting-text-area 2"
             cols="10"
             data-testid="cutting-text-area2"
-            placeholder="Paste your text sources here"
+            placeholder="Paste some wildly different text here, e.g. something from an intruction manual"
             rows="4"
           />
           <textarea
             class="cutting-text-area 3"
             cols="10"
             data-testid="cutting-text-area3"
-            placeholder="Paste your text sources here"
+            placeholder="Paste some other text here, e.g. a paragraph from a news article"
             rows="4"
           />
         </div>
