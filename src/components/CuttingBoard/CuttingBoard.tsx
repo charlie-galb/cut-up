@@ -91,9 +91,9 @@ export const CuttingBoard: React.FC<Props> = (props: Props) => {
     return (
         <div className="cutting-container">
             <div className='text-area-container'>
-                <textarea data-testid="cutting-text-area1" className="cutting-text-area 1" cols={10} rows={4} placeholder="Paste your text sources here" value={source1Text} onChange={handleSource1TextChange}/>
-                <textarea data-testid="cutting-text-area2" className="cutting-text-area 2" cols={10} rows={4} placeholder="Paste your text sources here" value={source2Text} onChange={handleSource2TextChange}/>
-                <textarea data-testid="cutting-text-area3" className="cutting-text-area 3" cols={10} rows={4} placeholder="Paste your text sources here" value={source3Text} onChange={handleSource3TextChange}/>
+                <textarea data-testid="cutting-text-area1" className="cutting-text-area 1" cols={10} rows={4} placeholder="Paste some text here, e.g. a bible verse" value={source1Text} onChange={handleSource1TextChange}/>
+                <textarea data-testid="cutting-text-area2" className="cutting-text-area 2" cols={10} rows={4} placeholder="Paste some wildly different text here, e.g. something from an intruction manual" value={source2Text} onChange={handleSource2TextChange}/>
+                <textarea data-testid="cutting-text-area3" className="cutting-text-area 3" cols={10} rows={4} placeholder="Paste some other text here, e.g. a paragraph from a news article" value={source3Text} onChange={handleSource3TextChange}/>
             </div>
             <Button testId="cut-btn" className="btn primary-btn cut-btn" handleCallback={handleCutting} >Cut up</ Button>
         </div>
